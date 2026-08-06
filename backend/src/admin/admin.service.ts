@@ -1400,7 +1400,7 @@ export class AdminService implements OnApplicationBootstrap {
 
     // Re-sync the funnel date fields
     if (project.user?.email) {
-      this.rsvpService.updateDateField(project.user.email, 'Loops - beestApprovedProject');
+      this.rsvpService.updateDateField(project.user.email, this.yswsConfig.loopsField('ApprovedProject'));
     }
 
     // Re-push the full project record to Airtable Projects table

@@ -23,6 +23,7 @@ import {
   fraudClearedDm,
   reviewChangesNeededDm,
 } from '../slack/slack-notify.templates';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
 
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
 const FRAUD_REJECT_THRESHOLD = 4;
@@ -75,6 +76,7 @@ export class FraudReviewService implements OnApplicationBootstrap, OnApplication
     private readonly rsvpService: RsvpService,
     private readonly slackNotify: SlackNotifyService,
     private readonly settingsService: SettingsService,
+    private readonly yswsConfig: YswsConfigService,
   ) {
     this.apiBaseUrl = (
       this.config.get('FRAUD_REVIEW_API_URL') ??
@@ -554,7 +556,7 @@ export class FraudReviewService implements OnApplicationBootstrap, OnApplication
     if (project.user?.email) {
       this.rsvpService.updateDateField(
         project.user.email,
-        'Loops - beestApprovedProject',
+        this.yswsConfig.loopsField('ApprovedProject'),
       );
     }
     try {

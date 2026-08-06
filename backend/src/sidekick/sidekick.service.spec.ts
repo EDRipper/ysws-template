@@ -62,6 +62,7 @@ const buildService = () => {
     hackatimeService as never,
     lapseService as never,
     slackService as never,
+    { program: { name: 'Example YSWS', shortName: 'example-ysws' } } as never,
   );
 
   return {
@@ -322,7 +323,7 @@ describe('SidekickService.submitReviewAction', () => {
     const justification = s.adminService.reviewProject.mock.calls[0][7] as string;
     expect(justification).toContain(
       'This user tracked 0h 58min on Hackatime. This was adjusted to 0h 30min after review. ' +
-        'This is an update to an existing project previously submitted to Beest.',
+        'This is an update to an existing project previously submitted to Example YSWS.',
     );
     expect(justification).toContain(
       'Project was reshipped by @/crn on 2026-07-08. Previously shipped on 2026-07-01',

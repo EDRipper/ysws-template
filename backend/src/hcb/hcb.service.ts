@@ -15,6 +15,7 @@ import { HcbCredential } from '../entities/hcb-credential.entity';
 import { Order } from '../entities/order.entity';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { ShopService } from '../shop/shop.service';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Refresh proactively when the access token has under this long to live.
@@ -33,16 +34,21 @@ const MAX_GRANT_CONCURRENCY = 8;
 // (ShopItem.grantInstructions) and sent to HCB on the card grant (shown to the
 // recipient, incl. during pre-authorization). Items with no instructions set
 // fall back to this default.
-const DEFAULT_GRANT_INSTRUCTIONS = [
-  'This is your beest reward grant card — use it only for the item you redeemed.',
-  'Upload a receipt in HCB for every transaction, or the charge may be reversed.',
-  'If the card needs pre-authorization it activates once approved. Questions? Ask in the Hack Club Slack.',
-].join('\n');
+function defaultGrantInstructions(programName: string): string {
+  return [
+    `This is your ${programName} reward grant card — use it only for the item you redeemed.`,
+    'Upload a receipt in HCB for every transaction, or the charge may be reversed.',
+    'If the card needs pre-authorization it activates once approved. Questions? Ask in the Hack Club Slack.',
+  ].join('\n');
+}
 
 // The item's own instructions if set, else the default.
-function resolveGrantInstructions(raw: string | null | undefined): string {
+function resolveGrantInstructions(
+  raw: string | null | undefined,
+  programName: string,
+): string {
   const text = (raw ?? '').trim();
-  return text || DEFAULT_GRANT_INSTRUCTIONS;
+  return text || defaultGrantInstructions(programName);
 }
 
 export type GrantAdmin = { uid: string; email: string };
@@ -126,6 +132,7 @@ export class HcbService {
     private readonly orderRepo: Repository<Order>,
     private readonly auditLogService: AuditLogService,
     private readonly shopService: ShopService,
+    private readonly yswsConfig: YswsConfigService,
   ) {
     this.baseUrl = (this.config.get<string>('HCB_BASE_URL') ?? 'https://hcb.hackclub.com').replace(/\/$/, '');
     this.clientId = this.config.get<string>('HCB_CLIENT_ID')?.trim() || undefined;
@@ -416,6 +423,7 @@ export class HcbService {
     // Instructions come from the order's shop item (set in the shop panel).
     const instructions = resolveGrantInstructions(
       orderForChecks.shopItem?.grantInstructions,
+      this.yswsConfig.program.name,
     );
 
     // 1) An admin may not issue a grant to their own email.

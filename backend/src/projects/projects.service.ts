@@ -16,6 +16,7 @@ import { shipSubmittedDm } from '../slack/slack-notify.templates';
 import { SettingsService } from '../settings/settings.service';
 import { CreateProjectDto } from './create-project.dto';
 import { UpdateProjectDto } from './update-project.dto';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
 
 const CDN_UPLOAD_URL = 'https://cdn.hackclub.com/api/v4/upload';
 
@@ -57,6 +58,7 @@ export class ProjectsService {
     private submissionRepo: Repository<Submission>,
     @InjectRepository(User)
     private userRepo: Repository<User>,
+    private yswsConfig: YswsConfigService,
   ) {
     this.cdnApiKey = this.configService.getOrThrow('CDN_API_KEY');
   }
@@ -137,7 +139,7 @@ export class ProjectsService {
     // Sync DetailedProject funnel stage when a Hackatime project is linked
     if (hackatimeProjectName.length > 0) {
       this.userRepo.findOne({ where: { id: userId }, select: ['email'] }).then((u) => {
-        if (u?.email) this.rsvpService.updateDateField(u.email, 'Loops - beestDetailedProject');
+        if (u?.email) this.rsvpService.updateDateField(u.email, this.yswsConfig.loopsField('DetailedProject'));
       });
     }
 
@@ -507,7 +509,7 @@ export class ProjectsService {
         // Sync DetailedProject funnel stage when a Hackatime project is linked
         if (validated.length > 0) {
           this.userRepo.findOne({ where: { id: userId }, select: ['email'] }).then((u) => {
-            if (u?.email) this.rsvpService.updateDateField(u.email, 'Loops - beestDetailedProject');
+            if (u?.email) this.rsvpService.updateDateField(u.email, this.yswsConfig.loopsField('DetailedProject'));
           });
         }
       }
@@ -584,7 +586,7 @@ export class ProjectsService {
 
       // Sync submission date to Airtable for Loops
       this.userRepo.findOne({ where: { id: userId }, select: ['email'] }).then((u) => {
-        if (u?.email) this.rsvpService.updateDateField(u.email, 'Loops - beestShippedProject');
+        if (u?.email) this.rsvpService.updateDateField(u.email, this.yswsConfig.loopsField('ShippedProject'));
       });
 
       this.notifyShipped(userId, project);

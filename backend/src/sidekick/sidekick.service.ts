@@ -24,6 +24,7 @@ import { HcaService } from '../hca/hca.service';
 import { LapseService, TimelapseDTO } from '../lapse/lapse.service';
 import { ShopService } from '../shop/shop.service';
 import { SlackService } from '../slack/slack.service';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
 import {
   actorIdFor,
   decodeCursor,
@@ -87,6 +88,7 @@ export class SidekickService {
     private readonly hackatimeService: HackatimeService,
     private readonly lapseService: LapseService,
     private readonly slackService: SlackService,
+    private readonly yswsConfig: YswsConfigService,
   ) {}
 
   // ── Health / stats ──────────────────────────────────────────────────────
@@ -446,7 +448,7 @@ export class SidekickService {
     const reviewer = await this.resolveActor(input.reviewerId);
     if (!reviewer) {
       throw new BadRequestException(
-        `Reviewer ${input.reviewerId} has no Beest account — they need to log into Beest once before reviewing.`,
+        `Reviewer ${input.reviewerId} has no ${this.yswsConfig.program.name} account — they need to log into ${this.yswsConfig.program.name} once before reviewing.`,
       );
     }
 
@@ -738,7 +740,7 @@ export class SidekickService {
 
     const reviewer = await this.resolveActor(input.reviewerId);
     if (!reviewer) {
-      throw new BadRequestException(`Reviewer ${input.reviewerId} has no Beest account.`);
+      throw new BadRequestException(`Reviewer ${input.reviewerId} has no ${this.yswsConfig.program.name} account.`);
     }
 
     const statuses =
@@ -936,7 +938,7 @@ export class SidekickService {
       throw new ServiceUnavailableException({
         error: 'ADDRESS_UNAVAILABLE',
         message:
-          'HCA tokens expired or the address vault is unreachable — the user may need to log into Beest again. Retry later.',
+          `HCA tokens expired or the address vault is unreachable — the user may need to log into ${this.yswsConfig.program.name} again. Retry later.`,
       });
     }
     const address = identity.address;
@@ -1071,7 +1073,7 @@ export class SidekickService {
         ? `This user tracked ${fmtHoursMinutes(facts.trackedSeconds)} on Hackatime. This was adjusted to ${adjusted} after review.`
         : `This ship was assigned ${adjusted} after review.`,
       prevShip
-        ? 'This is an update to an existing project previously submitted to Beest.'
+        ? `This is an update to an existing project previously submitted to ${this.yswsConfig.program.name}.`
         : project.isUpdate
           ? 'This is an update to an existing project.'
           : null,

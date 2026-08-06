@@ -8,6 +8,15 @@ Read this file first each session, update it before stopping.
 
 ## Decisions made (don't re-litigate these)
 
+- **2026-08-06**: Vercel was silently blocking deploys because the local git
+  commit author was `bot@localhost` (not a verified team member email). Fixed by
+  `git config user.email euan@hackclub.com` / `user.name Euan` in this repo's
+  local `.git/config` (per operator's own diagnosis + instruction) — this
+  persists on disk in this working copy, no need to redo it each tick, but if
+  a fresh clone ever gets made, redo this before the first commit or deploys
+  will silently block again with no obvious error in this codebase, only visible
+  on the Vercel dashboard.
+
 - **2026-08-06 update from operator**: "Hack Club" wording STAYS — all YSWS programs
   are Hack Club programs, so hackclub.com URLs, HCA auth, "Hack Club" branding text
   are correct to keep, not strip. Genericize only: the "Beest" name itself, the

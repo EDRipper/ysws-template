@@ -10,6 +10,7 @@ import { User } from '../entities/user.entity';
 import { Session } from '../entities/session.entity';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { RsvpService } from '../rsvp/rsvp.service';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
 
 type OwnershipLookups =
   | {
@@ -45,6 +46,7 @@ export class HackatimeService implements OnModuleInit {
     private sessionRepo: Repository<Session>,
     private auditLogService: AuditLogService,
     private rsvpService: RsvpService,
+    private yswsConfig: YswsConfigService,
   ) {
     this.clientId = this.configService.get('HACKATIME_CLIENT_ID');
     this.clientSecret = this.configService.get('HACKATIME_CLIENT_SECRET');
@@ -205,7 +207,7 @@ export class HackatimeService implements OnModuleInit {
     await this.auditLogService.log(user.id, 'hackatime_connected', 'Connected Hackatime', impersonatorName);
 
     if (user.email) {
-      this.rsvpService.updateDateField(user.email, 'Loops - beestHackatimeSynched');
+      this.rsvpService.updateDateField(user.email, this.yswsConfig.loopsField('HackatimeSynched'));
     }
 
     return { success: true, redirectTo: '/tutorial?stage=2' };
@@ -291,7 +293,7 @@ export class HackatimeService implements OnModuleInit {
       }
 
       throw new ForbiddenException(
-        'Your linked Hackatime account does not match your Beest account. Please reconnect Hackatime with the correct account.',
+        `Your linked Hackatime account does not match your ${this.yswsConfig.program.name} account. Please reconnect Hackatime with the correct account.`,
       );
     }
 

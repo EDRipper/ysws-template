@@ -9,6 +9,7 @@ import { SlackService } from '../slack/slack.service';
 import { ProjectsService } from '../projects/projects.service';
 import { RsvpService } from '../rsvp/rsvp.service';
 import { User } from '../entities/user.entity';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
 
 @Controller('api/onboarding')
 export class OnboardingController {
@@ -21,6 +22,7 @@ export class OnboardingController {
     private readonly rsvpService: RsvpService,
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
+    private readonly yswsConfig: YswsConfigService,
   ) {}
 
   @Throttle({ default: { limit: 5, ttl: 60000 } })
@@ -42,7 +44,7 @@ export class OnboardingController {
       select: ['email'],
     });
     if (dbUser?.email) {
-      this.rsvpService.updateDateField(dbUser.email, 'Loops - beestOnboarded');
+      this.rsvpService.updateDateField(dbUser.email, this.yswsConfig.loopsField('Onboarded'));
     }
     return { ok: true };
   }
@@ -88,7 +90,7 @@ export class OnboardingController {
         select: ['email'],
       });
       if (dbUserForSync?.email) {
-        this.rsvpService.updateDateField(dbUserForSync.email, 'Loops - beestCompletedTutorial');
+        this.rsvpService.updateDateField(dbUserForSync.email, this.yswsConfig.loopsField('CompletedTutorial'));
       }
     }
 

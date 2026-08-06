@@ -22,6 +22,7 @@ import { SlackNotifyService } from '../slack/slack-notify.service';
 import { reviewApprovedDm } from '../slack/slack-notify.templates';
 import { AdminService } from './admin.service';
 import { Inject, forwardRef } from '@nestjs/common';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
 
 export type AuditAction = 'approve' | 'rereview' | 'reject' | 'hardReject' | 'ban';
 
@@ -91,6 +92,7 @@ export class AuditService {
     private readonly slackNotify: SlackNotifyService,
     @Inject(forwardRef(() => AdminService))
     private readonly adminService: AdminService,
+    private readonly yswsConfig: YswsConfigService,
   ) {}
 
   // ── Iframe context ─────────────────────────────────────────────────────────
@@ -622,7 +624,7 @@ export class AuditService {
     if (project.user?.email) {
       this.rsvpService.updateDateField(
         project.user.email,
-        'Loops - beestApprovedProject',
+        this.yswsConfig.loopsField('ApprovedProject'),
       );
     }
     try {

@@ -131,4 +131,14 @@ export class YswsConfigService {
   get attendEventSlug(): string {
     return this.integrations.attendEventSlug || this.program.shortName;
   }
+
+  /**
+   * Loops (email/CRM) custom field name for a lifecycle event, e.g.
+   * loopsField('ApprovedProject') -> "Loops - example-yswsApprovedProject".
+   * Each deployment's Loops account needs its own fields provisioned under
+   * this program's shortName prefix — see SETUP.md.
+   */
+  loopsField(suffix: string): string {
+    return `Loops - ${this.program.shortName}${suffix}`;
+  }
 }

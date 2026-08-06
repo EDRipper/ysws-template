@@ -5,6 +5,7 @@ import { Not, IsNull, Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { Project } from '../entities/project.entity';
 import { RsvpService } from '../rsvp/rsvp.service';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
 
 @Injectable()
 export class OnboardingBackfillService implements OnModuleInit {
@@ -15,6 +16,7 @@ export class OnboardingBackfillService implements OnModuleInit {
     @InjectRepository(Project) private readonly projectRepo: Repository<Project>,
     private readonly rsvpService: RsvpService,
     private readonly config: ConfigService,
+    private readonly yswsConfig: YswsConfigService,
   ) {}
 
   onModuleInit() {
@@ -57,13 +59,13 @@ export class OnboardingBackfillService implements OnModuleInit {
       .getRawMany();
 
     for (const u of hackatimeUsers) {
-      if (u.email) await this.rsvpService.updateDateField(u.email, 'Loops - beestHackatimeSynched');
+      if (u.email) await this.rsvpService.updateDateField(u.email, this.yswsConfig.loopsField('HackatimeSynched'));
     }
     for (const u of onboardedUsers) {
-      await this.rsvpService.updateDateField(u.email, 'Loops - beestOnboarded');
+      await this.rsvpService.updateDateField(u.email, this.yswsConfig.loopsField('Onboarded'));
     }
     for (const row of detailedProjectUsers) {
-      if (row.email) await this.rsvpService.updateDateField(row.email, 'Loops - beestDetailedProject');
+      if (row.email) await this.rsvpService.updateDateField(row.email, this.yswsConfig.loopsField('DetailedProject'));
     }
 
     this.logger.log(

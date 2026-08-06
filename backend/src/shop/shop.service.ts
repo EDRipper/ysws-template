@@ -26,6 +26,7 @@ import {
   orderPendingDm,
   orderFulfilledDm,
 } from '../slack/slack-notify.templates';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
 
 /** One aggregated row in the admin "buyers of an item" view. */
 export interface ItemBuyer {
@@ -66,6 +67,7 @@ export class ShopService {
     private readonly attendService: AttendService,
     private readonly configService: ConfigService,
     private readonly hcaService: HcaService,
+    private readonly yswsConfig: YswsConfigService,
   ) {}
 
   /**
@@ -475,7 +477,7 @@ export class ShopService {
 
       // Sync purchase date to Airtable for Loops
       this.userRepo.findOne({ where: { id: userId }, select: ['email'] }).then((u) => {
-        if (u?.email) this.rsvpService.updateDateField(u.email, 'Loops - beestPurchasedItem');
+        if (u?.email) this.rsvpService.updateDateField(u.email, this.yswsConfig.loopsField('PurchasedItem'));
       });
 
       // Ticket item purchased — invite the buyer to the in-person event on Attend.
@@ -759,7 +761,7 @@ export class ShopService {
 
       // Sync fulfillment date to Airtable for Loops
       this.userRepo.findOne({ where: { id: order.userId }, select: ['email'] }).then((u) => {
-        if (u?.email) this.rsvpService.updateDateField(u.email, 'Loops - beestFulfilledOrder');
+        if (u?.email) this.rsvpService.updateDateField(u.email, this.yswsConfig.loopsField('FulfilledOrder'));
       });
 
       this.notifyOrder(
