@@ -8,6 +8,24 @@ Read this file first each session, update it before stopping.
 
 ## Decisions made (don't re-litigate these)
 
+- **2026-08-06 update from operator**: "Hack Club" wording STAYS — all YSWS programs
+  are Hack Club programs, so hackclub.com URLs, HCA auth, "Hack Club" branding text
+  are correct to keep, not strip. Genericize only: the "Beest" name itself, the
+  "pipes" currency display name, event-specific dates/location, and any specific
+  people's names — not the Hack Club org affiliation. This narrows scope: don't
+  touch hackclub.com references or "Hack Club" copy going forward.
+- Repo is live: https://github.com/EDRipper/ysws-template (private, under the bot's
+  own account for now — pushes there run without a manual click per policy, so this
+  is the fast-iteration home; can be moved/forked to the hackclub org later).
+  Push after every meaningful chunk, not just at milestones — operator wants
+  frequent pushes, not batched ones.
+- Real Vercel deploy is wanted (not just prepped config) but no VERCEL_TOKEN or
+  vercel CLI is available in this sandbox yet — flagged to operator, waiting on
+  either a token or him connecting the GitHub repo in the Vercel dashboard
+  (GitHub App integration auto-deploys every push with zero token needed on this
+  end, which fits "push frequently" better than a CLI token anyway). Don't block
+  other work on this.
+
 - **Currency**: do NOT rename internal DB columns / entity fields / variable names
   (`pipes`, `pipesGranted`, `pipesSpent` stay as-is in backend/src — renaming touches
   migrations and is not worth the risk). Instead, all USER-FACING currency text goes
