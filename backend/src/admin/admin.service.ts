@@ -36,6 +36,7 @@ import {
 import { ShopService } from '../shop/shop.service';
 import { getFileHoursForProject } from '../hackatime/hackatime-file-breakdown';
 import { SettingsService } from '../settings/settings.service';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
 
 const VALID_PERMS = [
   'User',
@@ -130,6 +131,7 @@ export class AdminService implements OnApplicationBootstrap {
     private readonly slackNotify: SlackNotifyService,
     private readonly shopService: ShopService,
     private readonly settingsService: SettingsService,
+    private readonly yswsConfig: YswsConfigService,
   ) {
     this.hackatimeBaseUrl = this.configService.get(
       'HACKATIME_BASE_URL',
@@ -707,7 +709,7 @@ export class AdminService implements OnApplicationBootstrap {
       // Revoke rejected by the floor guard (grants always affect the row since
       // the user was found above).
       throw new BadRequestException(
-        `Cannot revoke ${-delta} pipes — insufficient balance`,
+        `Cannot revoke ${this.yswsConfig.formatCurrency(-delta)} — insufficient balance`,
       );
     }
 
@@ -722,7 +724,7 @@ export class AdminService implements OnApplicationBootstrap {
     const identifier = user.name || user.slackId || user.hcaSub;
     const verb = delta > 0 ? 'Granted' : 'Revoked';
     const reasonSuffix = reason ? ` — ${reason}` : '';
-    const label = `${verb} ${Math.abs(delta)} pipes (${identifier}, ${current} → ${next})${reasonSuffix}`;
+    const label = `${verb} ${this.yswsConfig.formatCurrency(Math.abs(delta))} (${identifier}, ${current} → ${next})${reasonSuffix}`;
     await this.auditLogService.log(userId, 'admin_pipes_adjust', label);
     if (adminId) {
       await this.auditLogService.log(adminId, 'admin_pipes_adjust', label);
@@ -1190,12 +1192,12 @@ export class AdminService implements OnApplicationBootstrap {
       const finalHours = project.overrideHours ?? 0;
       if (finalHours <= 0) {
         throw new BadRequestException(
-          'Cannot approve a project at 0 hours. Enter a positive delta of new hours, or use "changes needed" to reject without granting pipes.',
+          `Cannot approve a project at 0 hours. Enter a positive delta of new hours, or use "changes needed" to reject without granting ${this.yswsConfig.currency.namePlural}.`,
         );
       }
       if (finalHours < (project.pipesGranted ?? 0)) {
         throw new BadRequestException(
-          `Cannot reduce approved hours to ${finalHours} — ${project.pipesGranted} pipes have already been granted on this project. Send to "changes needed" first to claw back pipes.`,
+          `Cannot reduce approved hours to ${finalHours} — ${this.yswsConfig.formatCurrency(project.pipesGranted ?? 0)} have already been granted on this project. Send to "changes needed" first to claw back ${this.yswsConfig.currency.namePlural}.`,
         );
       }
     }

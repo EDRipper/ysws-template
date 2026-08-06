@@ -75,6 +75,10 @@ function build(overrides: {
     {} as any, // slackNotify
     { refundOrder: jest.fn() } as any, // shopService
     { isResubmissionPaused: jest.fn().mockResolvedValue(false) } as any, // settingsService
+    {
+      currency: { nameSingular: 'credit', namePlural: 'credits', symbol: 'CR' },
+      formatCurrency: (n: number) => `${n} credits`,
+    } as any, // yswsConfig
   );
 
   return { service, saved, submissionUpdates };
