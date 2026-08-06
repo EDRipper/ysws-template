@@ -1,0 +1,47 @@
+{
+  "program": {
+    "name": "Example YSWS",
+    "shortName": "example-ysws",
+    "tagline": "Ship something. Get rewarded.",
+    "description": "A You-Ship-We-Ship platform where participants build projects, log devlogs, and earn shop credit for shipping.",
+    "url": "https://example-ysws.example.com",
+    "organizer": "Your Organization",
+    "organizerUrl": "https://example.com"
+  },
+  "currency": {
+    "nameSingular": "credit",
+    "namePlural": "credits",
+    "symbol": "CR",
+    "iconAsset": "/images/currency-icon.svg"
+  },
+  "event": {
+    "startDate": "2027-01-01",
+    "endDate": "2027-01-08",
+    "location": "Remote",
+    "timezone": "UTC"
+  },
+  "admin": {
+    "contactEmail": "admin@example.com",
+    "superAdminSlackIds": []
+  },
+  "integrations": {
+    "slackWorkspaceId": "",
+    "hackatimeEnabled": true,
+    "hcbEnabled": false,
+    "attendEventSlug": "example-ysws"
+  },
+  "theme": {
+    "accentColor": "#2F6F4F",
+    "logoAsset": "/images/logo.svg",
+    "faviconAsset": "/favicon.png"
+  },
+  "shop": {
+    "categories": ["stickers", "hardware", "grants"]
+  },
+  "social": {
+    "slackInviteUrl": "",
+    "githubUrl": "",
+    "twitterUrl": "",
+    "instagramUrl": ""
+  }
+}

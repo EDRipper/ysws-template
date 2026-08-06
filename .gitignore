@@ -1,0 +1,39 @@
+node_modules
+dist
+
+# Local dev database
+docker-compose.dev.yml
+
+# DB dumps 
+backups/
+*.dmp
+*.dump
+*.sql.gz
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Per-deployment YSWS config (real program name/dates/admin emails/slack ids) —
+# commit only the example, operators fill in their own ysws.config.json locally
+ysws.config.json
+!ysws.config.example.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor/tool configs
+.vscode/
+.claude/
+.mcp.json
+
+# Dev-server stdout captures
+*-dev.log
+*.log
+
+# One-off / local scripts
+/scripts/
+backend/scripts/

@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "YSWS Platform Config",
+  "description": "Single source of truth for branding, currency, dates, and integration keys for a deployment of this template. Copy ysws.config.example.json to ysws.config.json and fill in your own program's values.",
+  "type": "object",
+  "required": ["program", "currency", "event", "admin", "theme"],
+  "properties": {
+    "program": {
+      "type": "object",
+      "required": ["name", "shortName", "tagline", "description", "url"],
+      "properties": {
+        "name": { "type": "string", "description": "Full program name, e.g. 'Beest'" },
+        "shortName": { "type": "string", "description": "Short/slug form used in identifiers, JWT issuer/audience, event slugs (lowercase, no spaces)" },
+        "tagline": { "type": "string" },
+        "description": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "organizer": { "type": "string", "description": "Organization running the program, e.g. 'Hack Club'" },
+        "organizerUrl": { "type": "string", "format": "uri" }
+      }
+    },
+    "currency": {
+      "type": "object",
+      "required": ["nameSingular", "namePlural", "symbol"],
+      "properties": {
+        "nameSingular": { "type": "string", "description": "e.g. 'pipe'" },
+        "namePlural": { "type": "string", "description": "e.g. 'pipes'" },
+        "symbol": { "type": "string", "description": "e.g. a currency glyph or short code shown next to balances" },
+        "iconAsset": { "type": "string", "description": "path under /static to the currency icon" }
+      }
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "startDate": { "type": "string", "format": "date" },
+        "endDate": { "type": "string", "format": "date" },
+        "location": { "type": "string" },
+        "timezone": { "type": "string" }
+      }
+    },
+    "admin": {
+      "type": "object",
+      "required": ["contactEmail"],
+      "properties": {
+        "contactEmail": { "type": "string", "format": "email" },
+        "superAdminSlackIds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "integrations": {
+      "type": "object",
+      "properties": {
+        "slackWorkspaceId": { "type": "string" },
+        "hackatimeEnabled": { "type": "boolean" },
+        "hcbEnabled": { "type": "boolean" },
+        "attendEventSlug": { "type": "string", "description": "slug used against the attend.hackclub.com-style API; defaults to program.shortName" }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "required": ["accentColor"],
+      "properties": {
+        "accentColor": { "type": "string", "description": "hex, the single deliberate accent color used across the UI" },
+        "logoAsset": { "type": "string" },
+        "faviconAsset": { "type": "string" }
+      }
+    },
+    "shop": {
+      "type": "object",
+      "properties": {
+        "categories": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "social": {
+      "type": "object",
+      "properties": {
+        "slackInviteUrl": { "type": "string" },
+        "githubUrl": { "type": "string" },
+        "twitterUrl": { "type": "string" },
+        "instagramUrl": { "type": "string" }
+      }
+    }
+  }
+}

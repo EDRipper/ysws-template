@@ -1,0 +1,525 @@
+import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { createHash, createHmac, randomBytes, timingSafeEqual } from 'crypto';
+import { fetchWithTimeout } from '../fetch.util';
+import { countryFromHcaUserinfo } from '../country.util';
+import { RsvpService } from '../rsvp/rsvp.service';
+import { User } from '../entities/user.entity';
+import { Session } from '../entities/session.entity';
+import { YswsConfigService } from '../ysws-config/ysws-config.service';
+
+const ALLOWED_REDIRECTS = new Set(['/home', '/tutorial']);
+
+const EMAIL_RE =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+const REFRESH_TOKEN_EXPIRY_MS = 90 * 24 * 60 * 60 * 1000; // 90 days
+
+export const ALLOWED_GENDERS = [
+  'male',
+  'female',
+  'non_binary_other',
+  'not_sure',
+  'prefer_not_to_say',
+] as const;
+export type Gender = (typeof ALLOWED_GENDERS)[number];
+
+@Injectable()
+export class AuthService {
+  private readonly logger = new Logger(AuthService.name);
+  private readonly clientId: string;
+  private readonly clientSecret: string;
+  private readonly redirectUri: string;
+  private readonly jwtSecret: string;
+
+  private readonly authorizeUrl =
+    'https://auth.hackclub.com/oauth/authorize';
+  private readonly tokenUrl = 'https://auth.hackclub.com/oauth/token';
+  private readonly userinfoUrl = 'https://auth.hackclub.com/oauth/userinfo';
+
+  private readonly scopes = [
+    'openid',
+    'email',
+    'name',
+    'profile',
+    'birthdate',
+    'address',
+    'verification_status',
+    'slack_id',
+    'basic_info',
+  ].join(' ');
+
+  constructor(
+    private configService: ConfigService,
+    private jwtService: JwtService,
+    private rsvpService: RsvpService,
+    private yswsConfig: YswsConfigService,
+    @InjectRepository(User)
+    private userRepo: Repository<User>,
+    @InjectRepository(Session)
+    private sessionRepo: Repository<Session>,
+  ) {
+    this.clientId = this.configService.getOrThrow('CLIENT_ID');
+    this.clientSecret = this.configService.getOrThrow('CLIENT_SECRET');
+    this.redirectUri = this.configService.get(
+      'REDIRECT_URI',
+      'http://localhost:5173/oauth/callback',
+    );
+    this.jwtSecret = this.configService.getOrThrow('JWT_SECRET');
+  }
+
+  private signState(state: string): string {
+    return createHmac('sha256', this.jwtSecret)
+      .update(`hca:${state}`)
+      .digest('hex');
+  }
+
+  startAuth(email?: string): { url: string; state: string } {
+    const state = crypto.randomUUID();
+    const signature = this.signState(state);
+    const signedState = `${state}.${signature}`;
+
+    const sanitizedEmail =
+      email && EMAIL_RE.test(email.trim()) ? email.trim() : undefined;
+
+    const params = new URLSearchParams({
+      client_id: this.clientId,
+      redirect_uri: this.redirectUri,
+      response_type: 'code',
+      scope: this.scopes,
+      state: signedState,
+      return_to: `/join/${this.yswsConfig.program.shortName}`,
+    });
+
+    if (sanitizedEmail) {
+      params.set('login_hint', sanitizedEmail);
+    }
+
+    return {
+      url: `${this.authorizeUrl}?${params.toString()}`,
+      state,
+    };
+  }
+
+  async handleCallback(
+    code: string,
+    returnedSignedState: string,
+    cookieState: string,
+    attribution?: {
+      utm_source?: string | null;
+      utm_medium?: string | null;
+      utm_campaign?: string | null;
+      referrer?: string | null;
+      landing_path?: string | null;
+    },
+  ): Promise<{ token: string; refreshToken: string; redirectTo: string }> {
+    // 1. Verify state
+    const dotIndex = returnedSignedState.lastIndexOf('.');
+    if (dotIndex === -1) {
+      throw new Error('Malformed state parameter');
+    }
+
+    const stateValue = returnedSignedState.substring(0, dotIndex);
+    const signature = returnedSignedState.substring(dotIndex + 1);
+
+    const stateBuffer = Buffer.from(stateValue);
+    const cookieBuffer = Buffer.from(cookieState);
+    if (
+      stateBuffer.length !== cookieBuffer.length ||
+      !timingSafeEqual(stateBuffer, cookieBuffer)
+    ) {
+      throw new Error('State mismatch');
+    }
+
+    const expectedSignature = this.signState(stateValue);
+    const sigBuffer = Buffer.from(signature);
+    const expectedBuffer = Buffer.from(expectedSignature);
+    if (
+      sigBuffer.length !== expectedBuffer.length ||
+      !timingSafeEqual(sigBuffer, expectedBuffer)
+    ) {
+      throw new Error('Invalid state signature');
+    }
+
+    // 2. Exchange code for tokens
+    const tokenResponse = await fetchWithTimeout(this.tokenUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: this.redirectUri,
+        client_id: this.clientId,
+        client_secret: this.clientSecret,
+      }),
+    });
+
+    if (!tokenResponse.ok) {
+      this.logger.error(`Token exchange failed: ${tokenResponse.status}`);
+      throw new Error('Token exchange failed');
+    }
+
+    const tokens = await tokenResponse.json().catch(() => null);
+    if (!tokens?.access_token) {
+      throw new Error('Invalid token response');
+    }
+
+    // 3. Fetch user info
+    const userinfoResponse = await fetchWithTimeout(this.userinfoUrl, {
+      headers: { Authorization: `Bearer ${tokens.access_token}` },
+    });
+
+    if (!userinfoResponse.ok) {
+      this.logger.error('Failed to fetch user info');
+      throw new Error('Failed to fetch user info');
+    }
+
+    const userinfo = await userinfoResponse.json().catch(() => null);
+    if (!userinfo?.sub) {
+      throw new Error('Invalid userinfo response');
+    }
+
+    // 4. Upsert user in DB (pass HCA tokens so they're persisted encrypted)
+    const user = await this.upsertUser(
+      userinfo,
+      tokens.access_token,
+      tokens.refresh_token,
+      attribution,
+    );
+
+    // 4b. Check if user is banned
+    try {
+      const perms = await this.rsvpService.getPerms(userinfo.email);
+      if (perms === 'Banned') {
+        return {
+          token: '',
+          refreshToken: '',
+          redirectTo: 'https://fraud.hackclub.com/',
+        };
+      }
+    } catch (err) {
+      this.logger.error(`Perms check failed for ${userinfo.sub}: ${err}`);
+    }
+
+    // 5. Submit RSVP
+    let redirectTo = '/home';
+    try {
+      const rsvpResult = await this.rsvpService.createRsvp(userinfo.email);
+      redirectTo = rsvpResult.existing ? '/home' : '/tutorial';
+    } catch (err) {
+      this.logger.error(
+        `RSVP submission failed for user ${userinfo.sub}: ${err}`,
+      );
+    }
+
+    if (!ALLOWED_REDIRECTS.has(redirectTo)) {
+      redirectTo = '/home';
+    }
+
+    // 6. Create session with refresh token
+    const refreshToken = await this.createSession(user.id);
+
+    // 7. Sign JWT — no PII beyond what's needed for display + auth checks
+    const token = this.jwtService.sign({
+      sub: userinfo.sub,
+      uid: user.id,
+      email: userinfo.email,
+      name: userinfo.name,
+      nickname: userinfo.nickname,
+      slack_id: userinfo.slack_id,
+      has_address: user.hasAddress,
+      has_birthdate: user.hasBirthdate,
+      gender: user.gender,
+    });
+
+    return { token, refreshToken, redirectTo };
+  }
+
+  /**
+   * Validates a refresh token and issues a new (short-lived) JWT.
+   *
+   * The refresh token itself is intentionally NOT rotated. Rotation
+   * (delete-old, mint-new on every call) races badly: a single page load
+   * fans out into several parallel requests that all present the same
+   * refresh token, so the first rotates it and the rest fail validation —
+   * silently logging the user out. Because the access token is short-lived,
+   * this happened roughly hourly. Keeping the token stable with a sliding
+   * expiry makes concurrent refreshes idempotent.
+   *
+   * Revocation still works: the session is server-side, so logout / ban
+   * deletes the row and the next refresh fails. The ban check below means a
+   * banned user is locked out within one access-token lifetime (~1h).
+   */
+  async refreshAuth(
+    refreshToken: string,
+  ): Promise<{ token: string; refreshToken: string }> {
+    const hash = createHash('sha256').update(refreshToken).digest('hex');
+    const session = await this.sessionRepo.findOne({
+      where: { refreshTokenHash: hash },
+      relations: ['user'],
+    });
+
+    if (!session || session.expiresAt < new Date()) {
+      if (session) await this.sessionRepo.remove(session);
+      throw new Error('Invalid or expired refresh token');
+    }
+
+    const user = session.user;
+
+    // Deny refresh for banned users so revocation actually takes effect.
+    // Fail open on a transient perms-lookup error rather than logging
+    // everyone out if the perms service is down.
+    try {
+      const perms = await this.rsvpService.getPerms(user.email);
+      if (perms === 'Banned') {
+        await this.sessionRepo.remove(session);
+        throw new Error('Account banned');
+      }
+    } catch (err) {
+      if (err instanceof Error && err.message === 'Account banned') throw err;
+      this.logger.error(`Perms check failed during refresh for ${user.id}: ${err}`);
+    }
+
+    // Slide the refresh window forward; keep the same token (no rotation).
+    session.expiresAt = new Date(Date.now() + REFRESH_TOKEN_EXPIRY_MS);
+    await this.sessionRepo.save(session);
+
+    const token = this.jwtService.sign({
+      sub: user.hcaSub,
+      uid: user.id,
+      email: user.email,
+      name: user.name,
+      nickname: user.nickname,
+      slack_id: user.slackId,
+      has_address: user.hasAddress,
+      has_birthdate: user.hasBirthdate,
+      gender: user.gender,
+    });
+
+    return { token, refreshToken };
+  }
+
+  /**
+   * Invalidates a refresh token (logout).
+   */
+  async invalidateSession(refreshToken: string): Promise<void> {
+    const hash = createHash('sha256').update(refreshToken).digest('hex');
+    await this.sessionRepo.delete({ refreshTokenHash: hash });
+  }
+
+  verifyToken(token: string): Record<string, unknown> {
+    return this.jwtService.verify(token);
+  }
+
+  /**
+   * Issues a JWT that lets an admin act as the target user.
+   * The token carries the target user's identity but includes
+   * impersonator_uid / impersonator_name so audit logs can attribute actions.
+   */
+  async issueImpersonationToken(
+    targetUserId: string,
+    adminUid: string,
+    adminName: string,
+  ): Promise<{ token: string }> {
+    const user = await this.userRepo.findOne({ where: { id: targetUserId } });
+    if (!user) throw new Error('User not found');
+
+    const token = this.jwtService.sign({
+      sub: user.hcaSub,
+      uid: user.id,
+      email: user.email,
+      name: user.name,
+      nickname: user.nickname,
+      slack_id: user.slackId,
+      has_address: user.hasAddress,
+      has_birthdate: user.hasBirthdate,
+      gender: user.gender,
+      impersonator_uid: adminUid,
+      impersonator_name: adminName,
+    });
+
+    return { token };
+  }
+
+  async updateNickname(
+    userId: string,
+    nickname: string,
+  ): Promise<{ token: string }> {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) throw new Error('User not found');
+
+    user.nickname = nickname;
+    await this.userRepo.save(user);
+
+    const token = this.jwtService.sign({
+      sub: user.hcaSub,
+      uid: user.id,
+      email: user.email,
+      name: user.name,
+      nickname: user.nickname,
+      slack_id: user.slackId,
+      has_address: user.hasAddress,
+      has_birthdate: user.hasBirthdate,
+      gender: user.gender,
+    });
+
+    return { token };
+  }
+
+  async updateGender(
+    userId: string,
+    gender: Gender,
+  ): Promise<{ token: string }> {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) throw new Error('User not found');
+
+    user.gender = gender;
+    await this.userRepo.save(user);
+
+    const token = this.jwtService.sign({
+      sub: user.hcaSub,
+      uid: user.id,
+      email: user.email,
+      name: user.name,
+      nickname: user.nickname,
+      slack_id: user.slackId,
+      has_address: user.hasAddress,
+      has_birthdate: user.hasBirthdate,
+      gender: user.gender,
+    });
+
+    return { token };
+  }
+
+  /** Whether the one-time home "hackathon or shop?" prompt still needs answering. */
+  async getIntentStatus(userId: string): Promise<{ needsPrompt: boolean }> {
+    const user = await this.userRepo.findOne({
+      where: { id: userId },
+      select: ['id', 'intent'],
+    });
+    return { needsPrompt: !!user && !user.intent };
+  }
+
+  /**
+   * Records the user's home-prompt answer. Writes Airtable FIRST — only on
+   * success do we set the local flag, so a transient Airtable failure leaves
+   * the prompt showing (it keeps showing until answered) rather than silently
+   * dropping the response.
+   */
+  async setIntent(userId: string, intent: string): Promise<{ success: true }> {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) throw new Error('User not found');
+
+    await this.rsvpService.setIntent(user.email, intent);
+
+    user.intent = intent;
+    await this.userRepo.save(user);
+    return { success: true };
+  }
+
+  private async upsertUser(
+    userinfo: Record<string, any>,
+    hcaAccessToken?: string,
+    hcaRefreshToken?: string,
+    attribution?: {
+      utm_source?: string | null;
+      utm_medium?: string | null;
+      utm_campaign?: string | null;
+      referrer?: string | null;
+      landing_path?: string | null;
+    },
+  ): Promise<User> {
+    const hasAddress = !!(
+      userinfo.address ||
+      (Array.isArray(userinfo.addresses) && userinfo.addresses.length > 0)
+    );
+    // Refreshed on every login so regional shop pricing follows the user's
+    // current HCA address. Deliberately overwritten even when null: a removed
+    // address must also remove the override eligibility.
+    const country = countryFromHcaUserinfo(userinfo);
+    const hasBirthdate = !!(
+      userinfo.birthdate && userinfo.birthdate.trim() !== ''
+    );
+
+    const trim = (v: string | null | undefined): string | undefined =>
+      typeof v === 'string' && v.trim() !== ''
+        ? v.trim().slice(0, 255)
+        : undefined;
+
+    let user = await this.userRepo.findOne({
+      where: { hcaSub: userinfo.sub },
+    });
+
+    if (user) {
+      user.email = userinfo.email;
+      user.name = userinfo.name;
+      user.nickname = userinfo.nickname;
+      user.slackId = userinfo.slack_id;
+      user.hasAddress = hasAddress;
+      user.hasBirthdate = hasBirthdate;
+      user.country = country;
+      if (hcaAccessToken) user.hcaAccessToken = hcaAccessToken;
+      if (hcaRefreshToken) user.hcaRefreshToken = hcaRefreshToken;
+      return this.userRepo.save(user);
+    }
+
+    // New user — attempt insert. If a concurrent request already inserted
+    // this hca_sub, catch the unique constraint violation and update instead.
+    try {
+      user = this.userRepo.create({
+        hcaSub: userinfo.sub,
+        email: userinfo.email,
+        name: userinfo.name,
+        nickname: userinfo.nickname,
+        slackId: userinfo.slack_id,
+        hasAddress,
+        hasBirthdate,
+        country,
+        hcaAccessToken: hcaAccessToken ?? undefined,
+        hcaRefreshToken: hcaRefreshToken ?? undefined,
+        utmSource: trim(attribution?.utm_source),
+        utmMedium: trim(attribution?.utm_medium),
+        utmCampaign: trim(attribution?.utm_campaign),
+        referrer: trim(attribution?.referrer),
+        landingPath: trim(attribution?.landing_path),
+      });
+      return await this.userRepo.save(user);
+    } catch (err: any) {
+      if (err?.code === '23505') {
+        // Unique violation — the other request won the insert race
+        user = await this.userRepo.findOne({
+          where: { hcaSub: userinfo.sub },
+        });
+        if (!user) throw err; // shouldn't happen, but safety net
+        user.email = userinfo.email;
+        user.name = userinfo.name;
+        user.nickname = userinfo.nickname;
+        user.slackId = userinfo.slack_id;
+        user.hasAddress = hasAddress;
+        user.hasBirthdate = hasBirthdate;
+        user.country = country;
+        if (hcaAccessToken) user.hcaAccessToken = hcaAccessToken;
+        if (hcaRefreshToken) user.hcaRefreshToken = hcaRefreshToken;
+        return this.userRepo.save(user);
+      }
+      throw err;
+    }
+  }
+
+  private async createSession(userId: string): Promise<string> {
+    const refreshToken = randomBytes(48).toString('base64url');
+    const hash = createHash('sha256').update(refreshToken).digest('hex');
+
+    const session = this.sessionRepo.create({
+      userId,
+      refreshTokenHash: hash,
+      expiresAt: new Date(Date.now() + REFRESH_TOKEN_EXPIRY_MS),
+    });
+    await this.sessionRepo.save(session);
+
+    return refreshToken;
+  }
+}
