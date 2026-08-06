@@ -19,12 +19,36 @@ Read this file first each session, update it before stopping.
   is the fast-iteration home; can be moved/forked to the hackclub org later).
   Push after every meaningful chunk, not just at milestones — operator wants
   frequent pushes, not batched ones.
-- Real Vercel deploy is wanted (not just prepped config) but no VERCEL_TOKEN or
-  vercel CLI is available in this sandbox yet — flagged to operator, waiting on
-  either a token or him connecting the GitHub repo in the Vercel dashboard
-  (GitHub App integration auto-deploys every push with zero token needed on this
-  end, which fits "push frequently" better than a CLI token anyway). Don't block
-  other work on this.
+- **Vercel is live, two projects, git-connected (auto-deploy on every push to
+  `master`, no click needed)**:
+  - `ysws-template` (prj_yne5UasoeJeyOZeG5EDj875UO5Qj) — frontend, rootDirectory
+    `frontend`, uses `@sveltejs/adapter-vercel`. Env: `BACKEND_URL` set.
+  - `ysws-template-api` (prj_usZkQUt9DRJeljF0edxm5dmI7myh) — backend, rootDirectory
+    `backend`, single serverless function at `backend/api/index.ts` wrapping the
+    whole Nest app (`backend/src/serverless.ts`, cached Express instance across
+    warm invocations), `backend/vercel.json` rewrites everything to it and
+    `includeFiles`s `../ysws.config*.json` so the config loader can find it at
+    runtime. Env set: `FRONTEND_URL`, `JWT_SECRET` (generated). NOT set (operator
+    must add via Vercel dashboard before the backend actually boots):
+    `DATABASE_URL` (needs a real Postgres — Vercel Postgres/Neon marketplace
+    product, didn't provision this myself since it's a billing-adjacent decision),
+    `CLIENT_ID`/`CLIENT_SECRET` (HCA OAuth app credentials for whatever program
+    this deployment is for).
+  - Vercel token stored locally at `/workspace/t-1786057735.891019/.secrets/vercel_token`
+    (outside the git repo, gitignored anyway) — full-scoped, given by operator
+    2026-08-06. Team: `team_MySQEwuYuxDGtRioxitcuriY` (euan@hackclub.com).
+  - Verified locally before pushing: `cd frontend && npm install --include=dev &&
+    npm run build` succeeds end to end with the vercel adapter output
+    (`.vercel/output/{config.json,functions,static}`). Backend: `npm install
+    --include=dev && npx tsc --noEmit` is clean (includes `api/index.ts` and
+    `src/serverless.ts`).
+  - **Sandbox gotcha, don't lose an hour to this again**: this environment sets
+    `NODE_ENV=production` globally, so plain `npm install` silently skips
+    devDependencies (kit/vite/adapter/nest-cli/typescript all vanish with zero
+    error). Always use `npm install --include=dev` here for a real local check.
+  - Repo pushes are git/gh on an EDRipper-owned repo, so `run_privileged` runs
+    them immediately with just a notice, no click — push after every meaningful
+    chunk per operator's instruction, don't batch.
 
 - **Currency**: do NOT rename internal DB columns / entity fields / variable names
   (`pipes`, `pipesGranted`, `pipesSpent` stay as-is in backend/src — renaming touches

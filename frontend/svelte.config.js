@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-node';
+import adapter from '@sveltejs/adapter-vercel';
 
 // CSP is applied to production builds only. In `vite dev`, Vite's HMR client
 // uses inline/eval scripts that a strict policy would break — and dev isn't the
