@@ -358,6 +358,34 @@ pivoted: "vercel is the way forward". Fixed a real deploy-blocking bug there:
   provide (real HCA app + CDN credentials). `JWT_SECRET` was already handed
   over and set.
 
+## Asset inventory (tick 4) — flagging for a real decision, not touching
+
+`frontend/static/images/` (49 files, 11MB):
+
+- `beest-cropped/*.webp` (10 files), `beest-logo.webp`, `beest.gif`,
+  `beest.webp`, `beest2.webp`, `pipes.png` — the hero/parallax/tutorial
+  illustration set. Central to the landing page's visual identity, referenced
+  by ~15+ `<img>` tags. Needs real replacement art or a layout rethink, not a
+  text edit — already flagged, not re-litigating here.
+- `fame/seaward.webp`, `fame/speedtickers.webp`, `fame/vp3.webp` — real
+  participants' project screenshots. Now ORPHANED (unreferenced) since the
+  wall-of-fame data array was replaced with placeholder entries with no
+  `image` field (see tick 2's "Genericize real content" commit) — safe to
+  delete outright, nothing points at them anymore. Left them in place this
+  tick since deleting isn't urgent now that they're inert, but there's no
+  reason to ship dead weight in the repo.
+- **`frames/*.webp` (6 files) — flagging this one specifically, did NOT
+  decide unilaterally.** These are real photos actively rendered in a
+  carousel on the root `+page.svelte` (`homeCarousel`-style section), with
+  captions naming real Hack Club events: "75 teens at Campfire Flagship",
+  "Teen hackers at Assemble", "Winners of Parthenon Hackathon", etc. Possibly
+  official Hack-Club-wide marketing photography (would be fine to keep, same
+  logic as keeping "Hack Club" wording) — or could be photos of real minors
+  cleared for beest.hackclub.com specifically, not for redistribution in a
+  public template repo anyone can deploy. I can't tell which from the repo
+  alone, and consent/privacy scope for photos of minors is not something to
+  guess on. Operator should confirm before this ships anywhere public.
+
 ## Tick 3: found a self-documented palette comment, extended the color sweep
 
 `FAQ/+page.svelte` and `faq/+page.svelte` both had an explicit `<!-- Color
