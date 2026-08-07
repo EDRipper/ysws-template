@@ -68,7 +68,7 @@
   let activeSection = $state(sectionFromPath(page.url.pathname));
   let tileLoaded = $state(false);
   let customCursorEnabled = $state(typeof localStorage !== 'undefined' ? localStorage.getItem('customCursor') !== 'off' : true);
-  const EVENT_START = new Date('2026-08-19T00:00:00+02:00').getTime();
+  const EVENT_START = data.yswsConfig.event?.startDate ? new Date(data.yswsConfig.event.startDate).getTime() : 0;
   let eventCountdown = $state({ days: 0, hours: 0, minutes: 0, seconds: 0, live: false });
   let creatingProject = $state(false);
   let editingProject = $state<any>(null);

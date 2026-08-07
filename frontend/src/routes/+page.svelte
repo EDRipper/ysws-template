@@ -35,7 +35,6 @@
   const pxRemaining = $derived(PARALLAX_TRAVEL * (1 - progress));
   const postScroll = $derived(Math.max(scrollY - PARALLAX_TRAVEL, 0));
   let heroHeight = $state(0);
-  let dutch = $state(false);
   let diagramEl: HTMLElement;
   let diagramTop = $state(0);
 
@@ -90,9 +89,7 @@
   const showB = $derived(annotate > 0.25);
   const showC = $derived(annotate > 0.45);
 
-  const subtitleEN = 'Code a project, fly to the Netherlands, build a mechanical animal!';
-  const subtitleNL = 'Programmeer een project, kom naar Scheveningen, bouw een mechanisch dier!';
-  const subtitle = $derived(dutch ? subtitleNL : subtitleEN);
+  const subtitle = data.yswsConfig.program.tagline;
 
   let winW = $state(0);
   let winH = $state(0);
@@ -353,14 +350,10 @@
 <section class="what-is-this" id="what-is-this">
   <h2>What is this?</h2>
   <p>
-    {data.yswsConfig.program.name} is a <a href="https://hackclub.com" target="_blank" rel="noreferrer">Hack Club</a> Event
-    running <strong>August 19–21</strong> in the Netherlands.
-    We're flying 30 teens out to build walking mechanisms on the same beach the famous
-    Strandbeest was constructed. A strandbeest is a kinetic sculpture - a giant walking mechanism of
-    pipe and cloth (no motors), and we'll be going to watch the display of the strandbeests
-    during the event! Everything (including flights, food and accommodation) is totally free for
-    teenagers who qualify by building a project. Can't come? We're also providing funding and prizes
-    for every teen who ships a technical project.
+    {data.yswsConfig.program.name} is a <a href="https://hackclub.com" target="_blank" rel="noreferrer">Hack Club</a> program.
+    {data.yswsConfig.program.description}
+    Everything is totally free for teenagers who qualify by building and shipping a project — you'll
+    earn {data.yswsConfig.currency.namePlural} for every technical project you ship.
   </p>
 </section>
 
