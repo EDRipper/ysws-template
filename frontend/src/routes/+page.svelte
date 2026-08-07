@@ -258,17 +258,8 @@
             {#if project.image}
               <img src={project.image} alt={dup ? '' : project.alt ?? `Screenshot of ${project.title}`} loading="lazy" decoding="async" />
             {:else}
-              <div class="fame-terminal" role="img" aria-label="Terminal session of {project.title}">
-                <div class="term-bar"><span></span><span></span><span></span><p>{project.author.toLowerCase()}@{data.yswsConfig.program.shortName} ~ </p></div>
-                <pre class="term-body"><span class="t-dim">$</span> stats
-<span class="t-blue">┌─ {project.author} ──────────────────┐</span>
-<span class="t-blue">│</span> hours logged       52.4h <span class="t-blue">│</span>
-<span class="t-blue">│</span> {data.yswsConfig.currency.namePlural} earned          52 <span class="t-blue">│</span>
-<span class="t-blue">│</span> projects shipped       1 <span class="t-blue">│</span>
-<span class="t-blue">└──────────────────────────┘</span>
-<span class="t-dim">$</span> devlog post "shipped it!"
-<span class="t-ok">✓ devlog posted</span>
-<span class="t-dim">$</span> <span class="term-cursor">█</span></pre>
+              <div class="fame-placeholder" role="img" aria-label="Placeholder for {project.title}">
+                <span>Insert project here</span>
               </div>
             {/if}
           </div>
@@ -731,11 +722,6 @@
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 10px rgba(0, 0, 0, 0.4);
   }
 
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
   .hero-title {
     margin: 0;
     flex-shrink: 0;
@@ -1035,59 +1021,28 @@
     object-fit: cover;
   }
 
-  /* terminal mock for CLI projects with no screenshot */
-  .fame-terminal {
+  /* explicit placeholder for projects shipped with no screenshot — plain
+     and obviously a stand-in, not a fake terminal mockup */
+  .fame-placeholder {
     position: absolute;
     inset: 0;
     display: flex;
-    flex-direction: column;
-    background: var(--color-bg);
-    color: var(--color-text);
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-  }
-
-  .term-bar {
-    display: flex;
     align-items: center;
-    gap: 7px;
-    padding: 10px 14px;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-bg);
+    justify-content: center;
+    padding: 24px;
+    background: #000000;
   }
 
-  .term-bar span {
-    width: 11px;
-    height: 11px;
-    border-radius: 999px;
-    background: var(--color-text-faint);
-  }
-
-  .term-bar span:first-child { background: var(--color-danger); }
-  .term-bar span:nth-child(2) { background: var(--color-text); }
-  .term-bar span:nth-child(3) { background: var(--color-accent); }
-
-  .term-bar p {
-    margin: 0 0 0 8px;
-    font-size: 13px;
-    color: var(--color-text);
+  .fame-placeholder span {
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: clamp(14px, 3.4cqi, 22px);
+    font-weight: 700;
     letter-spacing: 0.03em;
-  }
-
-  .term-body {
-    flex: 1;
-    margin: 0;
-    padding: 3.4cqi 4cqi;
-    font-size: clamp(12px, 2.6cqi, 19px);
-    line-height: 1.7;
-    overflow: clip;
-  }
-
-  .t-dim { color: var(--color-text-faint); }
-  .t-blue { color: var(--color-accent); }
-  .t-ok { color: #a3b579; }
-
-  .term-cursor {
-    animation: blink 0.7s step-end infinite;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: center;
+    border: 3px dashed rgba(255, 255, 255, 0.35);
+    border-radius: 8px;
+    padding: 14px 18px;
   }
 
   /* caption plate pinned over the screenshot's lower-right corner */
