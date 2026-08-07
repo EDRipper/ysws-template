@@ -73,10 +73,6 @@
   // SVG text draw progress — starts after clouds are off screen, finishes by end
   const drawProgress = $derived(Math.min(Math.max((progress - 0.4) / 0.5, 0), 1));
 
-  // Beest rises from bottom after text finishes drawing
-  const beestProgress = $derived(Math.min(Math.max((progress - 0.7) / 0.15, 0), 1));
-  const beestY = $derived((1 - beestProgress) * 100);
-
   // Clouds start overlapped, then split apart, drift up, and scale up
   const translateX = $derived(progress * 110);
   const translateY = $derived(progress * -15);
@@ -268,13 +264,6 @@
     {#if showStart}
       <button class="start-btn" onclick={enterSky}>Start</button>
     {/if}
-    <img
-      src="/images/beest2.webp"
-      alt=""
-      class="beest"
-      decoding="async"
-      style="transform: translateY({beestY}%); opacity: {beestProgress};"
-    />
     <img src="/images/Beach.webp" alt="" class="layer beach" decoding="async" />
     <img src="/images/Water%20swooosh.webp" alt="" class="layer water" decoding="async" />
     <img
@@ -428,7 +417,6 @@
     {/if}
   </div>
   <div class="sky-hero">
-    <img src="/images/beest2.webp" alt="" class="hero-beest" loading="lazy" decoding="async" />
     <img src="/images/Beach.webp" alt="" class="hero-beach" loading="lazy" decoding="async" />
     <img src="/images/Water%20swooosh.webp" alt="" class="hero-water" loading="lazy" decoding="async" />
   </div>
@@ -509,16 +497,6 @@
     font-weight: 700;
     letter-spacing: 0.02em;
     transition: opacity 0.4s ease;
-  }
-
-  .beest {
-    position: absolute;
-    bottom: 0;
-    right: 5%;
-    height: 70vh;
-    object-fit: contain;
-    will-change: transform;
-    z-index: 10;
   }
 
   .layer {
@@ -607,15 +585,6 @@
     background: url('/images/sky.webp') center / cover no-repeat;
     z-index: 1;
     overflow: hidden;
-  }
-
-  .hero-beest {
-    position: absolute;
-    bottom: 0;
-    right: 5%;
-    height: 70vh;
-    object-fit: contain;
-    z-index: 3;
   }
 
   .hero-beach {

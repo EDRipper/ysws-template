@@ -497,7 +497,7 @@
     line-height: 0;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: linear-gradient(to bottom, #8aadc8 0%, #99b7cf 25%, #a9c3d8 50%, #b0c9dc 75%);
+    background: #ffffff;
   }
 
   .hero-wrap {
@@ -531,7 +531,7 @@
     width: 100%;
     aspect-ratio: 4800 / 2700;
     overflow: hidden;
-    background: linear-gradient(to bottom, #8aadc8 0%, #99b7cf 25%, #a9c3d8 50%, #b0c9dc 75%);
+    background: #ffffff;
   }
 
   /* explicit placeholder so it's obvious this is meant to be swapped, not
@@ -542,7 +542,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 3px dashed rgba(255, 255, 255, 0.6);
+    border: 3px dashed rgba(0, 0, 0, 0.35);
     border-radius: 8px;
   }
 
@@ -551,7 +551,7 @@
     font-size: clamp(16px, 2.2vw, 26px);
     font-weight: 700;
     letter-spacing: 0.03em;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(0, 0, 0, 0.55);
     text-align: center;
     padding: 0 24px;
   }
