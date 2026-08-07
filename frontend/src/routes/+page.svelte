@@ -1,12 +1,12 @@
 <!-- src/routes/+page.svelte -->
  <!-- Color Pallet
-  #c48382 - Light Red
+  var(--color-danger) - Light Red
   var(--color-accent) - Light Blue
-  #4b4840 - Dark Gray
-  #6c6659 - Medium Gray
-  #7f796d - Light Gray
-  #cbc1ae - Beige
-  #809fb7 - Light Steel Blue
+  var(--color-bg) - Dark Gray
+  var(--color-border) - Medium Gray
+  var(--color-text-faint) - Light Gray
+  var(--color-text) - Beige
+  var(--color-accent) - Light Steel Blue
   var(--color-text) - Light Cyan
   #ffffff - White
  
@@ -243,7 +243,7 @@
       decoding="async"
     />
     <svg class="hero-strata" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <polygon points="0,38 60,35 120,40 180,32 240,28 300,25 340,30 380,26 440,22 500,26 560,30 620,24 680,28 720,35 780,40 840,44 880,40 940,46 1000,50 1060,46 1100,42 1140,48 1200,52 1260,48 1300,44 1340,50 1400,46 1440,42 1440,80 0,80" fill="#4b4840" />
+      <polygon points="0,38 60,35 120,40 180,32 240,28 300,25 340,30 380,26 440,22 500,26 560,30 620,24 680,28 720,35 780,40 840,44 880,40 940,46 1000,50 1060,46 1100,42 1140,48 1200,52 1260,48 1300,44 1340,50 1400,46 1440,42 1440,80 0,80" fill="var(--color-bg)" />
     </svg>
   </div>
   <div class="hero-crop">
@@ -280,7 +280,7 @@
       {/if}
     {/each}
     <svg class="hero-strata" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <polygon points="0,38 60,35 120,40 180,32 240,28 300,25 340,30 380,26 440,22 500,26 560,30 620,24 680,28 720,35 780,40 840,44 880,40 940,46 1000,50 1060,46 1100,42 1140,48 1200,52 1260,48 1300,44 1340,50 1400,46 1440,42 1440,80 0,80" fill="#4b4840" />
+      <polygon points="0,38 60,35 120,40 180,32 240,28 300,25 340,30 380,26 440,22 500,26 560,30 620,24 680,28 720,35 780,40 840,44 880,40 940,46 1000,50 1060,46 1100,42 1140,48 1200,52 1260,48 1300,44 1340,50 1400,46 1440,42 1440,80 0,80" fill="var(--color-bg)" />
     </svg>
   </div>
   </div><!-- hero-crop -->
@@ -331,22 +331,22 @@
 
   </div>
 
-<div class="rock-strata strata-with-gears" style="background:#4b4840" aria-hidden="true">
+<div class="rock-strata strata-with-gears" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,45 160,28 320,55 480,22 640,50 800,18 960,48 1120,30 1280,52 1440,35 1440,100 0,100" fill="#786e5c" />
     <polygon points="0,62 200,50 380,72 540,44 700,68 860,40 1020,66 1180,46 1340,64 1440,55 1440,100 0,100" fill="#786e5c" />
   </svg>
   <svg class="strata-gear gear-cw" style="left:4%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#7f796d"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
   </svg>
   <svg class="strata-gear strata-gear--lg gear-ccw" style="left:28%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
   </svg>
   <svg class="strata-gear gear-cw" style="right:20%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#7f796d"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
   </svg>
   <svg class="strata-gear strata-gear--lg gear-ccw" style="right:2%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
   </svg>
 </div>
 
@@ -449,13 +449,13 @@
     <polygon points="0,58 140,72 300,50 460,78 620,46 780,68 940,44 1100,74 1260,48 1440,62 1440,100 0,100" fill="#635a4e" />
   </svg>
   <svg class="strata-gear strata-gear--lg gear-ccw" style="left:10%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#56494a"/>
+    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#56494a"/>
   </svg>
   <svg class="strata-gear gear-cw" style="left:42%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#7f796d"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#56494a"/>
+    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#56494a"/>
   </svg>
   <svg class="strata-gear gear-ccw" style="right:8%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#56494a"/>
+    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#56494a"/>
   </svg>
 </div>
 
@@ -548,7 +548,7 @@
 <div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,32 160,48 320,26 480,52 640,22 800,50 960,28 1120,54 1280,30 1440,44 1440,100 0,100" fill="#5e5648" />
-    <polygon points="0,58 200,70 360,52 520,74 680,48 840,72 1000,50 1160,68 1320,54 1440,62 1440,100 0,100" fill="#6c6659" />
+    <polygon points="0,58 200,70 360,52 520,74 680,48 840,72 1000,50 1160,68 1320,54 1440,62 1440,100 0,100" fill="var(--color-border)" />
   </svg>
 </div>
 
@@ -602,10 +602,10 @@
   </div>
 </section>
 
-<div class="rock-strata" style="background:#6c6659" aria-hidden="true">
+<div class="rock-strata" style="background:var(--color-border)" aria-hidden="true">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,35 160,55 320,28 480,60 640,20 800,52 960,30 1120,58 1280,22 1440,45 1440,120 0,120" fill="#56494a" />
-    <polygon points="0,58 200,72 360,50 520,78 680,44 840,74 1000,48 1160,70 1320,52 1440,65 1440,120 0,120" fill="#4b4840" />
+    <polygon points="0,58 200,72 360,50 520,78 680,44 840,74 1000,48 1160,70 1320,52 1440,65 1440,120 0,120" fill="var(--color-bg)" />
     <polygon points="0,80 140,90 300,75 460,95 620,72 780,92 940,78 1100,96 1260,82 1440,88 1440,120 0,120" fill="#23221f" />
     <polygon points="0,95 180,100 340,92 500,105 660,90 820,100 980,94 1140,102 1300,96 1440,100 1440,120 0,120" fill="#000" />
   </svg>
@@ -647,7 +647,7 @@
   </div>
   <p class="footer-love">made with <a href="https://hackclub.com/philosophy/" target="_blank" rel="noopener noreferrer">&lt;3</a> by <a href="https://github.com/EDRipper" target="_blank" rel="noopener noreferrer">teens</a> for <a href="https://slack.hackclub.com" target="_blank" rel="noopener noreferrer">teens</a></p>
   <svg class="footer-cog gear-cw" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="#7f796d"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#000"/>
+    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#000"/>
   </svg>
 </footer>
 
@@ -656,7 +656,7 @@
 
 <style>
 .top-bg {
-    background: #4b4840;
+    background: var(--color-bg);
   }
 
   /* ── decorative pipes ───────────────────────────── */
@@ -855,9 +855,9 @@
     z-index: 1;
     box-sizing: border-box;
     padding: 13px 12px;
-    border: 2px solid #4b4840;
+    border: 2px solid var(--color-bg);
     background: var(--color-text);
-    color: #4b4840;
+    color: var(--color-bg);
     font-size: 18px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     cursor: text;
@@ -865,7 +865,7 @@
   }
 
   .signup-input::placeholder {
-    color: #6c6659;
+    color: var(--color-border);
   }
 
   /* chunky "hardware key" that presses down on hover/click */
@@ -877,7 +877,7 @@
     margin-left: -18px;
     rotate: 2.5deg;
     translate: 0 10px;
-    border: 2px solid #4b4840;
+    border: 2px solid var(--color-bg);
     background: #AD9E83;
     color: #4C483D;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -886,7 +886,7 @@
     text-transform: uppercase;
     padding: 12px 18px;
     cursor: not-allowed;
-    box-shadow: 4px 4px 0 #4b4840;
+    box-shadow: 4px 4px 0 var(--color-bg);
     transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.2s;
   }
 
@@ -902,20 +902,20 @@
   .signup-btn.valid:hover {
     background: #5a5648;
     transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 #4b4840;
+    box-shadow: 2px 2px 0 var(--color-bg);
   }
 
   .signup-btn.valid:active {
     transform: translate(4px, 4px);
-    box-shadow: 0 0 0 #4b4840;
+    box-shadow: 0 0 0 var(--color-bg);
   }
 
   .signup-btn.sending {
-    background: #809fb7;
+    background: var(--color-accent);
     color: #f3e9d6;
     cursor: wait;
     transform: translate(4px, 4px);
-    box-shadow: 0 0 0 #4b4840;
+    box-shadow: 0 0 0 var(--color-bg);
   }
 
   /* floats above the input row, fades in only while the box holds focus;
@@ -964,7 +964,7 @@
     margin: 0 0 0 var(--logo-indent);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(16px, 1.6vw, 24px);
-    color: #cbc1ae;
+    color: var(--color-text);
     letter-spacing: 0.04em;
     line-height: 1;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
@@ -1297,7 +1297,7 @@
     position: relative;
     aspect-ratio: 16 / 10;
     background: #23221f;
-    border: 3px solid #4b4840;
+    border: 3px solid var(--color-bg);
     box-shadow: 8px 10px 0 rgba(35, 34, 31, 0.55);
     overflow: clip;
     container-type: inline-size;
@@ -1317,7 +1317,7 @@
     display: flex;
     flex-direction: column;
     background: #23221f;
-    color: #cbc1ae;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
@@ -1326,7 +1326,7 @@
     align-items: center;
     gap: 7px;
     padding: 10px 14px;
-    background: #4b4840;
+    background: var(--color-bg);
     border-bottom: 1px solid #23221f;
   }
 
@@ -1334,17 +1334,17 @@
     width: 11px;
     height: 11px;
     border-radius: 999px;
-    background: #7f796d;
+    background: var(--color-text-faint);
   }
 
-  .term-bar span:first-child { background: #c48382; }
-  .term-bar span:nth-child(2) { background: #cbc1ae; }
+  .term-bar span:first-child { background: var(--color-danger); }
+  .term-bar span:nth-child(2) { background: var(--color-text); }
   .term-bar span:nth-child(3) { background: var(--color-accent); }
 
   .term-bar p {
     margin: 0 0 0 8px;
     font-size: 13px;
-    color: #cbc1ae;
+    color: var(--color-text);
     letter-spacing: 0.03em;
   }
 
@@ -1357,7 +1357,7 @@
     overflow: clip;
   }
 
-  .t-dim { color: #7f796d; }
+  .t-dim { color: var(--color-text-faint); }
   .t-blue { color: var(--color-accent); }
   .t-ok { color: #a3b579; }
 
@@ -1374,10 +1374,10 @@
     width: min(60%, 290px);
     box-sizing: border-box;
     background: rgba(240, 235, 229, 0.97);
-    border: 1px solid #4b4840;
+    border: 1px solid var(--color-bg);
     box-shadow: 5px 5px 0 rgba(75, 72, 64, 0.95);
     padding: 13px 16px 14px;
-    color: #4b4840;
+    color: var(--color-bg);
     transform: rotate(-2.4deg);
   }
 
@@ -1398,7 +1398,7 @@
   .fame-author {
     margin: 4px 0 0;
     font-size: 16px;
-    color: #6c6659;
+    color: var(--color-border);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
@@ -1407,7 +1407,7 @@
     font-size: 17px;
     line-height: 1.35;
     letter-spacing: 0.01em;
-    color: #4b4840;
+    color: var(--color-bg);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
@@ -1415,7 +1415,7 @@
     display: inline-block;
     margin-top: 12px;
     padding: 8px 12px;
-    border: 1px solid #4b4840;
+    border: 1px solid var(--color-bg);
     background: var(--color-accent);
     color: #ffffff;
     font-size: 14px;
@@ -1464,8 +1464,8 @@
 
   .what-is-this a,
   .what-is-this a:visited {
-    color: #809fb7;
-    text-decoration-color: #809fb7;
+    color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
   }
 
   /* ── info sections ──────────────────────────────── */
@@ -1537,9 +1537,9 @@
     box-sizing: border-box;
     min-height: 420px;
     padding: 24px;
-    background: #7f796d;
+    background: var(--color-text-faint);
     border: none;
-    color: #4b4840;
+    color: var(--color-bg);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   }
@@ -1572,7 +1572,7 @@
 
   .rsvp-box h2 {
     margin: 0 0 16px;
-    color: #4b4840;
+    color: var(--color-bg);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 32px;
     line-height: 1;
@@ -1584,32 +1584,32 @@
     box-sizing: border-box;
     margin: 0 0 14px;
     padding: 14px 12px;
-    border: 1px solid #cbc1ae;
+    border: 1px solid var(--color-text);
     background: var(--color-text);
-    color: #4b4840;
+    color: var(--color-bg);
     font-size: 18px;
     font-family: inherit;
     cursor: text;
   }
 
   .rsvp-box input[type='email']::placeholder {
-    color: #6c6659;
+    color: var(--color-border);
   }
 
   /* chunky "hardware" button: a hard offset shadow reads as a physical key
      that presses down on hover/click — matches the hand-built mechanical theme */
   .rsvp-box button {
     width: 100%;
-    border: 2px solid #4b4840;
+    border: 2px solid var(--color-bg);
     background: #a89f8d;
-    color: #4b4840;
+    color: var(--color-bg);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 26px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     padding: 12px;
     cursor: not-allowed;
-    box-shadow: 4px 4px 0 #4b4840;
+    box-shadow: 4px 4px 0 var(--color-bg);
     transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.2s;
   }
 
@@ -1622,20 +1622,20 @@
   .rsvp-box button.valid:hover {
     background: #c15049;
     transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 #4b4840;
+    box-shadow: 2px 2px 0 var(--color-bg);
   }
 
   .rsvp-box button.valid:active {
     transform: translate(4px, 4px);
-    box-shadow: 0 0 0 #4b4840;
+    box-shadow: 0 0 0 var(--color-bg);
   }
 
   .rsvp-box button.sending {
-    background: #809fb7;
+    background: var(--color-accent);
     color: #f3e9d6;
     cursor: wait;
     transform: translate(4px, 4px);
-    box-shadow: 0 0 0 #4b4840;
+    box-shadow: 0 0 0 var(--color-bg);
   }
 
   .rsvp-error {
@@ -1679,8 +1679,8 @@
   .rsvp-note a:visited,
   .rsvp-note a:hover,
   .rsvp-note a:active {
-    color: #809fb7;
-    text-decoration-color: #809fb7;
+    color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
   }
 
   .sticker {
@@ -1715,7 +1715,7 @@
     padding: 12px 14px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     border: 1px solid rgba(230, 244, 254, 0.35);
-    background: #6c6659;
+    background: var(--color-border);
     backdrop-filter: blur(1.5px);
   }
 
@@ -1886,22 +1886,22 @@
     width: 250px;
     flex-shrink: 0;
     background: #f0ebe5;
-    border: 1px solid #4b4840;
-    box-shadow: 6px 6px 0 #4b4840;
+    border: 1px solid var(--color-bg);
+    box-shadow: 6px 6px 0 var(--color-bg);
     padding: 12px 12px 10px;
     filter: saturate(0.667);
   }
 
   .bg-card {
     width: 170px;
-    background: #6c6659;
-    border-color: #4b4840;
-    box-shadow: 3px 3px 0 #4b4840;
+    background: var(--color-border);
+    border-color: var(--color-bg);
+    box-shadow: 3px 3px 0 var(--color-bg);
     padding: 10px 10px 8px;
   }
 
   .bg-card .card-caption {
-    color: #cbc1ae;
+    color: var(--color-text);
     font-size: 14px;
   }
 
@@ -1910,14 +1910,14 @@
     aspect-ratio: 4 / 5;
     height: auto;
     object-fit: contain;
-    border: 1px solid #6c6659;
+    border: 1px solid var(--color-border);
     background: var(--color-text);
     display: block;
   }
 
   .card-caption {
     margin: 8px 0 0;
-    color: #4b4840;
+    color: var(--color-bg);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
     line-height: 1.25;
@@ -2020,7 +2020,7 @@
     overflow: hidden;
     background: #000;
     padding: 64px clamp(48px, 8vw, 160px) 44px;
-    color: #7f796d;
+    color: var(--color-text-faint);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
@@ -2061,11 +2061,11 @@
     font-size: clamp(16px, 1.3vw, 19px);
     line-height: 1.65;
     letter-spacing: 0.02em;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .footer-shipping {
-    color: #c48382;
+    color: var(--color-danger);
   }
 
   .footer-columns {
@@ -2085,14 +2085,14 @@
     font-size: 20px;
     font-weight: normal;
     letter-spacing: 0.04em;
-    color: #c48382;
+    color: var(--color-danger);
   }
 
   .footer-col a,
   .footer-col a:visited {
     display: block;
     margin-bottom: 12px;
-    color: #7f796d;
+    color: var(--color-text-faint);
     font-size: 17px;
     letter-spacing: 0.03em;
     text-decoration: none;
@@ -2100,13 +2100,13 @@
   }
 
   .footer-col a:hover {
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .footer-love {
     margin: 32px 0 0;
     font-size: 18px;
-    color: #7f796d;
+    color: var(--color-text-faint);
     text-align: left;
   }
 
@@ -2204,8 +2204,8 @@
     position: absolute;
     width: 360px;
     height: 260px;
-    background: #6c6659;
-    border: 3px solid #4b4840;
+    background: var(--color-border);
+    border: 3px solid var(--color-bg);
     box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
   }
 
@@ -2220,7 +2220,7 @@
     top: 4px;
     left: 6px;
     transform: rotate(2deg);
-    background: #6c6659;
+    background: var(--color-border);
   }
 
   .frame-front {
@@ -2244,14 +2244,14 @@
     text-align: center;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #cbc1ae;
+    color: var(--color-text);
     letter-spacing: 0.03em;
     font-style: italic;
   }
 
   /* ── bottom RSVP ─────────────────────────────────── */
   .bottom-rsvp {
-    background: #6c6659;
+    background: var(--color-border);
     position: relative;
     overflow: hidden;
     padding: 56px 48px 64px;

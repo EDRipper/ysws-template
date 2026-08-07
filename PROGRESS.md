@@ -326,6 +326,39 @@ instructions not to ask questions that can't be answered right now):
 Not blocking other work — continued backend genericization + the frontend
 color sweep above instead of stalling on these.
 
+## Tick 3: found a self-documented palette comment, extended the color sweep
+
+`FAQ/+page.svelte` and `faq/+page.svelte` both had an explicit `<!-- Color
+Pallet -->` comment at the top labeling exactly what each hex value means:
+`#c48382 Light Red`, `var(--color-accent) Light Blue`, `#4b4840 Dark Gray`,
+`#6c6659 Medium Gray`, `#7f796d Light Gray`, `#cbc1ae Beige`, `#809fb7 Light
+Steel Blue`, `var(--color-text) Light Cyan`, `#ffffff White` — this is
+authoritative, not a guess. Cross-checked real usage sites (background vs
+text vs status-color roles) before applying sitewide, not just trusting the
+label blindly. Applied:
+- `#4b4840` (Dark Gray, confirmed as page-background role) -> `var(--color-bg)`
+- `#6c6659` (Medium Gray, decorative fills) -> `var(--color-border)`
+- `#7f796d` (Light Gray, decorative fills) -> `var(--color-text-faint)`
+- `#cbc1ae` (Beige, confirmed as heading/text-on-dark role) -> `var(--color-text)`
+  (deliberately consolidated with the other light "Light Cyan" text color —
+  one coherent text tone beats two competing hand-tuned off-whites)
+- `#c48382` (Light Red — confirmed via `.order-detail-error`,
+  `.status-pending`, `.pill-unshipped` usage, genuinely a status/error role,
+  not just decorative) -> `var(--color-danger)`
+- `#5b9bd5`/`#809fb7` (confirmed same "interactive accent" role as the
+  already-mapped `#93b4cd`, e.g. active-tab underline, focus border,
+  approved-badge accent) -> `var(--color-accent)`. Deliberately did NOT
+  touch `#3b7bb5`/`#2a6699` — same accent role but specifically the
+  `.admin-shell.light` (light-mode) variant, a darker shade tuned for
+  contrast on a white background. Our token system has no light-mode-aware
+  accent variant yet, so collapsing these to the same flat `--color-accent`
+  would likely hurt contrast in admin light mode. Left literal, flagged for
+  whoever adds proper light-mode tokens.
+
+319 replacements this round, 9 files. Total hardcoded hex count now ~1357
+(down from ~1900 at the start of this pass). Both build targets +
+svelte-check verified clean after.
+
 ## Tick 2 continued: real bug + more content genericization
 
 - **Real functional bug found and fixed**: `frontend/src/hooks.server.ts`

@@ -1,12 +1,12 @@
 <!-- src/routes/home/+page.svelte -->
 <!-- Color Pallet
- #c48382 - Light Red
+ var(--color-danger) - Light Red
  var(--color-accent) - Light Blue
- #4b4840 - Dark Gray
- #6c6659 - Medium Gray
- #7f796d - Light Gray
- #cbc1ae - Beige
- #809fb7 - Light Steel Blue
+ var(--color-bg) - Dark Gray
+ var(--color-border) - Medium Gray
+ var(--color-text-faint) - Light Gray
+ var(--color-text) - Beige
+ var(--color-accent) - Light Steel Blue
  var(--color-text) - Light Cyan
  #9a9285 - Warm Granite (devlogs accent)
  #52504a - Basalt       (devlogs section bg)
@@ -632,7 +632,7 @@
   }
 
   function launchConfetti() {
-    const colors = ['var(--color-success)', 'var(--color-accent)', '#cbc1ae', '#c48382', '#809fb7', 'var(--color-text)'];
+    const colors = ['var(--color-success)', 'var(--color-accent)', 'var(--color-text)', 'var(--color-danger)', 'var(--color-accent)', 'var(--color-text)'];
     confetti({
       particleCount: 120,
       spread: 80,
@@ -2075,13 +2075,13 @@
       </div>
 
       <svg class="form-gear form-gear-1" style="transform: rotate({keystrokes * 3}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#635a4e"/>
+        <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#635a4e"/>
       </svg>
       <svg class="form-gear form-gear-2" style="transform: rotate({-keystrokes * 2 + 22.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g fill="#7f796d"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#635a4e"/>
+        <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#635a4e"/>
       </svg>
       <svg class="form-gear form-gear-3" style="transform: rotate({keystrokes * 4}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#635a4e"/>
+        <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#635a4e"/>
       </svg>
     </div>
     {/if}
@@ -2930,19 +2930,19 @@
     <section class="section section-faq">
       <div class="faq-page">
         <svg class="side-gear side-gear-l1" style="transform: rotate({(faqOpenIndex !== null ? (faqOpenIndex + 1) * 45 : 0) * 0.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+          <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
         </svg>
         <svg class="side-gear side-gear-l2" style="transform: rotate({(faqOpenIndex !== null ? (faqOpenIndex + 1) * 45 : 0) * -1.8 + 22.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="#7f796d"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+          <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
         </svg>
         <svg class="side-gear side-gear-l3" style="transform: rotate({(faqOpenIndex !== null ? (faqOpenIndex + 1) * 45 : 0) * 2.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+          <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
         </svg>
         <svg class="side-gear side-gear-r1" style="transform: rotate({(faqOpenIndex !== null ? (faqOpenIndex + 1) * 45 : 0) * -1.3}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+          <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
         </svg>
         <svg class="side-gear side-gear-r2" style="transform: rotate({(faqOpenIndex !== null ? (faqOpenIndex + 1) * 45 : 0) * 0.3 + 22.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="#7f796d"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+          <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
         </svg>
 
         <h2 class="faq-title">Frequently Asked Questions</h2>
@@ -3500,7 +3500,7 @@
   :global(body) {
     margin: 0;
     padding: 0;
-    background: #4b4840;
+    background: var(--color-bg);
     overflow-x: hidden;
   }
 
@@ -3508,7 +3508,7 @@
   .home {
     display: flex;
     min-height: 100vh;
-    background: #4b4840;
+    background: var(--color-bg);
   }
 
 
@@ -3535,7 +3535,7 @@
     width: calc(100% - 55px);
     max-width: 0;
     height: 100%;
-    background: #4b4840;
+    background: var(--color-bg);
     overflow: hidden;
     transition: max-width 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -3555,7 +3555,7 @@
 
   .teeth.inner {
     width: 30px;
-    background: #6c6659;
+    background: var(--color-border);
     z-index: 3;
     clip-path: polygon(
       0% 0%,
@@ -3574,7 +3574,7 @@
 
   .teeth.outer {
     width: 60px;
-    background: #4b4840;
+    background: var(--color-bg);
     z-index: 4;
     clip-path: polygon(
       0% 0%,
@@ -3597,7 +3597,7 @@
     left: 12px;
     width: 40px;
     height: 40px;
-    color: #cbc1ae;
+    color: var(--color-text);
     z-index: 200;
     opacity: 0.7;
     transition: opacity 200ms ease;
@@ -3675,7 +3675,7 @@
     border-bottom: 6px solid transparent;
     border-radius: 6px;
     background: transparent;
-    color: #cbc1ae;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     letter-spacing: 0.03em;
@@ -3700,7 +3700,7 @@
     color: var(--color-text);
     border-color: transparent;
     text-decoration: underline;
-    text-decoration-color: #c48382;
+    text-decoration-color: var(--color-danger);
     text-underline-offset: 4px;
   }
 
@@ -3798,7 +3798,7 @@
     margin: 0 0 32px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(14px, 1.2vw, 17px);
-    color: #cbc1ae;
+    color: var(--color-text);
     letter-spacing: 0.02em;
   }
 
@@ -3841,7 +3841,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     line-height: 1.45;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .event-hosted-by {
@@ -3985,8 +3985,8 @@
   }
 
   .timeline-dot.feedback {
-    background: #cbc1ae;
-    border-color: #cbc1ae;
+    background: var(--color-text);
+    border-color: var(--color-text);
   }
 
   .timeline-dot.submitted {
@@ -3995,8 +3995,8 @@
   }
 
   .timeline-dot.updated {
-    background: #c48382;
-    border-color: #c48382;
+    background: var(--color-danger);
+    border-color: var(--color-danger);
   }
 
   .timeline-content {
@@ -4026,7 +4026,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-    color: #7f796d;
+    color: var(--color-text-faint);
   }
 
   /* ── news ─────────────────────────────────────────── */
@@ -4057,7 +4057,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-    color: #cbc1ae;
+    color: var(--color-text);
     line-height: 1.4;
   }
 
@@ -4102,7 +4102,7 @@
     border: none;
     font-size: 64px;
     font-weight: 900;
-    color: #cbc1ae;
+    color: var(--color-text);
     cursor: pointer;
     padding: 4px 12px;
     line-height: 1;
@@ -4135,7 +4135,7 @@
     cursor: pointer;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .noselect {
@@ -4181,17 +4181,17 @@
   .form-caption {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .form-charcount {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
-    color: #7f796d;
+    color: var(--color-text-faint);
   }
 
   .form-charcount.over {
-    color: #c48382;
+    color: var(--color-danger);
   }
 
   .form-group {
@@ -4203,7 +4203,7 @@
   .form-label {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 19px;
-    color: #cbc1ae;
+    color: var(--color-text);
     letter-spacing: 0.04em;
   }
 
@@ -4225,7 +4225,7 @@
   }
 
   .form-input::placeholder {
-    color: #7f796d;
+    color: var(--color-text-faint);
   }
 
   .form-input:focus {
@@ -4248,7 +4248,7 @@
   }
 
   .form-select option {
-    background: #4b4840;
+    background: var(--color-bg);
     color: var(--color-text);
   }
 
@@ -4285,7 +4285,7 @@
   .upload-btn-text {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .screenshot-controls {
@@ -4307,7 +4307,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: bold;
-    color: #cbc1ae;
+    color: var(--color-text);
     background: rgba(0, 0, 0, 0.2);
     border: 2px solid rgba(230, 244, 254, 0.15);
     cursor: pointer;
@@ -4383,7 +4383,7 @@
   }
 
   .screenshot-remove:hover {
-    background: #c48382;
+    background: var(--color-danger);
   }
 
   .screenshot-preview {
@@ -4395,7 +4395,7 @@
   .upload-icon {
     width: 36px;
     height: 36px;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .form-file-hidden {
@@ -4455,20 +4455,20 @@
   .form-btn-delete {
     padding: 10px 24px;
     background: none;
-    border: 3px solid #c48382;
+    border: 3px solid var(--color-danger);
     border-bottom: 7px solid #a06a69;
     border-radius: 4px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: 700;
-    color: #c48382;
+    color: var(--color-danger);
     cursor: pointer;
     margin-right: auto;
     transition: background 150ms ease, color 150ms ease, transform 0.1s ease, border-bottom-width 0.1s ease;
   }
 
   .form-btn-delete:hover {
-    background: #c48382;
+    background: var(--color-danger);
     color: #fff;
   }
 
@@ -4479,7 +4479,7 @@
 
   .form-btn-submit {
     padding: 10px 28px;
-    background: #c48382;
+    background: var(--color-danger);
     border: 3px solid #a06a69;
     border-bottom: 7px solid #8a5857;
     border-radius: 4px;
@@ -4510,7 +4510,7 @@
 
   .in-review-notice {
     background: rgba(203, 193, 174, 0.15);
-    border: 2px solid #cbc1ae;
+    border: 2px solid var(--color-text);
     clip-path: polygon(0% 2%, 3% 0%, 97% 1%, 100% 3%, 99% 97%, 96% 100%, 4% 99%, 0% 96%);
     padding: 12px 16px;
     overflow-wrap: break-word;
@@ -4523,7 +4523,7 @@
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #cbc1ae;
+    color: var(--color-text);
     line-height: 1.4;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
   }
@@ -4532,7 +4532,7 @@
     margin: 8px 0 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
-    color: #cbc1ae;
+    color: var(--color-text);
     line-height: 1.4;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
   }
@@ -4541,13 +4541,13 @@
     margin-top: 12px;
     padding: 8px 20px;
     background: none;
-    border: 2px solid #cbc1ae;
+    border: 2px solid var(--color-text);
     border-bottom: 5px solid #9e9888;
     border-radius: 4px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     font-weight: 700;
-    color: #cbc1ae;
+    color: var(--color-text);
     cursor: pointer;
     transition: background 200ms ease, transform 0.1s ease, border-bottom-width 0.1s ease;
   }
@@ -4568,7 +4568,7 @@
 
   .form-btn-review {
     padding: 10px 28px;
-    background: #7f796d;
+    background: var(--color-text-faint);
     border: 3px solid #6a655a;
     border-bottom: 7px solid #5a5549;
     border-radius: 4px;
@@ -4604,7 +4604,7 @@
 
   /* ── Resubmit section ─────────────────────────── */
   .section-resubmit {
-    background: #4b4840;
+    background: var(--color-bg);
   }
 
   .approved-summary {
@@ -4647,7 +4647,7 @@
     margin: 10px 0 8px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
-    color: #cbc1ae;
+    color: var(--color-text);
     line-height: 1.4;
   }
 
@@ -4656,7 +4656,7 @@
     gap: 14px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #7f796d;
+    color: var(--color-text-faint);
     flex-wrap: wrap;
   }
 
@@ -4688,7 +4688,7 @@
   .review-feedback-card {
     padding: 16px 20px;
     background: rgba(0, 0, 0, 0.3);
-    border-left: 4px solid #7f796d;
+    border-left: 4px solid var(--color-text-faint);
     clip-path: polygon(0% 3%, 2% 0%, 98% 2%, 100% 5%, 99% 96%, 97% 100%, 3% 99%, 0% 95%);
   }
 
@@ -4727,13 +4727,13 @@
   .review-feedback-reviewer {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .review-feedback-date {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
-    color: #7f796d;
+    color: var(--color-text-faint);
     margin-left: auto;
   }
 
@@ -4747,7 +4747,7 @@
   }
 
   .review-feedback-empty {
-    color: #7f796d;
+    color: var(--color-text-faint);
     font-style: italic;
   }
 
@@ -4801,7 +4801,7 @@
     bottom: calc(100% + 8px);
     right: 0;
     background: #3a3832;
-    color: #cbc1ae;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     padding: 8px 12px;
@@ -4815,7 +4815,7 @@
   }
 
   .required {
-    color: #c48382;
+    color: var(--color-danger);
     font-size: 36px;
     vertical-align: baseline;
     line-height: 1;
@@ -5151,13 +5151,13 @@
   .hackatime-placeholder {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #7f796d;
+    color: var(--color-text-faint);
   }
 
   .hackatime-selected {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #cbc1ae;
+    color: var(--color-text);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -5225,8 +5225,8 @@
   }
 
   .refresh-btn {
-    background: #4b4840;
-    border: 2px solid #6c6659;
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
     border-radius: 6px;
     padding: 0 10px;
     cursor: pointer;
@@ -5248,7 +5248,7 @@
   .refresh-icon {
     width: 18px;
     height: 18px;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .refresh-icon.spinning {
@@ -5260,7 +5260,7 @@
   }
 
   .form-error {
-    color: #c48382;
+    color: var(--color-danger);
     font-size: 14px;
     margin: 8px 0 0;
     padding: 8px 12px;
@@ -5278,7 +5278,7 @@
   }
 
   .devlogs-blurb {
-    color: #cbc1ae;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     margin: 0 0 18px;
@@ -5318,7 +5318,7 @@
     margin: 8px 0 18px;
     padding: 6px 14px;
     background: transparent;
-    color: #cbc1ae;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     border: 1px solid rgba(203, 193, 174, 0.35);
@@ -5329,7 +5329,7 @@
 
   .devlog-cancel-btn:hover {
     background: rgba(203, 193, 174, 0.1);
-    border-color: #cbc1ae;
+    border-color: var(--color-text);
   }
 
   /* Two-pane create row: form card on the left, separate images card on the right */
@@ -5395,7 +5395,7 @@
     margin: 2px 0 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
-    color: #7f796d;
+    color: var(--color-text-faint);
     line-height: 1.4;
   }
 
@@ -5522,7 +5522,7 @@
   }
 
   .devlog-empty {
-    color: #cbc1ae;
+    color: var(--color-text);
     opacity: 0.7;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
@@ -5546,7 +5546,7 @@
     margin-bottom: 8px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .devlog-card-project {
@@ -5561,14 +5561,14 @@
   }
 
   .devlog-card-time {
-    color: #7f796d;
+    color: var(--color-text-faint);
     margin-left: auto;
   }
 
   .devlog-card-delete {
     background: transparent;
     border: 0;
-    color: #7f796d;
+    color: var(--color-text-faint);
     font-size: 18px;
     line-height: 1;
     cursor: pointer;
@@ -5577,7 +5577,7 @@
   }
 
   .devlog-card-delete:hover {
-    color: #c48382;
+    color: var(--color-danger);
   }
 
   .devlog-card-title {
@@ -5702,7 +5702,7 @@
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 24px;
-    background: #6c6659;
+    background: var(--color-border);
     padding: 24px 28px;
   }
 
@@ -5732,7 +5732,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #4b4840;
+    background: var(--color-bg);
     color: var(--color-text);
     border: 2px solid #1a1a1a;
     padding: 10px 16px;
@@ -5745,7 +5745,7 @@
     box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
   }
   .suggestions-btn:hover {
-    background: #6c6659;
+    background: var(--color-border);
     transform: translate(-1px, -1px);
     box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
   }
@@ -5770,7 +5770,7 @@
   }
 
   .suggestions-modal {
-    background: #cbc1ae;
+    background: var(--color-text);
     border: 2px solid #1a1a1a;
     box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
     width: 100%;
@@ -5779,7 +5779,7 @@
     overflow-y: auto;
     padding: 28px 28px 24px;
     position: relative;
-    color: #4b4840;
+    color: var(--color-bg);
   }
 
   .order-note-overlay {
@@ -5793,13 +5793,13 @@
     padding: 20px;
   }
   .order-note-modal {
-    background: #cbc1ae;
+    background: var(--color-text);
     border: 2px solid #1a1a1a;
     box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
     width: 100%;
     max-width: 440px;
     padding: 24px;
-    color: #4b4840;
+    color: var(--color-bg);
   }
   .order-note-title {
     margin: 0 0 6px;
@@ -5822,7 +5822,7 @@
     padding: 10px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #4b4840;
+    color: var(--color-bg);
   }
   .order-note-count {
     text-align: right;
@@ -5849,10 +5849,10 @@
   }
   .order-note-cancel {
     background: transparent;
-    color: #4b4840;
+    color: var(--color-bg);
   }
   .order-note-confirm {
-    background: #4b4840;
+    background: var(--color-bg);
     color: #ede6d6;
   }
   .order-note-confirm:disabled,
@@ -5869,28 +5869,28 @@
     border: none;
     font-size: 28px;
     line-height: 1;
-    color: #4b4840;
+    color: var(--color-bg);
     cursor: pointer;
     padding: 4px 8px;
   }
-  .suggestions-close:hover { color: #c48382; }
+  .suggestions-close:hover { color: var(--color-danger); }
 
   .suggestions-title {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 28px;
     margin: 0 0 4px;
-    color: #4b4840;
+    color: var(--color-bg);
   }
   .suggestions-subtitle {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #6c6659;
+    color: var(--color-border);
     margin: 0 0 20px;
   }
 
   .suggestions-new {
     background: rgba(240, 235, 229, 0.5);
-    border: 2px solid #4b4840;
+    border: 2px solid var(--color-bg);
     padding: 12px;
     margin-bottom: 20px;
   }
@@ -5898,11 +5898,11 @@
     width: 100%;
     min-height: 60px;
     background: #f0ebe5;
-    border: 2px solid #4b4840;
+    border: 2px solid var(--color-bg);
     padding: 8px 10px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #4b4840;
+    color: var(--color-bg);
     resize: vertical;
     box-sizing: border-box;
   }
@@ -5919,7 +5919,7 @@
   .suggestions-counter {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
-    color: #6c6659;
+    color: var(--color-border);
   }
   .suggestions-submit {
     background: var(--color-success);
@@ -5937,7 +5937,7 @@
     background: #6cb482;
   }
   .suggestions-submit:disabled {
-    background: #7f796d;
+    background: var(--color-text-faint);
     cursor: not-allowed;
     opacity: 0.6;
   }
@@ -5955,7 +5955,7 @@
   }
   .suggestions-empty {
     text-align: center;
-    color: #6c6659;
+    color: var(--color-border);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     padding: 24px 0;
   }
@@ -5965,7 +5965,7 @@
     align-items: stretch;
     gap: 12px;
     background: rgba(240, 235, 229, 0.55);
-    border: 2px solid #6c6659;
+    border: 2px solid var(--color-border);
     padding: 10px 12px;
   }
 
@@ -5977,8 +5977,8 @@
     gap: 2px;
     min-width: 56px;
     background: #f0ebe5;
-    border: 2px solid #6c6659;
-    color: #4b4840;
+    border: 2px solid var(--color-border);
+    color: var(--color-bg);
     padding: 6px 8px;
     cursor: pointer;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -5988,7 +5988,7 @@
   .suggestion-vote-count { font-size: 16px; line-height: 1; }
   .suggestion-vote:hover {
     background: var(--color-text);
-    border-color: #4b4840;
+    border-color: var(--color-bg);
   }
   .suggestion-vote.voted {
     background: var(--color-success);
@@ -6011,14 +6011,14 @@
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #4b4840;
+    color: var(--color-bg);
     word-break: break-word;
   }
   .suggestion-meta {
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
-    color: #6c6659;
+    color: var(--color-border);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -6059,7 +6059,7 @@
   .pipes-box-label {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
-    color: #cbc1ae;
+    color: var(--color-text);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -6138,7 +6138,7 @@
     display: flex;
     align-items: stretch;
     width: 100%;
-    background: #cbc1ae;
+    background: var(--color-text);
     border: none;
     padding: 0;
     font: inherit;
@@ -6195,7 +6195,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     line-height: 1.5;
-    color: #4b4840;
+    color: var(--color-bg);
     max-width: 65ch;
   }
 
@@ -6286,7 +6286,7 @@
   .shop-card {
     display: flex;
     flex-direction: column;
-    background: #cbc1ae;
+    background: var(--color-text);
     border: 2px solid #1a1a1a;
     box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.45);
     cursor: pointer;
@@ -6347,7 +6347,7 @@
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
-    color: #4b4840;
+    color: var(--color-bg);
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -6386,7 +6386,7 @@
   .shop-card-stock {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
-    color: #4b4840;
+    color: var(--color-bg);
     background: rgba(26, 26, 26, 0.12);
     padding: 2px 8px;
   }
@@ -6432,7 +6432,7 @@
     justify-content: space-between;
     gap: 12px;
     padding: 10px 14px;
-    background: #cbc1ae;
+    background: var(--color-text);
     border: 2px solid #1a1a1a;
     box-shadow: 3px 3px 0 rgba(26, 26, 26, 0.45);
   }
@@ -6448,7 +6448,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: 600;
-    color: #4b4840;
+    color: var(--color-bg);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -6457,7 +6457,7 @@
   .my-orders-meta {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
-    color: #6c6659;
+    color: var(--color-border);
   }
 
   .my-orders-actions {
@@ -6483,7 +6483,7 @@
 
   .my-orders-status.fulfilled {
     background: rgba(75, 72, 64, 0.15);
-    color: #4b4840;
+    color: var(--color-bg);
   }
 
   .my-orders-status.cancelled {
@@ -6500,7 +6500,7 @@
     background: #f0ebe5;
     border: 2px solid #1a1a1a;
     box-shadow: 2px 2px 0 rgba(26, 26, 26, 0.45);
-    color: #4b4840;
+    color: var(--color-bg);
     cursor: pointer;
     transition: transform 100ms ease, box-shadow 100ms ease;
   }
@@ -6590,9 +6590,9 @@
     pointer-events: none;
   }
   .intent-modal {
-    background: #4b4840;
+    background: var(--color-bg);
     color: #e8e0d4;
-    border: 1px solid #6c6659;
+    border: 1px solid var(--color-border);
     padding: 2rem 1.75rem;
     width: 100%;
     max-width: 420px;
@@ -6620,7 +6620,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 1.25rem 0.75rem;
-    border: 1px solid #6c6659;
+    border: 1px solid var(--color-border);
     background: #52504a;
     color: #e8e0d4;
     font-size: 1rem;
@@ -6663,7 +6663,7 @@
 
   .shop-modal {
     position: relative;
-    background: #cbc1ae;
+    background: var(--color-text);
     border: 3px solid #1a1a1a;
     box-shadow: 10px 10px 0 rgba(26, 26, 26, 0.5);
     max-width: 860px;
@@ -6685,14 +6685,14 @@
     background: none;
     border: none;
     font-size: 32px;
-    color: #4b4840;
+    color: var(--color-bg);
     cursor: pointer;
     z-index: 2;
     line-height: 1;
     padding: 4px 8px;
   }
 
-  .shop-modal-close:hover { color: #c48382; }
+  .shop-modal-close:hover { color: var(--color-danger); }
 
   .shop-modal-content {
     display: grid;
@@ -6725,7 +6725,7 @@
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(24px, 3vw, 36px);
-    color: #4b4840;
+    color: var(--color-bg);
     line-height: 1.2;
   }
 
@@ -6741,7 +6741,7 @@
     margin: 8px 0 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #4b4840;
+    color: var(--color-bg);
     line-height: 1.5;
     white-space: pre-line;
   }
@@ -6763,7 +6763,7 @@
     font-size: 14px;
     padding: 3px 10px;
     background: rgba(26, 26, 26, 0.1);
-    color: #4b4840;
+    color: var(--color-bg);
   }
 
   .shop-modal-stock.low { color: #8a4a49; font-weight: 700; }
@@ -6775,7 +6775,7 @@
     gap: 8px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #6c6659;
+    color: var(--color-border);
   }
 
   .ship-icon {
@@ -6794,7 +6794,7 @@
   .shop-modal-qty-label {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
-    color: #4b4840;
+    color: var(--color-bg);
   }
 
   .shop-modal-qty-controls {
@@ -6809,7 +6809,7 @@
     text-align: center;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 20px;
-    color: #4b4840;
+    color: var(--color-bg);
     background: #e6e0d4;
     height: 40px;
     line-height: 40px;
@@ -6829,7 +6829,7 @@
     align-items: center;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
-    color: #4b4840;
+    color: var(--color-bg);
     padding-top: 8px;
     border-top: 2px solid rgba(26, 26, 26, 0.15);
   }
@@ -6843,7 +6843,7 @@
   .shop-modal-buy {
     width: 100%;
     padding: 16px;
-    background: #809fb7;
+    background: var(--color-accent);
     border: 2px solid #1a1a1a;
     box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.45);
     color: #1a1a1a;
@@ -6877,7 +6877,7 @@
     border: 2px solid rgba(196, 131, 130, 0.3);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #4b4840;
+    color: var(--color-bg);
   }
 
   .shop-modal-cant-afford p { margin: 4px 0; }
@@ -6947,7 +6947,7 @@
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
-    color: #cbc1ae;
+    color: var(--color-text);
     white-space: nowrap;
   }
 
@@ -7060,14 +7060,14 @@
   .progress-hours {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 40px);
-    color: #cbc1ae;
+    color: var(--color-text);
     letter-spacing: 0.04em;
   }
 
   .progress-goal {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 40px);
-    color: #cbc1ae;
+    color: var(--color-text);
     letter-spacing: 0.04em;
   }
 
@@ -7091,9 +7091,9 @@
   }
 
   .progress-fill.approved { background: var(--color-accent); }
-  .progress-fill.unreviewed { background: #cbc1ae; }
+  .progress-fill.unreviewed { background: var(--color-text); }
   .progress-fill.changes_needed { background: #d4a55a; }
-  .progress-fill.unshipped { background: #c48382; }
+  .progress-fill.unshipped { background: var(--color-danger); }
 
   .progress-ticks {
     display: flex;
@@ -7102,7 +7102,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     font-weight: 700;
-    color: #cbc1ae;
+    color: var(--color-text);
     letter-spacing: 0.02em;
   }
 
@@ -7138,7 +7138,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 20px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-    color: #cbc1ae;
+    color: var(--color-text);
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
   }
 
@@ -7154,7 +7154,7 @@
   }
 
   .key-swatch.unreviewed {
-    background: #cbc1ae;
+    background: var(--color-text);
   }
 
   .key-swatch.changes-needed {
@@ -7162,7 +7162,7 @@
   }
 
   .key-swatch.unshipped {
-    background: #c48382;
+    background: var(--color-danger);
   }
 
   .projects-box {
@@ -7189,7 +7189,7 @@
     margin: 10px 0 16px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
-    color: #cbc1ae;
+    color: var(--color-text);
     letter-spacing: 0.02em;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
   }
@@ -7197,7 +7197,7 @@
   .action-btn {
     display: inline-block;
     padding: 8px 22px;
-    background: #c48382;
+    background: var(--color-danger);
     color: #fff;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
@@ -7248,7 +7248,7 @@
   .shipping-prompt-text {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #cbc1ae;
+    color: var(--color-text);
     line-height: 1.6;
     margin-bottom: 20px;
   }
@@ -7272,8 +7272,8 @@
 
   .shipping-prompt-item.missing {
     background: rgba(196, 131, 130, 0.2);
-    border: 2px solid #c48382;
-    color: #c48382;
+    border: 2px solid var(--color-danger);
+    color: var(--color-danger);
   }
 
   .shipping-prompt-item.done {
@@ -7353,7 +7353,7 @@
     cursor: pointer;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #cbc1ae;
+    color: var(--color-text);
     line-height: 1.5;
   }
 
@@ -7363,7 +7363,7 @@
     width: 22px;
     height: 22px;
     min-width: 22px;
-    border: 3px solid #6c6659;
+    border: 3px solid var(--color-border);
     border-radius: 4px;
     background: rgba(0, 0, 0, 0.2);
     cursor: pointer;
@@ -7558,7 +7558,7 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: #635a4e;
-    background: #cbc1ae;
+    background: var(--color-text);
     padding: 4px 12px;
     clip-path: polygon(4% 0%, 96% 4%, 100% 96%, 0% 100%);
   }
@@ -7575,11 +7575,11 @@
   }
 
   .project-status-badge.unshipped {
-    background: #c48382;
+    background: var(--color-danger);
   }
 
   .project-status-badge.unreviewed {
-    background: #cbc1ae;
+    background: var(--color-text);
     color: #635a4e;
   }
 
@@ -7602,7 +7602,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 20px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-    color: #cbc1ae;
+    color: var(--color-text);
     margin: 0 0 12px;
     line-height: 1.4;
     overflow: hidden;
@@ -7636,7 +7636,7 @@
   .project-hackatime {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
-    color: #7f796d;
+    color: var(--color-text-faint);
   }
 
   .new-project-btn {
@@ -7856,7 +7856,7 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: #3a3832;
-    background: #cbc1ae;
+    background: var(--color-text);
     padding: 2px 6px;
     clip-path: polygon(4% 0%, 96% 4%, 100% 96%, 0% 100%);
   }
@@ -8056,7 +8056,7 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: #3a3832;
-    background: #cbc1ae;
+    background: var(--color-text);
     padding: 4px 10px;
     clip-path: polygon(4% 0%, 96% 4%, 100% 96%, 0% 100%);
   }
@@ -8122,7 +8122,7 @@
 
   .detail-btn-demo {
     background: var(--color-accent);
-    border-color: #809fb7;
+    border-color: var(--color-accent);
     color: #1a1a1a;
   }
 
@@ -8257,7 +8257,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     font-weight: 700;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .detail-comment-date {
@@ -8270,7 +8270,7 @@
     margin-left: auto;
     background: none;
     border: none;
-    color: #c48382;
+    color: var(--color-danger);
     font-size: 18px;
     cursor: pointer;
     padding: 0 4px;
@@ -8294,7 +8294,7 @@
 
   /* ── leaderboard ─────────────────────────────────── */
   .section-leaderboard {
-    background: #4b4840;
+    background: var(--color-bg);
   }
 
   .leaderboard-head {
@@ -8340,7 +8340,7 @@
     border-bottom: 2px solid rgba(230, 244, 254, 0.15);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
-    color: #7f796d;
+    color: var(--color-text-faint);
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
@@ -8353,7 +8353,7 @@
   }
 
   .leaderboard-row.top-three .lb-rank {
-    color: #c48382;
+    color: var(--color-danger);
     font-weight: 700;
   }
 
@@ -8362,7 +8362,7 @@
     flex-shrink: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .lb-name {
@@ -8378,7 +8378,7 @@
     flex-shrink: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
-    color: #cbc1ae;
+    color: var(--color-text);
   }
 
   .lb-show-more {
@@ -8387,7 +8387,7 @@
     background: transparent;
     border: 2px solid rgba(230, 244, 254, 0.2);
     border-bottom: 5px solid rgba(230, 244, 254, 0.1);
-    color: #cbc1ae;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     font-weight: 700;
@@ -8434,12 +8434,12 @@
 
   /* ── faq ─────────────────────────────────────────── */
   .section-faq {
-    background: #4b4840;
+    background: var(--color-bg);
     padding: 0;
   }
 
   .faq-page {
-    background: #4b4840;
+    background: var(--color-bg);
     min-height: 100%;
     padding: 2rem 3rem;
     position: relative;
@@ -8463,7 +8463,7 @@
 
   .faq-title {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    color: #cbc1ae;
+    color: var(--color-text);
     font-size: 3rem;
     text-align: center;
     margin: 0 0 1rem;
@@ -8471,7 +8471,7 @@
 
   .faq-intro {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    color: #cbc1ae;
+    color: var(--color-text);
     text-align: center;
     max-width: 600px;
     margin: 0 auto 2.5rem;
@@ -8503,13 +8503,13 @@
   }
 
   .faq-item:hover {
-    background: #4b4840;
+    background: var(--color-bg);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35), 0 12px 28px rgba(0, 0, 0, 0.3);
   }
 
   .faq-item.open {
     background: #3a3530;
-    border-color: #cbc1ae;
+    border-color: var(--color-text);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 16px 36px rgba(0, 0, 0, 0.3);
   }
 
@@ -8566,7 +8566,7 @@
 
   /* ── settings ────────────────────────────────────── */
   .section-settings {
-    background: #4b4840;
+    background: var(--color-bg);
     overflow-y: auto;
   }
 
@@ -8611,7 +8611,7 @@
   .account-value {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #cbc1ae;
+    color: var(--color-text);
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
     text-align: right;
     word-break: break-all;
@@ -8631,7 +8631,7 @@
   .nickname-input {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #cbc1ae;
+    color: var(--color-text);
     background: rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(203, 193, 174, 0.3);
     padding: 4px 8px;
@@ -8667,7 +8667,7 @@
   .gender-select {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #cbc1ae;
+    color: var(--color-text);
     background: rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(203, 193, 174, 0.3);
     padding: 4px 8px;
@@ -8677,7 +8677,7 @@
 
   .gender-select option {
     color: #000;
-    background: #cbc1ae;
+    background: var(--color-text);
   }
 
   .gender-select:focus {
@@ -8727,7 +8727,7 @@
   }
 
   .pref-toggle input[type="checkbox"]:checked {
-    background: #cbc1ae;
+    background: var(--color-text);
     border-color: #e7d8ba;
     box-shadow:
       inset 1px 1px 0 rgba(255, 255, 255, 0.25),
@@ -8750,7 +8750,7 @@
   .pref-label-text {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #cbc1ae;
+    color: var(--color-text);
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
   }
 
@@ -8788,7 +8788,7 @@
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
-    color: #cbc1ae;
+    color: var(--color-text);
     line-height: 1.4;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
   }
@@ -8799,7 +8799,7 @@
   }
 
   .settings-link-logout .settings-link-title {
-    color: #c48382;
+    color: var(--color-danger);
   }
 
   /* ── Me page columns ─────────────────────────────── */
@@ -8828,7 +8828,7 @@
   .fulfillment-empty {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #7f796d;
+    color: var(--color-text-faint);
     margin: 0;
   }
 
@@ -8868,14 +8868,14 @@
   .fulfillment-item-date {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
-    color: #7f796d;
+    color: var(--color-text-faint);
   }
 
   .fulfillment-item-msg {
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #cbc1ae;
+    color: var(--color-text);
     line-height: 1.4;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
   }
@@ -8891,7 +8891,7 @@
     right: 4px;
     width: 10px;
     height: 10px;
-    background: #c48382;
+    background: var(--color-danger);
     border-radius: 50%;
     box-shadow: 0 0 6px rgba(196, 131, 130, 0.6);
     pointer-events: none;
@@ -8937,7 +8937,7 @@
       width: 100%;
       height: auto;
       z-index: 200;
-      background: #4b4840;
+      background: var(--color-bg);
       border-top: 1px solid rgba(230, 244, 254, 0.1);
       transition: none;
     }

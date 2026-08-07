@@ -1,12 +1,12 @@
 <!-- src/routes/FAQ/+page.svelte -->
 <!-- Color Pallet
- #c48382 - Light Red
+ var(--color-danger) - Light Red
  var(--color-accent) - Light Blue
- #4b4840 - Dark Gray
- #6c6659 - Medium Gray
- #7f796d - Light Gray
- #cbc1ae - Beige
- #809fb7 - Light Steel Blue
+ var(--color-bg) - Dark Gray
+ var(--color-border) - Medium Gray
+ var(--color-text-faint) - Light Gray
+ var(--color-text) - Beige
+ var(--color-accent) - Light Steel Blue
  var(--color-text) - Light Cyan
  #ffffff - White
 -->
@@ -62,20 +62,20 @@
 <div class="faq-page">
   <!-- Side gears — desktop only, rotate based on open question -->
   <svg class="side-gear side-gear-l1" style="transform: rotate({gearAngle * 0.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
   </svg>
   <svg class="side-gear side-gear-l2" style="transform: rotate({-gearAngle * 1.8 + 22.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="#7f796d"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
   </svg>
   <svg class="side-gear side-gear-l3" style="transform: rotate({gearAngle * 2.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
   </svg>
 
   <svg class="side-gear side-gear-r1" style="transform: rotate({-gearAngle * 1.3}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="#6c6659"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
   </svg>
   <svg class="side-gear side-gear-r2" style="transform: rotate({gearAngle * 0.3 + 22.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="#7f796d"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#4b4840"/>
+    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
   </svg>
 
   <h1>Frequently Asked Questions</h1>
@@ -109,12 +109,12 @@
 :global(body) {
     margin: 0;
     padding: 0;
-    background-color: #4b4840;
+    background-color: var(--color-bg);
     overflow-x: hidden;
   }
 
   .faq-page {
-    background: #4b4840;
+    background: var(--color-bg);
     min-height: 100vh;
     padding: 2rem 1.5rem;
     position: relative;
@@ -138,7 +138,7 @@
 
   h1 {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    color: #cbc1ae;
+    color: var(--color-text);
     font-size: 3rem;
     text-align: center;
     margin: 0 0 1rem;
@@ -146,7 +146,7 @@
 
   .faq-intro {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    color: #cbc1ae;
+    color: var(--color-text);
     text-align: center;
     max-width: 600px;
     margin: 0 auto 2.5rem;
@@ -180,7 +180,7 @@
   }
 
   .faq-item:hover {
-    background: #4b4840;
+    background: var(--color-bg);
     box-shadow:
       0 6px 12px rgba(0, 0, 0, 0.35),
       0 12px 28px rgba(0, 0, 0, 0.3);
@@ -188,7 +188,7 @@
 
   .faq-item.open {
     background: #3a3530;
-    border-color: #cbc1ae;
+    border-color: var(--color-text);
     box-shadow:
       0 8px 16px rgba(0, 0, 0, 0.4),
       0 16px 36px rgba(0, 0, 0, 0.3);
@@ -250,7 +250,7 @@
   }
 
   .back-btn:hover {
-    background: #4b4840;
+    background: var(--color-bg);
   }
 
   .side-gear {

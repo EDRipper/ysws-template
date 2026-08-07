@@ -20,7 +20,7 @@
     min-height: 100vh;
     font-family: sans-serif;
     color: #e8e0d4;
-    background: #4b4840;
+    background: var(--color-bg);
   }
 
   .error {
