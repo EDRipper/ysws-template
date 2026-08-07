@@ -284,6 +284,13 @@
   </div>
 </section>
 
+<div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,60 1440,30 1440,100 0,100" fill="var(--color-bg)" />
+    <line x1="0" y1="60" x2="1440" y2="30" stroke="var(--color-text-faint)" stroke-width="10" stroke-linecap="round" />
+  </svg>
+</div>
+
 <div class="info-bg">
 <section class="info-section">
   <div class="info-block">
@@ -423,7 +430,7 @@
   </div>
 </section>
 
-<div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
+<div class="rock-strata" style="background:var(--color-border)" aria-hidden="true">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,72 1440,36 1440,120 0,120" fill="var(--color-bg)" />
     <line x1="0" y1="72" x2="1440" y2="36" stroke="var(--color-text-faint)" stroke-width="10" stroke-linecap="round" />
@@ -583,7 +590,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 24px;
     min-width: 0;
   }
 
@@ -1013,7 +1020,7 @@
     position: relative;
     aspect-ratio: 16 / 10;
     background: var(--color-bg);
-    border: 3px solid var(--color-bg);
+    border: 3px solid #ffffff;
     box-shadow: 8px 10px 0 rgba(35, 34, 31, 0.55);
     overflow: clip;
     container-type: inline-size;
