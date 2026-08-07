@@ -326,6 +326,60 @@ instructions not to ask questions that can't be answered right now):
 Not blocking other work — continued backend genericization + the frontend
 color sweep above instead of stalling on these.
 
+## IT'S LIVE (tick 18) — both Vercel deployments healthy end to end
+
+- Frontend: https://ysws-template.vercel.app → `200`
+- Backend: https://ysws-template-api.vercel.app/api/health → `200 {"status":"ok"}`
+- Verified the FULL chain works, not just health checks: hit
+  `/api/auth/login?email=test@example.com` on the live frontend and got a
+  real `302` to `auth.hackclub.com/oauth/authorize` with the real
+  `client_id`, correct `redirect_uri` pointing back at the deployed
+  frontend, and `return_to=/join/example-ysws` — the config-driven
+  `program.shortName` flowing correctly through the whole stack. This is a
+  genuinely working demo, not just "builds succeed."
+
+Getting here took four real, distinct production bugs, all now fixed and
+documented in their own commits (search git log for "Fix production crash"
+/ "Fix frontend 500" / "Fix Vercel backend deploy"):
+1. Backend build failing (`STATIC_BUILD_NO_OUT_DIR`) — added
+   `backend/public/index.html` placeholder.
+2. `lookout.service.ts`/`audit-internal.controller.ts` used tsconfig
+   baseUrl-style imports (`from 'src/fetch.util'`) that work under
+   `nest build`/ts-jest locally but compile to a literal
+   `require('src/fetch.util')` that crashes at runtime under Vercel's
+   bundler. Converted to relative imports.
+3. **The big one**: `app.module.ts` loaded TypeORM migrations via a runtime
+   glob (`__dirname + '/migrations/*.ts'`). Vercel's Node function bundler
+   only includes files reachable via static import/require — it never saw
+   the migration files, so `migrationsRun: true` silently ran zero
+   migrations against a fresh database (`relation "users" does not exist`).
+   Generated `backend/src/migrations/index.ts` (explicit imports of all 55
+   migrations, `ALL_MIGRATIONS` array) and wired that into `app.module.ts`
+   in place of the glob. **Whoever adds a new migration going forward must
+   also add it to this index.ts file** — the glob convenience is gone on
+   the Vercel path, this is a real maintenance note, not just a one-time fix.
+4. Same category of bug on the frontend: `lib/server/ysws-config.ts` read
+   `ysws.config.json` via `fs.readFileSync(dynamic path)`, invisible to
+   adapter-vercel's bundler the same way. Fixed with a static import of
+   `ysws.config.example.json` (always bundled) + `import.meta.glob` for
+   `ysws.config.json` (Vite resolves glob patterns at BUILD time, so unlike
+   a runtime fs glob, this one IS visible to the bundler regardless of
+   whether the file exists — empty match is fine).
+
+**Operator secrets now live on `ysws-template-api`**: `DATABASE_URL` (real —
+connected to the operator's existing free Neon store, explicitly approved
+for reuse), `JWT_SECRET` (generated), `CLIENT_ID`/`CLIENT_SECRET` (real HCA
+app credentials), `CDN_API_KEY` (real), `REDIRECT_URI`. **Still
+placeholder, not real**: `AIRTABLE_API_KEY`/`AIRTABLE_BASE_ID`/
+`AIRTABLE_TABLE_NAME` — `RsvpService` requires these to construct at all
+(role/permission lookups per beest's own architecture: "Roles/permissions
+come from Airtable, not the database"), so the app can't boot without SOME
+value, but actual admin/reviewer role checks will silently fail against a
+fake Airtable base until real credentials are provided. Flag this to the
+operator when reporting the milestone — it's the one remaining gap between
+"boots and the public pages work" and "the whole app including admin/review
+flows actually functions."
+
 ## Tick 4: Vercel is now the primary demo target, backend build bug fixed
 
 Operator hit a wall on Orchard (OTP browser-login flow kept losing session
