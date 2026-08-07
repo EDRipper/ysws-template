@@ -234,10 +234,6 @@
     cleanupListeners();
   });
 
-  // Measure total path length of all letter paths once mounted
-  let pathEls: SVGPathElement[] = [];
-  let totalLength = $state(0);
-
   onMount(() => {
     window.addEventListener('wheel', blockScroll, { passive: false });
     window.addEventListener('touchmove', blockScroll, { passive: false });
@@ -259,30 +255,7 @@
       setTimeout(startIntroAnimation, 500);
     }
 
-    totalLength = pathEls.reduce((sum, p) => sum + p.getTotalLength(), 0);
-    let cumulative = 0;
-    for (const p of pathEls) {
-      const len = p.getTotalLength();
-      p.style.strokeDasharray = `${len}`;
-      p.style.strokeDashoffset = `${len}`;
-      p.dataset.length = `${len}`;
-      p.dataset.start = `${cumulative}`;
-      cumulative += len;
-    }
-
     return cleanupListeners;
-  });
-
-  // Update each path's offset based on scroll progress
-  $effect(() => {
-    if (!totalLength) return;
-    const drawn = drawProgress * totalLength;
-    for (const p of pathEls) {
-      const len = Number(p.dataset.length);
-      const start = Number(p.dataset.start);
-      const pathDrawn = Math.min(Math.max(drawn - start, 0), len);
-      p.style.strokeDashoffset = `${len - pathDrawn}`;
-    }
   });
 </script>
 
@@ -291,23 +264,7 @@
 <div class="scroll-container" class:hidden={locked}>
   <div class="tile-bg" class:hidden={locked || transitioned}></div>
   <div class="sticky-frame" role="button" tabindex="0" onclick={skipIntro} onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') skipIntro(); }}>
-    <svg class="draw-text" viewBox="0 0 1000 130" xmlns="http://www.w3.org/2000/svg">
-      <path bind:this={pathEls[0]} d="M20,20 Q28,65 35,100 Q40,70 48,45 Q52,60 58,100 Q65,65 72,20" />
-      <path bind:this={pathEls[1]} d="M88,60 Q90,40 108,40 Q125,42 122,60 L88,62 Q86,88 108,90 Q120,88 125,78" />
-      <path bind:this={pathEls[2]} d="M138,18 Q136,58 140,98" />
-      <path bind:this={pathEls[3]} d="M172,42 Q155,42 155,65 Q158,92 175,90" />
-      <path bind:this={pathEls[4]} d="M192,65 Q192,40 210,40 Q228,42 228,65 Q228,90 210,92 Q192,90 192,65" />
-      <path bind:this={pathEls[5]} d="M248,92 Q246,58 248,45 Q252,38 265,38 Q278,40 278,52 L278,92 M278,52 Q282,38 295,38 Q308,40 308,52 L308,92" />
-      <path bind:this={pathEls[6]} d="M325,60 Q328,40 345,40 Q362,42 360,60 L325,62 Q322,88 345,90 Q358,88 362,78" />
-      <path bind:this={pathEls[7]} d="M405,25 Q402,58 405,92 Q408,100 418,98 M392,45 L422,45" />
-      <path bind:this={pathEls[8]} d="M438,65 Q438,40 455,40 Q472,42 472,65 Q472,90 455,92 Q438,90 438,65" />
-      <path bind:this={pathEls[9]} d="M512,105 Q510,62 512,18 Q514,15 535,15 L548,15 Q568,18 568,35 Q566,52 548,52 L512,50" />
-      <path bind:this={pathEls[10]} d="M512,50 L550,52 Q575,55 572,75 Q570,92 550,90 L530,88 Q512,85 512,105" />
-      <path bind:this={pathEls[11]} d="M592,60 Q595,40 612,40 Q630,42 628,60 L592,62 Q590,88 612,90 Q625,88 630,78" />
-      <path bind:this={pathEls[12]} d="M648,60 Q650,40 668,40 Q685,42 682,60 L648,62 Q645,88 668,90 Q680,88 685,78" />
-      <path bind:this={pathEls[13]} d="M712,50 Q705,38 702,50 Q698,60 714,65 Q730,72 726,85 Q722,98 710,92" />
-      <path bind:this={pathEls[14]} d="M745,25 Q742,58 745,92 Q748,100 758,98 M732,45 L762,45" />
-    </svg>
+    <h1 class="draw-text" style="opacity: {drawProgress}">Welcome to {data.yswsConfig.program.name}</h1>
     {#if showStart}
       <button class="start-btn" onclick={enterSky}>Start</button>
     {/if}
@@ -545,14 +502,13 @@
     left: 5%;
     width: 50vw;
     z-index: 0;
-  }
-
-  .draw-text path {
-    fill: none;
-    stroke: white;
-    stroke-width: 5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    margin: 0;
+    color: white;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: opacity 0.4s ease;
   }
 
   .beest {
