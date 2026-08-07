@@ -2030,8 +2030,8 @@
     }
 
     .fame-item {
-      width: min(340px, 82vw);
-      margin-right: 20px;
+      width: min(230px, 62vw);
+      margin-right: 14px;
     }
 
     .fame-item:nth-child(odd) .fame-shot,
