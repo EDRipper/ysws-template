@@ -520,6 +520,57 @@ svelte-check verified clean after.
   restructure, not a text edit, and is a bigger design decision than
   anything else in this genericization pass. Do not attempt blindly.
 
+## Tick 23 check-in — consolidating ticks 19-22 (this section was stale, catching it up)
+
+PROGRESS.md hadn't been updated since commit `bd50e04` (tick ~18's "IT'S LIVE"
+milestone) even though 11 more commits landed since. Verified both build
+targets still clean (`frontend: npm run build` — done; `backend: npx tsc
+--noEmit` — 0 errors) before writing this, then read the intervening commits
+to reconstruct what actually happened:
+
+- **Asset cleanup finished**: `frontend/static/images/` no longer contains
+  any `beest*.webp`/`beest.gif` files — all removed (~2.7MB), down to 7.9MB
+  of genuinely generic imagery (beach/cloud/sky/tile textures, hero
+  placeholder, `hack-club-flag.svg`, a `frames/` dir, a `shop/` dir,
+  `pipes.png`). The hero's blue-sky placeholder was changed to a plain white
+  box per operator's direct feedback ("wherever real art is still needed,
+  strip to a plain placeholder rather than attempting more generic art" —
+  applies beyond just the hero, worth remembering for anything still using
+  invented placeholder art instead of a plain box).
+- Orphaned `/parallax` demo route deleted (147 lines, zero references,
+  duplicated the old strandbeest hero scene a parallel commit had already
+  replaced).
+- Landing page polish pass: spacing, dividers, wall-of-fame image borders —
+  cosmetic fixes flagged in an operator review, not new scope.
+- Color sweep: hardcoded hex count down to **1188 occurrences / 343 distinct
+  values** (from ~1900/370 at the start). Still open: the ambiguous
+  cream/beige family and the `#eac`/`#c48382`/`#d4a55a` art-hue family flagged
+  in the tick-2 color sweep note above — same caveat applies, don't blind-map
+  these without a visual check.
+- `frames/*.webp` (real event photos, real people) — **still unresolved,
+  still flagging, not deciding unilaterally**: needs the operator to confirm
+  these are cleared for redistribution in a public template before this ships
+  publicly. Same for the still-placeholder `AIRTABLE_API_KEY`/`BASE_ID`/
+  `TABLE_NAME` on the live backend — admin/reviewer role checks silently fail
+  against a fake Airtable base until real credentials are provided.
+- Orchard: no operator response yet on the two blockers (real ingress domain,
+  ghcr package visibility) — Vercel remains the working, verified demo target
+  in the meantime. Not pursuing Orchard further without that input.
+- Backend genericization: the remaining 16 files with `beest`/`Beest`
+  mentions are almost entirely internal field names (`beestEmail`,
+  `beestSlackId`, `beestStatus` — API contract between frontend/backend, same
+  precedent as leaving `pipesGranted` alone) and code comments, not
+  user-facing strings. Deliberately not renaming these — real regression risk
+  for near-zero user-visible benefit, consistent with the currency-naming
+  decision above.
+
+**State at end of tick 23**: both builds clean, real repo (github.com/
+EDRipper/ysws-template) and both Vercel deployments (frontend + backend) are
+live and healthy, full OAuth login chain verified working end to end,
+branding/asset genericization substantially done, color token migration ~62%
+complete by occurrence count. Reported this status to the operator in Slack
+this tick since the loop is near its tick cap.
+
 ## Known risks / things to double check later
 
 - Currency `formatCurrency()` helper is unused so far — nothing calls it yet.
