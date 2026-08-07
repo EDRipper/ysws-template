@@ -440,6 +440,7 @@ export class FraudReviewService implements OnApplicationBootstrap, OnApplication
     // DM the builder the same generic, non-accusatory message we store on the
     // review record; never reveal that this was a fraud flag (best-effort).
     const rejectDm = reviewChangesNeededDm({
+      programName: this.yswsConfig.program.name,
       projectName: project.name,
       projectLink: project.codeUrl ?? project.demoUrl ?? null,
       reviewerName: null,

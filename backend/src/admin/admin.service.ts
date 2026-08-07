@@ -1282,6 +1282,7 @@ export class AdminService implements OnApplicationBootstrap {
             })
           )?.name ?? null;
       const dmInput = {
+        programName: this.yswsConfig.program.name,
         projectName: project.name,
         projectLink: project.codeUrl ?? project.demoUrl ?? null,
         reviewerName,

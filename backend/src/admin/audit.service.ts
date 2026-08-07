@@ -662,6 +662,7 @@ export class AuditService {
         where: { userId: project.userId, isGolden: true, id: Not(project.id) },
       })) > 0;
     const approvedDm = reviewApprovedDm({
+      programName: this.yswsConfig.program.name,
       projectName: project.name,
       projectLink: project.codeUrl ?? project.demoUrl ?? null,
       reviewerName,

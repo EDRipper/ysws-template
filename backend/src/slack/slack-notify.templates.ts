@@ -1,19 +1,20 @@
 /**
- * Block Kit templates for builder DM notifications. Ported from the
- * "Beest Crabby" relay, with reviewer impersonation removed. Messages are
- * sent from our own bot, and the reviewer name is shown as plain text only
- * when it isn't hidden (`reviewerName === null` → "A reviewer").
+ * Block Kit templates for builder DM notifications. Reviewer impersonation
+ * is not supported — messages are sent from the platform's own bot, and the
+ * reviewer name is shown as plain text only when it isn't hidden
+ * (`reviewerName === null` → "A reviewer").
  */
 
 export type DmMessage = { text: string; blocks: Record<string, unknown>[] };
 
 // Shown on changes-needed DMs while resubmission is paused to clear the
-// review queue (toggled from the admin panel). Kept in the builder's own
-// words so it doesn't read as an automated system notice.
+// review queue (toggled from the admin panel). Kept in an informal, first-
+// person voice so it doesn't read as an automated system notice.
 export const RESUBMISSION_PAUSED_NOTE =
-  ":hey_pika: This is Euan, I need to clear the review queue, so resubmission is paused for about 24 hours and will be open soon";
+  ':hey_pika: We need to clear the review queue, so resubmission is paused for about 24 hours and will be open soon';
 
 interface ReviewDmInput {
+  programName: string;
   projectName: string;
   /** Link shown on the "View Project" button; omitted when null. */
   projectLink: string | null;
@@ -172,7 +173,7 @@ export function reviewChangesNeededDm(input: ReviewDmInput): DmMessage {
 // builder cannot resubmit THIS project — but they're free to ship other ones.
 export function reviewRejectedDm(input: ReviewDmInput): DmMessage {
   const intro =
-    `Hey - unfortunately your project *${input.projectName}* has been rejected by Beest. ` +
+    `Hey - unfortunately your project *${input.projectName}* has been rejected by ${input.programName}. ` +
     `You're free to ship it to other Hack Club programs, or you can dispute this in the help channel. ` +
     `Currently you cannot resubmit this project as it doesn't meet our standards for submission` +
     (input.feedback ? ', the reason provided is as follows:' : '.');
@@ -280,7 +281,7 @@ export function orderPendingDm(input: OrderDmInput): DmMessage {
         elements: [
           {
             type: 'mrkdwn',
-            text: "Thanks for being a Beester! We'll DM you here when it ships.",
+            text: "Thanks for shipping! We'll DM you here when it ships.",
           },
         ],
       },
@@ -318,7 +319,7 @@ export function orderFulfilledDm(input: OrderDmInput): DmMessage {
       {
         type: 'context',
         elements: [
-          { type: 'mrkdwn', text: 'Thank you for being a Beester!' },
+          { type: 'mrkdwn', text: 'Thank you for shipping!' },
         ],
       },
     ],
