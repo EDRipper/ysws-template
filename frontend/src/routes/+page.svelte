@@ -467,8 +467,8 @@
   <div class="info-block">
     <h2>I can't make it :/</h2>
     <p>
-      You can still win! Alongside the event you can get prizes for logging hours. Every hour you code
-      earns you 1 Pipe, and you spend Pipes in the shop on rewards like laptops,
+      You can still win! You can get prizes for logging hours. Every hour you code
+      earns you 1 {data.yswsConfig.currency.nameSingular}, and you spend {data.yswsConfig.currency.namePlural} in the shop on rewards like laptops,
       tablets, headphones and merch. These will be delivered straight to you and require no money
       transfer! Everything is earned just by working on a project. You can see some of the prize
       selection here ↓

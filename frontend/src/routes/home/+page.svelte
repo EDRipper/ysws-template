@@ -158,6 +158,13 @@
   let shopQuantity = $state(1);
   let shopQuantityText = $state('1');
   let userPipes = $state(0);
+  // Currency display, config-driven (namePlural/nameSingular, capitalized to match the original UI's tone).
+  function capitalize(s: string) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+  function currencyLabel(n: number) {
+    return capitalize(n === 1 ? data.yswsConfig.currency.nameSingular : data.yswsConfig.currency.namePlural);
+  }
   let purchaseLoading = $state(false);
   let purchaseError = $state('');
   let purchaseSuccess = $state('');
@@ -1430,7 +1437,7 @@
 
   async function refundOrder(order: UserOrderType) {
     if (refundingOrderId) return;
-    if (!confirm(`Refund ${order.quantity}x ${order.itemName}? You'll get ${order.pipesSpent} Pipes back.`)) return;
+    if (!confirm(`Refund ${order.quantity}x ${order.itemName}? You'll get ${order.pipesSpent} ${currencyLabel(order.pipesSpent)} back.`)) return;
     refundingOrderId = order.id;
     refundError = '';
     try {
@@ -2427,7 +2434,7 @@
                 <div class="pipes-box">
                   <img src="/images/pipes.png" alt="" class="pipe-img" />
                   <div class="pipes-box-text">
-                    <span class="pipes-box-label">Pipes</span>
+                    <span class="pipes-box-label">{data.yswsConfig.currency.namePlural}</span>
                     <span class="pipes-box-value">{userPipes}</span>
                     <span class="pipes-box-hint">1 approved hour = 1 Pipe</span>
                   </div>
@@ -2455,7 +2462,7 @@
                 <p class="shop-card-name">{item.name}</p>
                 <p class="shop-card-desc">{item.description}</p>
                 <div class="shop-card-footer">
-                  <p class="shop-card-cost" aria-label="{item.priceHours} {item.priceHours === 1 ? 'Pipe' : 'Pipes'}">
+                  <p class="shop-card-cost" aria-label="{item.priceHours} {currencyLabel(item.priceHours)}">
                     <img src="/images/pipes.png" alt="" class="cost-pipe" />
                     <span>{item.priceHours}</span>
                   </p>
@@ -2490,7 +2497,7 @@
                     <p class="shop-spotlight-name">{spotlightItem.name}</p>
                     <p class="shop-spotlight-desc">{spotlightItem.description}</p>
                     <div class="shop-spotlight-footer">
-                      <p class="shop-card-cost shop-spotlight-cost" aria-label="{spotlightItem.priceHours} {spotlightItem.priceHours === 1 ? 'Pipe' : 'Pipes'}">
+                      <p class="shop-card-cost shop-spotlight-cost" aria-label="{spotlightItem.priceHours} {currencyLabel(spotlightItem.priceHours)}">
                         <img src="/images/pipes.png" alt="" class="cost-pipe" />
                         <span>{spotlightItem.priceHours}</span>
                       </p>
@@ -2557,7 +2564,7 @@
                     <div class="my-orders-info">
                       <span class="my-orders-name">{order.quantity}× {order.itemName}</span>
                       <span class="my-orders-meta">
-                        {order.pipesSpent} Pipes · {new Date(order.createdAt).toLocaleDateString()}
+                        {order.pipesSpent} {currencyLabel(order.pipesSpent)} · {new Date(order.createdAt).toLocaleDateString()}
                       </span>
                     </div>
                     <div class="my-orders-actions">
@@ -2605,7 +2612,7 @@
             {/if}
 
             <div class="shop-modal-price-row">
-              <span class="shop-modal-price">{selectedShopItem.priceHours} {selectedShopItem.priceHours === 1 ? 'Pipe' : 'Pipes'}</span>
+              <span class="shop-modal-price">{selectedShopItem.priceHours} {currencyLabel(selectedShopItem.priceHours)}</span>
               {#if selectedShopItem.stock !== null}
                 <span class="shop-modal-stock" class:low={selectedShopItem.stock <= 3}>{selectedShopItem.stock} in stock</span>
               {:else}
@@ -2641,7 +2648,7 @@
 
             <div class="shop-modal-total">
               <span>Total:</span>
-              <span class="shop-modal-total-value">{selectedShopItem.priceHours * shopQuantity} {selectedShopItem.priceHours * shopQuantity === 1 ? 'Pipe' : 'Pipes'}</span>
+              <span class="shop-modal-total-value">{selectedShopItem.priceHours * shopQuantity} {currencyLabel(selectedShopItem.priceHours * shopQuantity)}</span>
             </div>
 
             {#if selectedShopItem.isBlackMarket && !blackMarketUnlocked}
@@ -2663,7 +2670,7 @@
               {/if}
             {:else}
               <div class="shop-modal-cant-afford">
-                <p>You need <strong>{(selectedShopItem.priceHours * shopQuantity) - userPipes}</strong> more Pipes to redeem this.</p>
+                <p>You need <strong>{(selectedShopItem.priceHours * shopQuantity) - userPipes}</strong> more {currencyLabel((selectedShopItem.priceHours * shopQuantity) - userPipes)} to redeem this.</p>
                 <p class="shop-modal-keep-building">Keep building!</p>
               </div>
             {/if}
