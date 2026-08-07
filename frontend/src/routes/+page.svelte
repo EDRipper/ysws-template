@@ -557,6 +557,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(16px, 2.2vw, 26px);
     font-weight: 700;
+    line-height: 1.3;
     letter-spacing: 0.03em;
     color: rgba(0, 0, 0, 0.55);
     text-align: center;
@@ -747,6 +748,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(32px, 5vw, 72px);
     font-weight: 700;
+    line-height: 1.15;
     letter-spacing: 0.02em;
     color: #ffffff;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
@@ -1597,6 +1599,14 @@
       align-self: center;
       max-width: 420px;
       width: 100%;
+    }
+
+    .bottom-rsvp-inner {
+      flex-direction: column;
+    }
+
+    .bottom-rsvp-text {
+      flex: 0 1 auto;
     }
   }
 
