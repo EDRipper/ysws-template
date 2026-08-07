@@ -147,12 +147,6 @@
 <div class="saturate-wrap" style="--sy:{scrollY}">
 <div class="page-wrap">
 
-<!-- decorative pipes -->
-<div class="pipe pipe-l1" title="strandbeest fossil"></div>
-<div class="pipe pipe-r1" title="strandbeest fossil"></div>
-<div class="pipe pipe-l2" title="strandbeest fossil"></div>
-<div class="pipe pipe-r2" title="strandbeest fossil"></div>
-
 <div class="top-bg">
 <div class="hero-scroll-space">
 <div class="hero-wrap">
@@ -164,24 +158,18 @@
       <polygon points="0,50 1440,25 1440,80 0,80" fill="var(--color-bg)" />
     </svg>
   {/snippet}
-  <div class="hero-mobile">
-    <div class="hero-scene">
-      <svg class="hero-scene-sun" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" /></svg>
-      <div class="hero-scene-cloud cloud-a"></div>
-      <div class="hero-scene-cloud cloud-b"></div>
-      <div class="hero-scene-cloud cloud-c"></div>
+  {#snippet heroPlaceholder()}
+    <div class="hero-placeholder">
+      <span>Insert your hero artwork here</span>
     </div>
+  {/snippet}
+  <div class="hero-mobile">
+    {@render heroPlaceholder()}
     {@render heroStrata()}
   </div>
   <div class="hero-crop">
   <div class="hero-parallax">
-    <div class="hero-layer hero-layer-bg"></div>
-    <div class="hero-scene">
-      <svg class="hero-scene-sun" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" /></svg>
-      <div class="hero-scene-cloud cloud-a"></div>
-      <div class="hero-scene-cloud cloud-b"></div>
-      <div class="hero-scene-cloud cloud-c"></div>
-    </div>
+    {@render heroPlaceholder()}
     {@render heroStrata()}
   </div>
   </div><!-- hero-crop -->
@@ -233,7 +221,8 @@
 
 <div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,60 1440,30 1440,100 0,100" fill="#786e5c" />
+    <polygon points="0,60 1440,30 1440,100 0,100" fill="var(--color-border)" />
+    <line x1="0" y1="60" x2="1440" y2="30" stroke="var(--color-text-faint)" stroke-width="10" stroke-linecap="round" />
   </svg>
 </div>
 
@@ -247,9 +236,10 @@
   </p>
 </section>
 
-<div class="rock-strata" style="background:#786e5c" aria-hidden="true">
+<div class="rock-strata" style="background:var(--color-border)" aria-hidden="true">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,72 1440,36 1440,120 0,120" fill="var(--color-bg)" />
+    <line x1="0" y1="72" x2="1440" y2="36" stroke="var(--color-text-faint)" stroke-width="10" stroke-linecap="round" />
   </svg>
 </div>
 
@@ -300,16 +290,13 @@
     <h2>Am I Eligible?</h2>
     <p>
       If you are a teen, yes! The only criteria is being a teenager and building a real open-source
-      software/hardware project for 40 hours. If you aren't sure, join the slack and ask - and if you can't make
-      it, stay for the community! Hack Club is much bigger than just this program, we run events like this every
-      few weeks!
+      software/hardware project for 40 hours. If you aren't sure, join the slack and ask!
     </p>
   </div>
   <div class="info-block">
-    <h2>I can't make it :/</h2>
+    <h2>How do rewards work?</h2>
     <p>
-      You can still win! You can get prizes for logging hours. Every hour you code
-      earns you 1 {data.yswsConfig.currency.nameSingular}, and you spend {data.yswsConfig.currency.namePlural} in the shop on rewards like laptops,
+      Every hour you code earns you 1 {data.yswsConfig.currency.nameSingular}, and you spend {data.yswsConfig.currency.namePlural} in the shop on rewards like laptops,
       tablets, headphones and merch. These will be delivered straight to you and require no money
       transfer! Everything is earned just by working on a project. You can see some of the prize
       selection here ↓
@@ -320,7 +307,8 @@
 
 <div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,60 1440,30 1440,100 0,100" fill="#544d42" />
+    <polygon points="0,60 1440,30 1440,100 0,100" fill="var(--color-bg)" />
+    <line x1="0" y1="60" x2="1440" y2="30" stroke="var(--color-text-faint)" stroke-width="10" stroke-linecap="round" />
   </svg>
 </div>
 
@@ -381,6 +369,7 @@
 <div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,60 1440,30 1440,100 0,100" fill="var(--color-border)" />
+    <line x1="0" y1="60" x2="1440" y2="30" stroke="var(--color-text-faint)" stroke-width="10" stroke-linecap="round" />
   </svg>
 </div>
 
@@ -434,9 +423,10 @@
   </div>
 </section>
 
-<div class="rock-strata" style="background:var(--color-border)" aria-hidden="true">
+<div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,72 1440,36 1440,120 0,120" fill="#23221f" />
+    <polygon points="0,72 1440,36 1440,120 0,120" fill="var(--color-bg)" />
+    <line x1="0" y1="72" x2="1440" y2="36" stroke="var(--color-text-faint)" stroke-width="10" stroke-linecap="round" />
   </svg>
 </div>
 
@@ -497,73 +487,6 @@
     overflow-x: clip;
   }
 
-  .pipe {
-    position: absolute;
-    background: #8a8279;
-    border-radius: 6px;
-    z-index: 0;
-    cursor: help;
-  }
-  .pipe::after {
-    content: '';
-    position: absolute;
-    background: #9e958a;
-    border-radius: 4px;
-  }
-
-  /* left pipes */
-  .pipe-l1 {
-    width: 280px; height: 28px;
-    top: 48%; left: -100px;
-    transform: rotate(-7deg);
-    opacity: 0.6;
-    z-index: 1;
-  }
-  .pipe-l1::after {
-    width: 18px; height: 40px;
-    right: -3px; top: -6px;
-    border-radius: 4px;
-  }
-
-  .pipe-l2 {
-    width: 240px; height: 24px;
-    top: 76%; left: -80px;
-    transform: rotate(5deg);
-    opacity: 0.55;
-    z-index: 1;
-  }
-  .pipe-l2::after {
-    width: 16px; height: 36px;
-    right: -3px; top: -6px;
-    border-radius: 4px;
-  }
-
-  /* right pipes */
-  .pipe-r1 {
-    width: 260px; height: 26px;
-    top: 60%; right: -90px;
-    transform: rotate(-10deg);
-    opacity: 0.6;
-    z-index: 1;
-  }
-  .pipe-r1::after {
-    width: 16px; height: 38px;
-    left: -3px; top: -6px;
-    border-radius: 4px;
-  }
-
-  .pipe-r2 {
-    width: 220px; height: 22px;
-    top: 71%; right: -70px;
-    transform: rotate(8deg);
-    opacity: 0.5;
-  }
-  .pipe-r2::after {
-    width: 14px; height: 32px;
-    left: -2px; top: -5px;
-    border-radius: 4px;
-  }
-
   .hero-scroll-space {
     position: relative;
   }
@@ -608,46 +531,30 @@
     width: 100%;
     aspect-ratio: 4800 / 2700;
     overflow: hidden;
-  }
-
-  .hero-layer {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-  }
-  .hero-layer-bg {
     background: linear-gradient(to bottom, #8aadc8 0%, #99b7cf 25%, #a9c3d8 50%, #b0c9dc 75%);
   }
 
-  /* simple, generic hero scene: sun + a few soft clouds, no site-specific art */
-  .hero-scene {
+  /* explicit placeholder so it's obvious this is meant to be swapped, not
+     an attempt at real art */
+  .hero-placeholder {
     position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
+    inset: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px dashed rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
   }
 
-  .hero-scene-sun {
-    position: absolute;
-    top: 12%;
-    right: 14%;
-    width: clamp(70px, 12vw, 160px);
-    fill: rgba(255, 255, 255, 0.85);
+  .hero-placeholder span {
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: clamp(16px, 2.2vw, 26px);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    padding: 0 24px;
   }
-
-  .hero-scene-cloud {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 999px;
-    filter: blur(0.5px);
-  }
-
-  .cloud-a { top: 20%; left: 8%; width: 22%; height: 7%; }
-  .cloud-b { top: 34%; left: 55%; width: 16%; height: 5%; }
-  .cloud-c { top: 12%; left: 30%; width: 12%; height: 4%; }
 
   .hero-overlay {
     /* the wordmark's letter frame starts ~17% into the logo image (the gear
@@ -1105,7 +1012,7 @@
   .fame-shot {
     position: relative;
     aspect-ratio: 16 / 10;
-    background: #23221f;
+    background: var(--color-bg);
     border: 3px solid var(--color-bg);
     box-shadow: 8px 10px 0 rgba(35, 34, 31, 0.55);
     overflow: clip;
@@ -1125,7 +1032,7 @@
     inset: 0;
     display: flex;
     flex-direction: column;
-    background: #23221f;
+    background: var(--color-bg);
     color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
@@ -1136,7 +1043,7 @@
     gap: 7px;
     padding: 10px 14px;
     background: var(--color-bg);
-    border-bottom: 1px solid #23221f;
+    border-bottom: 1px solid var(--color-bg);
   }
 
   .term-bar span {
@@ -1245,7 +1152,7 @@
     padding: 80px 48px 72px;
     color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    background: #786e5c;
+    background: var(--color-border);
   }
 
 
@@ -1616,8 +1523,6 @@
   }
 
   @media (max-width: 1400px) {
-    .pipe { display: none; }
-
     .sticker-cta {
       gap: 32px;
       /* the hero text block hangs 120px into this section */
@@ -1688,7 +1593,7 @@
   .site-footer {
     position: relative;
     overflow: hidden;
-    background: #000;
+    background: var(--color-bg);
     padding: 64px clamp(48px, 8vw, 160px) 44px;
     color: var(--color-text-faint);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -1886,7 +1791,7 @@
     top: 0;
     left: 0;
     transform: rotate(-4deg);
-    background: #5e5648;
+    background: var(--color-border);
   }
 
   .frame-back-1 {
