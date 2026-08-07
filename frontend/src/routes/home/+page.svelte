@@ -425,37 +425,6 @@
   let nicknameSaving = $state(false);
   let genderSaving = $state(false);
 
-  // One-time "here for the hackathon or the shop?" prompt. Stays up until the
-  // user picks an option (recorded in Airtable); not dismissable otherwise.
-  let showIntent = $state(data.needsIntent === true);
-  let intentSaving = $state(false);
-  let intentError = $state('');
-  let intentThanked = $state(false); // swap to the thank-you message after a successful pick
-  let intentFadingOut = $state(false); // triggers the overlay fade-out
-  async function chooseIntent(choice: 'Hackathon' | 'Shop' | 'Browsing' | 'Both') {
-    if (intentSaving) return;
-    intentSaving = true;
-    intentError = '';
-    try {
-      const res = await fetch('/api/auth/intent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ choice })
-      });
-      if (res.ok) {
-        // Show a brief thank-you, then fade the overlay out and remove it.
-        intentThanked = true;
-        setTimeout(() => { intentFadingOut = true; }, 1100);
-        setTimeout(() => { showIntent = false; }, 1600);
-      } else {
-        intentError = 'Could not save — please try again.';
-      }
-    } catch {
-      intentError = 'Could not save — please try again.';
-    } finally {
-      intentSaving = false;
-    }
-  }
   const GENDER_OPTIONS: { value: string; label: string }[] = [
     { value: 'male', label: 'Male' },
     { value: 'female', label: 'Female' },
@@ -464,30 +433,6 @@
     { value: 'prefer_not_to_say', label: 'Prefer not to say' },
   ];
   let totalBuilders = $state(0);
-  let totalHours = $state(0);
-  let hoursByStatus = $state<Record<string, number>>({});
-  let displayHours = $state(0);
-  let displayByStatus = $state<Record<string, number>>({});
-  const GOAL_HOURS = 40;
-
-  function animateProgress(targetHours: number, targetByStatus: Record<string, number>) {
-    const duration = 1200;
-    const start = performance.now();
-    const statuses = Object.keys(targetByStatus);
-
-    function tick(now: number) {
-      const t = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - t, 3); // ease-out cubic
-      displayHours = Math.round(targetHours * ease * 10) / 10;
-      const current: Record<string, number> = {};
-      for (const s of statuses) {
-        current[s] = targetByStatus[s] * ease;
-      }
-      displayByStatus = current;
-      if (t < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
   let keystrokes = $state(0);
   let canSubmit = $derived(projectName.trim() !== '' && projectDesc.trim() !== '' && projectType !== '' && !submitting);
   let hasScreenshots = $derived(screenshotPreviews[0] !== '' || screenshotPreviews[1] !== '');
@@ -631,7 +576,6 @@
       launchConfetti();
       fetchProjects();
       fetchAuditLog();
-      fetchProjectHours();
     } catch {
       formError = 'Something went wrong. Please try again.';
     }
@@ -736,18 +680,6 @@
             }).catch(() => {});
           }
         }
-      }
-    } catch { /* silent */ }
-  }
-
-  async function fetchProjectHours() {
-    try {
-      const res = await fetch('/api/projects/hours');
-      if (res.ok) {
-        const data = await res.json();
-        totalHours = data.hours ?? 0;
-        hoursByStatus = data.byStatus ?? {};
-        animateProgress(totalHours, hoursByStatus);
       }
     } catch { /* silent */ }
   }
@@ -959,7 +891,6 @@
       resetForm();
       fetchProjects();
       fetchAuditLog();
-      fetchProjectHours();
     } catch {
       formError = 'Something went wrong. Please try again.';
     }
@@ -1102,7 +1033,6 @@
       creatingProject = false;
       fetchProjects();
       fetchAuditLog();
-      fetchProjectHours();
     } catch {
       formError = 'Something went wrong. Please try again.';
     }
@@ -1164,7 +1094,6 @@
         resetForm();
         fetchProjects();
         fetchAuditLog();
-        fetchProjectHours();
       }
     } catch { /* silent */ }
   }
@@ -1649,7 +1578,6 @@
     fetchHackatimeProjects();
     fetchAuditLog();
     fetchNews();
-    fetchProjectHours();
     fetchLeaderboard();
     fetchExploreProjects();
     fetchPipes();
@@ -2289,35 +2217,6 @@
               </div>
             {/if}
           </div>
-          <div class="progress-key">
-            <span class="key-item"><span class="key-swatch approved"></span>Approved</span>
-            <span class="key-item"><span class="key-swatch unreviewed"></span>Unreviewed</span>
-            <span class="key-item"><span class="key-swatch changes-needed"></span>Changes Needed</span>
-            <span class="key-item"><span class="key-swatch unshipped"></span>Unshipped</span>
-          </div>
-        </div>
-
-        <div class="progress-bar-wrap">
-          <div class="progress-labels">
-            <span class="progress-hours">{displayHours}h</span>
-            <span class="progress-goal">{(hoursByStatus['approved'] ?? 0) >= GOAL_HOURS ? `${GOAL_HOURS}h approved` : `${GOAL_HOURS}h to qualify`}</span>
-          </div>
-          <div class="progress-track">
-            {#each ['approved', 'unreviewed', 'changes_needed', 'unshipped'] as status}
-              {@const pct = Math.min(((displayByStatus[status] ?? 0) / GOAL_HOURS) * 100, 100)}
-              {@const label = status === 'changes_needed' ? 'Changes Needed' : status.charAt(0).toUpperCase() + status.slice(1)}
-              {#if pct > 0}
-                <div class="progress-fill {status}" style="width: {pct}%" title="{Math.round((hoursByStatus[status] ?? 0) * 10) / 10}h {label}"></div>
-              {/if}
-            {/each}
-          </div>
-          <div class="progress-ticks">
-            <span>0</span>
-            <span>10</span>
-            <span>20</span>
-            <span>30</span>
-            <span>40</span>
-          </div>
         </div>
 
         <div class="projects-box" class:has-projects={projects.length > 0} style:--cols={projectCols}>
@@ -2776,39 +2675,6 @@
       </div>
     </div>
     {/if}
-    {/if}
-
-    <!-- One-time "hackathon or shop?" prompt. No dismiss — stays until answered.
-         Rendered outside any activeSection block so it shows on every /home visit,
-         not just the shop tab. -->
-    {#if showIntent}
-    <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <div use:portal class="intent-overlay" class:intent-hide={intentFadingOut} role="dialog" aria-modal="true" aria-label="Why are you here?">
-      <div class="intent-modal">
-        {#if intentThanked}
-          <h2 class="intent-title">Thank you!</h2>
-          <p class="intent-sub">Your answer's been saved.</p>
-        {:else}
-          <h2 class="intent-title">What brings you here?</h2>
-          <p class="intent-sub">Let me know your intention so we can tailor what you see</p>
-          <div class="intent-options">
-            <button class="intent-btn" onclick={() => chooseIntent('Hackathon')} disabled={intentSaving}>
-              <span>Shipping a project</span>
-            </button>
-            <button class="intent-btn" onclick={() => chooseIntent('Shop')} disabled={intentSaving}>
-              <span>The shop</span>
-            </button>
-            <button class="intent-btn" onclick={() => chooseIntent('Browsing')} disabled={intentSaving}>
-              <span>Just browsing</span>
-            </button>
-            <button class="intent-btn" onclick={() => chooseIntent('Both')} disabled={intentSaving}>
-              <span>Both / unsure</span>
-            </button>
-          </div>
-          {#if intentError}<p class="intent-error">{intentError}</p>{/if}
-        {/if}
-      </div>
-    </div>
     {/if}
 
     {#if activeSection === 'explore'}
@@ -6579,79 +6445,6 @@
     }
   }
 
-  /* ── intent prompt ── */
-  .intent-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.78);
-    z-index: 1100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(6px);
-    animation: fadeIn 200ms ease;
-    padding: 1rem;
-    opacity: 1;
-    transition: opacity 500ms ease;
-  }
-  .intent-overlay.intent-hide {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .intent-modal {
-    background: var(--color-bg);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    padding: 2rem 1.75rem;
-    width: 100%;
-    max-width: 420px;
-    text-align: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  }
-  .intent-title {
-    margin: 0 0 0.35rem;
-    font-size: 1.5rem;
-  }
-  .intent-sub {
-    margin: 0 0 1.5rem;
-    opacity: 0.75;
-    font-size: 0.95rem;
-  }
-  .intent-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  .intent-btn {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1.25rem 0.75rem;
-    border: 1px solid var(--color-border);
-    background: #52504a;
-    color: var(--color-text);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
-  }
-  .intent-btn:hover:not(:disabled) {
-    background: #5d5a52;
-    border-color: var(--color-accent);
-    transform: translateY(-2px);
-  }
-  .intent-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-  .intent-error {
-    margin: 1rem 0 0;
-    color: #ffb3b3;
-    font-size: 0.85rem;
-  }
-
   /* ── shop modal ── */
   .shop-modal-overlay {
     position: fixed;
@@ -7054,67 +6847,6 @@
     }
   }
 
-  .progress-bar-wrap {
-    margin-top: 16px;
-    margin-bottom: 32px;
-  }
-
-  .progress-labels {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 8px;
-  }
-
-  .progress-hours {
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: clamp(28px, 3vw, 40px);
-    color: var(--color-text);
-    letter-spacing: 0.04em;
-  }
-
-  .progress-goal {
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: clamp(28px, 3vw, 40px);
-    color: var(--color-text);
-    letter-spacing: 0.04em;
-  }
-
-  .progress-track {
-    display: flex;
-    width: 100%;
-    height: 28px;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(230, 244, 254, 0.1);
-    overflow: hidden;
-    border-radius: 0;
-    clip-path: polygon(
-      0% 8%, 5% 0%, 10% 6%, 15% 2%, 20% 7%, 25% 1%, 30% 5%, 35% 0%, 40% 8%, 45% 2%, 50% 6%, 55% 1%, 60% 7%, 65% 3%, 70% 8%, 75% 0%, 80% 5%, 85% 2%, 90% 7%, 95% 1%, 100% 5%,
-      100% 92%, 95% 100%, 90% 94%, 85% 98%, 80% 93%, 75% 100%, 70% 95%, 65% 98%, 60% 93%, 55% 100%, 50% 94%, 45% 99%, 40% 93%, 35% 100%, 30% 95%, 25% 99%, 20% 93%, 15% 100%, 10% 95%, 5% 99%, 0% 93%
-    );
-  }
-
-  .progress-fill {
-    height: 100%;
-    min-width: 4px;
-  }
-
-  .progress-fill.approved { background: var(--color-accent); }
-  .progress-fill.unreviewed { background: var(--color-text); }
-  .progress-fill.changes_needed { background: #d4a55a; }
-  .progress-fill.unshipped { background: var(--color-danger); }
-
-  .progress-ticks {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 6px;
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--color-text);
-    letter-spacing: 0.02em;
-  }
-
   .section-header {
     display: flex;
     flex-wrap: wrap;
@@ -7130,48 +6862,6 @@
 
   .section-header .section-subtitle {
     margin-bottom: 0;
-  }
-
-  .progress-key {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 8px 28px;
-    flex-shrink: 0;
-    padding-top: 6px;
-  }
-
-  .key-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 20px;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-    color: var(--color-text);
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-  }
-
-  .key-swatch {
-    width: 18px;
-    height: 18px;
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-
-  .key-swatch.approved {
-    background: var(--color-accent);
-  }
-
-  .key-swatch.unreviewed {
-    background: var(--color-text);
-  }
-
-  .key-swatch.changes-needed {
-    background: #d4a55a;
-  }
-
-  .key-swatch.unshipped {
-    background: var(--color-danger);
   }
 
   .projects-box {
@@ -9126,7 +8816,6 @@
 
     /* Strip noisy desktop-only widgets on mobile */
     .bottom-row,
-    .progress-key,
     .mobile-only-hide {
       display: none !important;
     }
@@ -9134,13 +8823,6 @@
     .section-header {
       flex-direction: column;
       gap: 8px;
-    }
-
-    .progress-bar-wrap {
-      width: 100%;
-      max-width: none;
-      min-width: 0;
-      margin-top: 4px;
     }
 
     /* Single-column project list on mobile */

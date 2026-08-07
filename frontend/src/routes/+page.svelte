@@ -293,7 +293,7 @@
 
 <div class="info-bg">
 <section class="info-section">
-  <div class="info-block">
+  <div class="info-block eligibility">
     <h2>Am I Eligible?</h2>
     <p>
       If you are a teen, yes! The only criteria is being a teenager and building a real open-source
@@ -1228,6 +1228,10 @@
     line-height: 1.55;
     letter-spacing: 0.02em;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55);
+  }
+
+  .info-block.eligibility p {
+    color: var(--color-accent);
   }
 
   /* ── layout ─────────────────────────────────────── */

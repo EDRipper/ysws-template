@@ -11,7 +11,6 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 	// Check if user has elevated permissions (don't block page load on failure)
 	let role: string | null = null;
-	let needsIntent = false;
 	let events = [];
 	const token = cookies.get('auth_token');
 	if (token) {
@@ -25,17 +24,6 @@ export const load: PageServerLoad = async ({ cookies }) => {
 			}
 		} catch { /* non-critical */ }
 
-		// One-time "hackathon or shop?" prompt — shows until the user answers.
-		try {
-			const res = await fetch(`${BACKEND_URL}/api/auth/intent`, {
-				headers: { Authorization: `Bearer ${token}` }
-			});
-			if (res.ok) {
-				const data = await res.json();
-				needsIntent = data.needsPrompt === true;
-			}
-		} catch { /* non-critical — just don't show the prompt */ }
-
 		try {
 			const eventRes = await fetch(`${BACKEND_URL}/api/admin/events/upcoming`, {
 				headers: { Authorization: `Bearer ${token}` },
@@ -48,5 +36,5 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		}
 	}
 
-	return { user, role, needsIntent, events };
+	return { user, role, events };
 };
