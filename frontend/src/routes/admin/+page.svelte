@@ -341,7 +341,7 @@
 			id: 'wrong_program',
 			label: 'Not eligible',
 			userFeedback:
-				'This project does not appear to fit the eligible project criteria for Beest. Please check the guidelines and resubmit something that matches the requirements.',
+				`This project does not appear to fit the eligible project criteria for ${data.yswsConfig.program.name}. Please check the guidelines and resubmit something that matches the requirements.`,
 			internalNote: 'Quick reject: eligibility concern.'
 		}
 	];
@@ -3597,9 +3597,9 @@
 													{/if}
 													<div class="ht-ownership-meta">
 														{#if isSuperAdmin}
-															<div>Beest email: <code>{hackatimeData.beestEmail ?? '—'}</code></div>
+															<div>Account email: <code>{hackatimeData.beestEmail ?? '—'}</code></div>
 														{/if}
-														<div>Beest Slack: <code>{hackatimeData.beestSlackId ?? '—'}</code></div>
+														<div>Account Slack: <code>{hackatimeData.beestSlackId ?? '—'}</code></div>
 														{#if isSuperAdmin}
 															<div>Linked Hackatime email: <code>{hackatimeData.linkedEmail ?? '—'}</code></div>
 														{/if}

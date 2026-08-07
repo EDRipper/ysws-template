@@ -106,7 +106,7 @@
         'Deploy somewhere from the recommended list above.',
         'Open the deployed link in a fresh / incognito window to test it works without sign in.',
         'Paste the deployed URL into Demo URL, and the repo into Code URL.',
-        'Add 1 or 2 screenshots and a README that says what it does, how to use it and how it works. Ideally include that it is a project for #beest.'
+        'Add 1 or 2 screenshots and a README that says what it does, how to use it and how it works.'
       ],
       commonRejections: [
         { reason: 'README is missing the basics: real description, screenshots, tech stack, motivation, and how-it-works section', count: 28 },
@@ -115,7 +115,7 @@
         { reason: 'Project relies on AI beyond the 30% limit', count: 8 },
         { reason: 'All code committed in one go: reviewers cannot see incremental progress', count: 7 },
         { reason: 'A visible feature is broken in the deployed demo (dead button, 404 asset, navbar, etc.)', count: 7 },
-        { reason: 'Project pre-dates the Beest start window (August 2 2026) and was not updated meaningfully', count: 6 },
+        { reason: 'Project pre-dates the program start window and was not updated meaningfully', count: 6 },
         { reason: 'Wrong or unrelated Hackatime project linked, or the same Hackatime project re-used across submissions', count: 5 },
         { reason: 'Under the 3-hour minimum', count: 5 }
       ]
@@ -218,7 +218,7 @@
         { reason: 'README is AI-written or missing the basics (description, tech stack, motivation)', count: 4 },
         { reason: 'Wrong or unrelated Hackatime project linked', count: 2 },
         { reason: 'Hackatime account is banned (referred to the Fraud Squad)', count: 2 },
-        { reason: 'Project pre-dates the Beest start window', count: 2 },
+        { reason: 'Project pre-dates the program start window', count: 2 },
         { reason: 'Under the 3-hour minimum', count: 2 },
         { reason: 'Repo is empty or only contains a README', count: 1 }
       ]
@@ -267,7 +267,7 @@
       pills: [
         { label: 'GitHub Release APK', tone: 'good', note: 'Trusted distribution path with version tags; what reviewers expect.' },
         { label: 'Google Drive APK', tone: 'bad', note: 'Drive triggers "scan for harmful files" warnings, throttles big downloads, and can revoke the link. Use a GitHub Release for the APK.' },
-        { label: 'Play Store upload', tone: 'meh', note: 'Great if you already have it set up, but the $25 developer fee plus review wait is not required for Beest. A GitHub Release APK is enough.' }
+        { label: 'Play Store upload', tone: 'meh', note: 'Great if you already have it set up, but the $25 developer fee plus review wait is not required. A GitHub Release APK is enough.' }
       ],
       steps: [
         'Build a release APK. Signed with a debug key is fine for review.',
@@ -370,17 +370,17 @@
       type: 'other',
       label: 'Other / Not Sure',
       icon: 'dice',
-      intro: 'For projects that don\'t fit any of the categories above. The bar here is simple: write a good README, and if you aren\'t sure your project is shippable, ask in #beest-help on Hack Club Slack before submitting.',
+      intro: 'For projects that don\'t fit any of the categories above. The bar here is simple: write a good README, and if you aren\'t sure your project is shippable, ask in the Slack help channel before submitting.',
       steps: [
         'Write a detailed README that clearly explains what the project is, how it works, and how a stranger would experience it.',
-        'If you aren\'t sure the project qualifies, post a quick description in #beest-help on Hack Club Slack and a reviewer will let you know before you ship.'
+        'If you aren\'t sure the project qualifies, post a quick description in the Slack help channel and a reviewer will let you know before you ship.'
       ]
     }
   ];
 </script>
 
 <svelte:head>
-  <title>Shipping Guide — Beest</title>
+  <title>Shipping Guide — {data.yswsConfig.program.name}</title>
 </svelte:head>
 
 <svelte:body class:guide-dark={darkMode} />
@@ -414,7 +414,7 @@
 
   <main class="content">
     <h1 id="guide-top">Shipping Guide</h1>
-    <p class="intro">Hey all! As of 05/05/2026, more than half of projects on #beest are being sent back for changes needed. I wrote this guide to document requirements for each project type, so that rejections shouldn't come as a surprise!</p>
+    <p class="intro">Hey all! A lot of projects get sent back for changes needed. This guide documents requirements for each project type, so that rejections shouldn't come as a surprise!</p>
 
     {#each guides as guide (guide.type)}
       <section id="guide-{guide.type}" class="guide">
