@@ -6672,7 +6672,7 @@
 
 	/* ── Light Mode ── */
 	.admin-shell.light {
-		background: #f5f4f1;
+		background: var(--color-text);
 		color: #1a1a1a;
 	}
 
@@ -6713,7 +6713,7 @@
 	}
 
 	.admin-shell.light .users-perms-filter {
-		background: #f5f4f1;
+		background: var(--color-text);
 		border-color: #555;
 		color: #1a1a1a;
 	}
@@ -6807,10 +6807,10 @@
 	.admin-shell.light .news-form { background: #fff; border-color: #666; }
 	.admin-shell.light .news-form h3 { color: #555; }
 	.admin-shell.light .news-input,
-	.admin-shell.light .news-edit-input { background: #f5f4f1; border-color: #555; color: #1a1a1a; }
+	.admin-shell.light .news-edit-input { background: var(--color-text); border-color: #555; color: #1a1a1a; }
 	.admin-shell.light .news-input:focus,
 	.admin-shell.light .news-edit-input:focus { border-color: #3b7bb5; }
-	.admin-shell.light .event-date-row { background: #f5f4f1; border-color: #555; }
+	.admin-shell.light .event-date-row { background: var(--color-text); border-color: #555; }
 	.admin-shell.light .event-date-row label { color: #555; }
 
 	.admin-shell.light .btn-now { background: #e8e6e1; color: #333; border-color: #555; }
@@ -6842,7 +6842,7 @@
 	.admin-shell.light .pill-approved.active { background: #b0cce8; border-color: #507899; }
 
 	.admin-shell.light .proj-split { background: #666; border-color: #666; }
-	.admin-shell.light .proj-sidebar { background: #f5f4f1; }
+	.admin-shell.light .proj-sidebar { background: var(--color-text); }
 	.admin-shell.light .proj-sidebar-item { color: #444; border-bottom-color: #999; }
 	.admin-shell.light .proj-sidebar-item:hover { background: #eae8e3; }
 	.admin-shell.light .proj-sidebar-item.active { background: transparent; }
@@ -6866,14 +6866,14 @@
 	/* Hackatime detail */
 	.admin-shell.light .ht-header { color: #333; }
 	.admin-shell.light .ht-breakdown-panel {
-		--surface: #f5f4f1;
+		--surface: var(--color-text);
 		--border: #d9d3c8;
 		--shadow-soft: none;
 		--muted: #666;
 		--surface-border: #eae4da;
 	}
 	.admin-shell.light .ht-total { color: #2a6699; }
-	.admin-shell.light .ht-project { background: #f5f4f1; border-color: #555; color: #333; }
+	.admin-shell.light .ht-project { background: var(--color-text); border-color: #555; color: #333; }
 	.admin-shell.light .ht-project-name { color: #1a1a1a; }
 	.admin-shell.light .ht-project-hours { color: #2a6699; }
 	.admin-shell.light .ht-project-langs { color: #666; }
@@ -6883,7 +6883,7 @@
 	/* Feedback / justification textareas */
 	.admin-shell.light .user-feedback,
 	.admin-shell.light .ht-justification {
-		background: #f5f4f1;
+		background: var(--color-text);
 		border-color: #555;
 		color: #1a1a1a;
 	}
@@ -6920,7 +6920,7 @@
 
 	/* Review cards */
 	.admin-shell.light .reviews-heading { color: #333; }
-	.admin-shell.light .review-card { background: #f5f4f1; border-color: #666; }
+	.admin-shell.light .review-card { background: var(--color-text); border-color: #666; }
 	.admin-shell.light .review-card-reviewer { color: #222; }
 	.admin-shell.light .review-card-anonymous {
 		color: #2e6c9b;
@@ -6944,7 +6944,7 @@
 	/* Shop */
 	.admin-shell.light .shop-form { background: #fff; border-color: #666; }
 	.admin-shell.light .shop-form h3 { color: #1a1a1a; }
-	.admin-shell.light .shop-input { background: #f5f4f1; border-color: #555; color: #1a1a1a; }
+	.admin-shell.light .shop-input { background: var(--color-text); border-color: #555; color: #1a1a1a; }
 	.admin-shell.light .shop-input:focus { border-color: #3b7bb5; }
 	.admin-shell.light .shop-checkbox { color: #333; }
 	.admin-shell.light .shop-checkbox input[type="checkbox"] {
@@ -6955,13 +6955,13 @@
 	.admin-shell.light .shop-item-row { background: #fff; border-color: #666; }
 	.admin-shell.light .shop-item-row.drag-over { border-top-color: #3b7bb5; }
 	.admin-shell.light .shop-item-drag-handle { color: #666; }
-	.admin-shell.light .shop-item-thumb { border-color: #555; background: #f5f4f1; }
+	.admin-shell.light .shop-item-thumb { border-color: #555; background: var(--color-text); }
 	.admin-shell.light .shop-item-info { color: #1a1a1a; }
 	.admin-shell.light .shop-item-meta { color: #666; }
 	.admin-shell.light .shop-field { color: #555; }
 
 	/* Links */
-	.admin-shell.light .ht-btn-docs { background: #f5f4f1; color: #1a1a1a; border-color: #555; }
+	.admin-shell.light .ht-btn-docs { background: var(--color-text); color: #1a1a1a; border-color: #555; }
 
 	.admin-shell.light .mono { color: #1a1a1a; }
 	.admin-shell.light .slack-link { color: #2a6699; }

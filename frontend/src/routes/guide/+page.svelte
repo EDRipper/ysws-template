@@ -523,8 +523,8 @@
     --bg: #ffffff;
     --bg-soft: #fafafa;
     --bg-hover: #eeeeee;
-    --bg-chip: #f5f5f5;
-    --bg-chip-strong: #f5f5f5;
+    --bg-chip: var(--color-text);
+    --bg-chip-strong: var(--color-text);
     --border: #e5e5e5;
     --border-strong: #888;
     --border-input: #1a1a1a;
@@ -545,7 +545,7 @@
     --rejection-text: #4a1f1f;
     --warning-bg: #fef2f2;
     --warning-text: #7f1d1d;
-    --tip-bg: #f5f5f5;
+    --tip-bg: var(--color-text);
     --tip-border: #000000;
 
     background: var(--bg);

@@ -860,7 +860,7 @@
 		overflow: hidden;
 	}
 	.screen.light {
-		--bg: #f5f4f1;
+		--bg: var(--color-text);
 		--surface: #fff;
 		--surface-2: #eae8e3;
 		--text: #1a1a1a;

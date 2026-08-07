@@ -201,14 +201,14 @@
     padding: 1.25rem 3rem 1.25rem 5rem;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.2rem;
-    color: #e6e2da;
+    color: var(--color-text);
     gap: 1rem;
   }
 
   .faq-icon {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.5rem;
-    color: #e6e2da;
+    color: var(--color-text);
     flex-shrink: 0;
     transition: transform 0.25s ease;
     line-height: 1;
@@ -224,7 +224,7 @@
 
   .faq-answer p {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    color: #e6e2da;
+    color: var(--color-text);
     font-size: 0.9rem;
     line-height: 1.7;
     margin: 0;
@@ -237,7 +237,7 @@
     padding: 0.75rem 2rem;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.3rem;
-    color: #e6e2da;
+    color: var(--color-text);
     background: #3a3530;
     border: 2px solid var(--color-bg);
     border-radius: 8px;

@@ -5599,7 +5599,7 @@
 
   .devlog-card-text {
     margin: 0;
-    color: #e6e2da;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     line-height: 1.55;
@@ -5904,7 +5904,7 @@
   .suggestions-input {
     width: 100%;
     min-height: 60px;
-    background: #f0ebe5;
+    background: var(--color-text);
     border: 2px solid var(--color-bg);
     padding: 8px 10px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -5983,7 +5983,7 @@
     justify-content: center;
     gap: 2px;
     min-width: 56px;
-    background: #f0ebe5;
+    background: var(--color-text);
     border: 2px solid var(--color-border);
     color: var(--color-bg);
     padding: 6px 8px;
@@ -6163,7 +6163,7 @@
   .shop-spotlight-img {
     width: min(300px, 38%);
     flex-shrink: 0;
-    background: #f0ebe5;
+    background: var(--color-text);
     border-right: 2px solid #1a1a1a;
     display: flex;
     align-items: center;
@@ -6281,7 +6281,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #f0ebe5;
+    color: var(--color-text);
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
   }
 
@@ -6322,7 +6322,7 @@
   .shop-card-img {
     padding: 12px;
     position: relative;
-    background: #f0ebe5;
+    background: var(--color-text);
     border-bottom: 2px solid #1a1a1a;
   }
 
@@ -6504,7 +6504,7 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     padding: 6px 12px;
-    background: #f0ebe5;
+    background: var(--color-text);
     border: 2px solid #1a1a1a;
     box-shadow: 2px 2px 0 rgba(26, 26, 26, 0.45);
     color: var(--color-bg);
@@ -6598,7 +6598,7 @@
   }
   .intent-modal {
     background: var(--color-bg);
-    color: #e8e0d4;
+    color: var(--color-text);
     border: 1px solid var(--color-border);
     padding: 2rem 1.75rem;
     width: 100%;
@@ -6629,7 +6629,7 @@
     padding: 1.25rem 0.75rem;
     border: 1px solid var(--color-border);
     background: #52504a;
-    color: #e8e0d4;
+    color: var(--color-text);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -6709,7 +6709,7 @@
 
   .shop-modal-img {
     padding: 28px;
-    background: #f0ebe5;
+    background: var(--color-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8527,14 +8527,14 @@
     padding: 1rem 1.25rem;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.2rem;
-    color: #e6e2da;
+    color: var(--color-text);
     gap: 1rem;
   }
 
   .faq-icon {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.5rem;
-    color: #e6e2da;
+    color: var(--color-text);
     flex-shrink: 0;
     transition: transform 0.25s ease;
     line-height: 1;
@@ -8550,7 +8550,7 @@
 
   .faq-answer p {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    color: #e6e2da;
+    color: var(--color-text);
     font-size: 0.9rem;
     line-height: 1.7;
     margin: 0;

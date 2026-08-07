@@ -19,7 +19,7 @@
     justify-content: center;
     min-height: 100vh;
     font-family: sans-serif;
-    color: #e8e0d4;
+    color: var(--color-text);
     background: var(--color-bg);
   }
 
@@ -28,7 +28,7 @@
   }
 
   a {
-    color: #e8e0d4;
+    color: var(--color-text);
     margin-top: 1rem;
   }
 </style>

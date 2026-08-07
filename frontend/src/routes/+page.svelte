@@ -1145,7 +1145,7 @@
   .wall-of-fame h2 {
     margin: 0 auto 18px;
     max-width: 1100px;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 52px);
     letter-spacing: 0.04em;
@@ -1156,7 +1156,7 @@
   .wall-of-fame-subtitle {
     max-width: 1100px;
     margin: 0 auto 44px;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(18px, 1.7vw, 24px);
     line-height: 1.6;
@@ -1369,7 +1369,7 @@
   .what-is-this h2 {
     max-width: 1100px;
     margin: 0 auto 20px;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 42px);
     letter-spacing: 0.04em;
@@ -1380,7 +1380,7 @@
   .what-is-this p {
     max-width: 1100px;
     margin: 0 auto;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(20px, 2vw, 26px);
     line-height: 1.55;
@@ -1415,7 +1415,7 @@
 
   .info-block h2 {
     margin: 0 0 24px;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(22px, 2.4vw, 34px);
     letter-spacing: 0.04em;
@@ -1425,7 +1425,7 @@
 
   .info-block p {
     margin: 0;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(19px, 1.8vw, 24px);
     line-height: 1.55;
@@ -1750,7 +1750,7 @@
     transform: translate(-50%, -50%) rotate(-12deg);
     z-index: 3;
     margin: 0;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(14px, 1.6vw, 20px);
     letter-spacing: 0.03em;
@@ -1811,7 +1811,7 @@
   .carousel-card {
     width: 250px;
     flex-shrink: 0;
-    background: #f0ebe5;
+    background: var(--color-text);
     border: 1px solid var(--color-bg);
     box-shadow: 6px 6px 0 var(--color-bg);
     padding: 12px 12px 10px;
@@ -2072,7 +2072,7 @@
   .faq-link {
     width: 100%;
     text-align: center;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 36px;
     letter-spacing: 0.04em;
@@ -2098,7 +2098,7 @@
 
   .hackclub-text h2 {
     margin: 35px 0 16px;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(22px, 2.4vw, 34px);
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55);
@@ -2108,7 +2108,7 @@
 
   .hackclub-text p {
     margin: 0;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(19px, 1.8vw, 24px);
     line-height: 1.55;
@@ -2201,7 +2201,7 @@
 
   .bottom-rsvp-text h2 {
     margin: 0 0 16px;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(22px, 2.4vw, 34px);
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55);
@@ -2211,7 +2211,7 @@
 
   .bottom-rsvp-text p {
     margin: 0 0 12px;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(15px, 1.4vw, 19px);
     line-height: 1.55;
@@ -2221,7 +2221,7 @@
   .bottom-rsvp-text ul {
     margin: 0;
     padding-left: 20px;
-    color: #ddd7cf;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(15px, 1.4vw, 19px);
     line-height: 1.75;

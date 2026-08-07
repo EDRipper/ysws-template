@@ -516,7 +516,7 @@
   }
 
   .start-btn:hover {
-    background: #f5f5f5;
+    background: var(--color-text);
   }
 
   .start-btn:active {
@@ -829,7 +829,7 @@
   }
 
   .create-submit-btn:hover:not(:disabled) {
-    background: #f5f5f5;
+    background: var(--color-text);
   }
 
   .create-submit-btn:active:not(:disabled) {
@@ -862,7 +862,7 @@
   }
 
   .project-card:hover {
-    background: #f5f5f5;
+    background: var(--color-text);
   }
 
   .project-card:active {
@@ -919,7 +919,7 @@
   }
 
   .action-btn:hover {
-    background: #f5f5f5;
+    background: var(--color-text);
   }
 
   .action-btn:active {
@@ -947,7 +947,7 @@
   }
 
   .join-btn:hover {
-    background: #f5f5f5;
+    background: var(--color-text);
   }
 
 .refresh-btn {
@@ -957,7 +957,7 @@
   }
 
   .refresh-btn:hover:not(:disabled) {
-    background: #f5f5f5;
+    background: var(--color-text);
   }
 
   .refresh-btn:disabled {

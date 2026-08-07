@@ -147,7 +147,7 @@
 	}
 	.sg-modal {
 		background: var(--color-bg);
-		color: #e8e0d4;
+		color: var(--color-text);
 		border: 1px solid #5a564c;
 		border-radius: 8px;
 		width: 100%;
@@ -169,7 +169,7 @@
 	.sg-x {
 		background: none;
 		border: none;
-		color: #e8e0d4;
+		color: var(--color-text);
 		font-size: 1.5rem;
 		line-height: 1;
 		cursor: pointer;
@@ -191,7 +191,7 @@
 		border-radius: 4px;
 		border: 1px solid #5a564c;
 		background: #2c2a25;
-		color: #e8e0d4;
+		color: var(--color-text);
 	}
 	.sg-field input[readonly] {
 		opacity: 0.7;
@@ -211,7 +211,7 @@
 		border-radius: 4px;
 		border: 1px solid #5a564c;
 		background: #2c2a25;
-		color: #e8e0d4;
+		color: var(--color-text);
 		cursor: pointer;
 		font-size: 0.85rem;
 	}
