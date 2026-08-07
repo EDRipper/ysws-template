@@ -3338,7 +3338,7 @@
 
   .sidebar:hover,
   .sidebar.pinned {
-    width: 220px;
+    width: 240px;
   }
 
   .sidebar-panel {
@@ -3356,7 +3356,7 @@
 
   .sidebar:hover .sidebar-panel,
   .sidebar.pinned .sidebar-panel {
-    max-width: 220px;
+    max-width: 240px;
   }
 
   .expand-hint {
@@ -3494,8 +3494,8 @@
   /* ── main ────────────────────────────────────────── */
   .main {
     flex: 1;
-    margin-left: 170px;
-    max-width: calc(100vw - 170px);
+    margin-left: 240px;
+    max-width: calc(100vw - 240px);
     display: flex;
     flex-direction: column;
     filter: saturate(1.5);
