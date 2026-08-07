@@ -286,7 +286,7 @@
 
 <div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,60 1440,30 1440,100 0,100" fill="var(--color-bg)" />
+    <polygon points="0,60 1440,30 1440,100 0,100" fill="var(--color-border)" />
     <line x1="0" y1="60" x2="1440" y2="30" stroke="var(--color-text-faint)" stroke-width="10" stroke-linecap="round" />
   </svg>
 </div>
@@ -312,7 +312,7 @@
 </section>
 </div>
 
-<div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
+<div class="rock-strata" style="background:var(--color-border)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,60 1440,30 1440,100 0,100" fill="var(--color-bg)" />
     <line x1="0" y1="60" x2="1440" y2="30" stroke="var(--color-text-faint)" stroke-width="10" stroke-linecap="round" />
