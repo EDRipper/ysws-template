@@ -68,7 +68,7 @@
 		font-size: 1.2rem;
 		font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
 		padding: 0.6rem 1.4rem;
-		background: #635a4e;
+		background: var(--color-bg);
 		clip-path: polygon(
 			3% 8%, 12% 0%, 25% 5%, 40% 1%, 55% 6%, 70% 0%, 85% 4%, 97% 2%,
 			100% 30%, 98% 60%, 100% 85%, 95% 100%,

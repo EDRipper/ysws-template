@@ -146,7 +146,7 @@
 		padding: 1rem;
 	}
 	.sg-modal {
-		background: #3a3832;
+		background: var(--color-bg);
 		color: #e8e0d4;
 		border: 1px solid #5a564c;
 		border-radius: 8px;

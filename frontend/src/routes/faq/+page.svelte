@@ -165,7 +165,7 @@
 
   .faq-item {
     background: #3a3530;
-    border: 2px solid #2e2a26;
+    border: 2px solid var(--color-bg);
     border-radius: 8px;
     padding: 0;
     cursor: pointer;
@@ -239,7 +239,7 @@
     font-size: 1.3rem;
     color: #e6e2da;
     background: #3a3530;
-    border: 2px solid #2e2a26;
+    border: 2px solid var(--color-bg);
     border-radius: 8px;
     text-decoration: none;
     text-align: center;

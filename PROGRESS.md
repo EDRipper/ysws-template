@@ -326,6 +326,38 @@ instructions not to ask questions that can't be answered right now):
 Not blocking other work — continued backend genericization + the frontend
 color sweep above instead of stalling on these.
 
+## Tick 4: Vercel is now the primary demo target, backend build bug fixed
+
+Operator hit a wall on Orchard (OTP browser-login flow kept losing session
+state between turns — not a speed issue, the page went blank every time
+regardless of how fast the code was relayed; gave up after 3 attempts) and
+pivoted: "vercel is the way forward". Fixed a real deploy-blocking bug there:
+
+- **Vercel backend was failing every build** with
+  `STATIC_BUILD_NO_OUT_DIR` — with `framework: null` ("Other") and no
+  build/output overrides, Vercel ran `nest build` successfully but then
+  required a `public/` directory to exist for the static-asset side of the
+  deployment, unrelated to whether the `api/` serverless function itself was
+  fine. Added `backend/public/index.html` (a trivial placeholder — never
+  actually served, `vercel.json`'s catch-all rewrite sends every path to the
+  function) purely to satisfy that build-time check. Confirmed via the
+  Vercel API: `readyState` went from erroring to `READY` after this shipped.
+- Found an existing unrelated Neon Postgres store already on the operator's
+  Vercel account/team ("RecommendationDB") — did NOT connect it to this
+  project (someone else's/another app's live data, not ours to repurpose).
+  Tried provisioning a fresh dedicated one via Vercel's marketplace API
+  directly; hit a chain of undocumented required fields
+  (`integrationProductIdOrSlug`, `billingPlanId`, then an `authorizationId`
+  requirement I couldn't resolve blind) — stopped rather than keep guessing
+  at real billing/subscription API surface. Operator needs to add one via
+  the dashboard (Storage tab, one click) instead.
+- Backend still won't serve real traffic without `DATABASE_URL`/
+  `CLIENT_ID`/`CLIENT_SECRET`/`CDN_API_KEY` — build succeeding just means the
+  function deploys now, first invocation still throws on those missing
+  `getOrThrow`s. Not something I can generate; genuinely the operator's to
+  provide (real HCA app + CDN credentials). `JWT_SECRET` was already handed
+  over and set.
+
 ## Tick 3: found a self-documented palette comment, extended the color sweep
 
 `FAQ/+page.svelte` and `faq/+page.svelte` both had an explicit `<!-- Color

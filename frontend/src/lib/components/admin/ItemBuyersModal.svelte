@@ -186,7 +186,7 @@
 		padding: 1rem;
 	}
 	.ib-modal {
-		background: #3a3832;
+		background: var(--color-bg);
 		color: #e8e0d4;
 		border: 1px solid #5a564c;
 		border-radius: 8px;
@@ -239,7 +239,7 @@
 		opacity: 0.7;
 		position: sticky;
 		top: 0;
-		background: #3a3832;
+		background: var(--color-bg);
 	}
 	.ib-num {
 		text-align: right;

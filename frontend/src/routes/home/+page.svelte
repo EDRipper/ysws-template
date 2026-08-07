@@ -2082,13 +2082,13 @@
       </div>
 
       <svg class="form-gear form-gear-1" style="transform: rotate({keystrokes * 3}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#635a4e"/>
+        <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
       </svg>
       <svg class="form-gear form-gear-2" style="transform: rotate({-keystrokes * 2 + 22.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#635a4e"/>
+        <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
       </svg>
       <svg class="form-gear form-gear-3" style="transform: rotate({keystrokes * 4}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#635a4e"/>
+        <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
       </svg>
     </div>
     {/if}
@@ -4070,7 +4070,7 @@
 
   /* ── create project form ─────────────────────────── */
   .create-project-form {
-    background: #635a4e;
+    background: var(--color-bg);
     padding: 48px 48px 32px 150px;
     min-height: 100vh;
     box-sizing: border-box;
@@ -4495,19 +4495,19 @@
     font-weight: 700;
     color: #fff;
     cursor: pointer;
-    box-shadow: 4px 4px 0 #3a3832;
+    box-shadow: 4px 4px 0 var(--color-bg);
     transition: transform 0.1s ease, box-shadow 0.1s ease, border-bottom-width 0.1s ease;
   }
 
   .form-btn-submit:hover:not(:disabled) {
     transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0 #3a3832;
+    box-shadow: 5px 5px 0 var(--color-bg);
   }
 
   .form-btn-submit:active:not(:disabled) {
     transform: translateY(4px);
     border-bottom-width: 3px;
-    box-shadow: 2px 1px 0 #3a3832;
+    box-shadow: 2px 1px 0 var(--color-bg);
   }
 
   .form-btn-submit:disabled {
@@ -4594,19 +4594,19 @@
     border-bottom-color: #3a7a4a;
     cursor: pointer;
     opacity: 1;
-    box-shadow: 4px 4px 0 #3a3832;
+    box-shadow: 4px 4px 0 var(--color-bg);
   }
 
   .form-btn-review.ready:hover {
     background: #4a8e5f;
     transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0 #3a3832;
+    box-shadow: 5px 5px 0 var(--color-bg);
   }
 
   .form-btn-review.ready:active {
     transform: translateY(4px);
     border-bottom-width: 3px;
-    box-shadow: 2px 1px 0 #3a3832;
+    box-shadow: 2px 1px 0 var(--color-bg);
   }
 
   /* ── Resubmit section ─────────────────────────── */
@@ -4807,7 +4807,7 @@
     position: absolute;
     bottom: calc(100% + 8px);
     right: 0;
-    background: #3a3832;
+    background: var(--color-bg);
     color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
@@ -4880,7 +4880,7 @@
     padding: 1.25rem;
     border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.14);
-    background: #3a3832;
+    background: var(--color-bg);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   }
   .lookout-modal-header {
@@ -5301,13 +5301,13 @@
     margin-bottom: 18px;
     padding: 10px 22px;
     background: #9a9285;
-    color: #2e2a26;
+    color: var(--color-bg);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
-    border: 2px solid #2e2a26;
+    border: 2px solid var(--color-bg);
     border-radius: 6px;
     cursor: pointer;
-    box-shadow: 0 3px 0 #2e2a26;
+    box-shadow: 0 3px 0 var(--color-bg);
     transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s;
   }
 
@@ -5317,7 +5317,7 @@
 
   .devlog-new-btn:active {
     transform: translateY(2px);
-    box-shadow: 0 1px 0 #2e2a26;
+    box-shadow: 0 1px 0 var(--color-bg);
   }
 
   .devlog-cancel-btn {
@@ -5351,7 +5351,7 @@
   .devlog-form,
   .devlog-images-card {
     background: #3a3530;
-    border: 2px solid #2e2a26;
+    border: 2px solid var(--color-bg);
     border-radius: 8px;
     padding: 14px;
     box-shadow:
@@ -5464,7 +5464,7 @@
     height: 70px;
     border-radius: 6px;
     overflow: hidden;
-    border: 1px solid #2e2a26;
+    border: 1px solid var(--color-bg);
     background: #2a2620;
   }
 
@@ -5497,13 +5497,13 @@
     margin-top: 14px;
     padding: 10px 22px;
     background: #9a9285;
-    color: #2e2a26;
+    color: var(--color-bg);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
-    border: 2px solid #2e2a26;
+    border: 2px solid var(--color-bg);
     border-radius: 6px;
     cursor: pointer;
-    box-shadow: 0 3px 0 #2e2a26;
+    box-shadow: 0 3px 0 var(--color-bg);
     transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s;
   }
 
@@ -5513,7 +5513,7 @@
 
   .devlog-submit:active:not(:disabled) {
     transform: translateY(2px);
-    box-shadow: 0 1px 0 #2e2a26;
+    box-shadow: 0 1px 0 var(--color-bg);
   }
 
   .devlog-submit:disabled {
@@ -5537,7 +5537,7 @@
 
   .devlog-card {
     background: #3a3530;
-    border: 2px solid #2e2a26;
+    border: 2px solid var(--color-bg);
     border-left: 4px solid #9a9285;
     border-radius: 8px;
     padding: 14px 16px;
@@ -5627,7 +5627,7 @@
     height: 110px;
     object-fit: cover;
     border-radius: 6px;
-    border: 1px solid #2e2a26;
+    border: 1px solid var(--color-bg);
     display: block;
     transition: transform 0.15s ease;
   }
@@ -5721,7 +5721,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    background: #3a3832;
+    background: var(--color-bg);
     border: 2px solid #1a1a1a;
     box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
     padding: 10px 16px;
@@ -6930,7 +6930,7 @@
 
   /* ── projects ────────────────────────────────────── */
   .section-projects {
-    background: #635a4e;
+    background: var(--color-bg);
     padding-top: 48px;
   }
 
@@ -7214,19 +7214,19 @@
     text-transform: uppercase;
     border: 3px solid #a06a69;
     border-bottom: 8px solid #8a5857;
-    box-shadow: 4px 4px 0 #3a3832;
+    box-shadow: 4px 4px 0 var(--color-bg);
     transition: transform 0.1s ease, box-shadow 0.1s ease, border-bottom-width 0.1s ease;
   }
 
   .action-btn:hover {
     transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0 #3a3832;
+    box-shadow: 5px 5px 0 var(--color-bg);
   }
 
   .action-btn:active {
     transform: translateY(5px);
     border-bottom-width: 3px;
-    box-shadow: 2px 1px 0 #3a3832;
+    box-shadow: 2px 1px 0 var(--color-bg);
   }
 
   /* ── review checklist ─────────────────────────────── */
@@ -7436,19 +7436,19 @@
     cursor: pointer;
     clip-path: polygon(0% 3%, 3% 0%, 97% 2%, 100% 5%, 100% 95%, 97% 100%, 3% 98%, 0% 95%);
     transition: background 200ms ease, transform 0.1s ease, border-bottom-width 0.1s ease, box-shadow 0.1s ease;
-    box-shadow: 4px 4px 0 #3a3832;
+    box-shadow: 4px 4px 0 var(--color-bg);
   }
 
   .review-understood-btn:hover {
     background: #4a8e5f;
     transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0 #3a3832;
+    box-shadow: 5px 5px 0 var(--color-bg);
   }
 
   .review-understood-btn:active {
     transform: translateY(4px);
     border-bottom-width: 3px;
-    box-shadow: 2px 1px 0 #3a3832;
+    box-shadow: 2px 1px 0 var(--color-bg);
   }
 
   /* ── project cards ──────────────────────────────── */
@@ -7564,7 +7564,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #635a4e;
+    color: var(--color-bg);
     background: var(--color-text);
     padding: 4px 12px;
     clip-path: polygon(4% 0%, 96% 4%, 100% 96%, 0% 100%);
@@ -7587,17 +7587,17 @@
 
   .project-status-badge.unreviewed {
     background: var(--color-text);
-    color: #635a4e;
+    color: var(--color-bg);
   }
 
   .project-status-badge.changes_needed {
     background: #d4a55a;
-    color: #635a4e;
+    color: var(--color-bg);
   }
 
   .project-status-badge.approved {
     background: var(--color-accent);
-    color: #635a4e;
+    color: var(--color-bg);
   }
 
   .project-status-badge.golden {
@@ -7677,7 +7677,7 @@
     color: #000000;
     border: 3px solid #000000;
     border-bottom: 8px solid #000000;
-    box-shadow: 4px 4px 0 #3a3832;
+    box-shadow: 4px 4px 0 var(--color-bg);
     text-shadow: none;
   }
 
@@ -7687,7 +7687,7 @@
 
   /* ── explore ─────────────────────────────────────── */
   .section-explore {
-    background: #3a3832;
+    background: var(--color-bg);
   }
 
   .explore-placeholder {
@@ -7862,7 +7862,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #3a3832;
+    color: var(--color-bg);
     background: var(--color-text);
     padding: 2px 6px;
     clip-path: polygon(4% 0%, 96% 4%, 100% 96%, 0% 100%);
@@ -7930,7 +7930,7 @@
 
   .detail-panel {
     position: relative;
-    background: #3a3832;
+    background: var(--color-bg);
     border: 2px solid rgba(230, 244, 254, 0.15);
     max-width: 820px;
     width: 100%;
@@ -8062,7 +8062,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #3a3832;
+    color: var(--color-bg);
     background: var(--color-text);
     padding: 4px 10px;
     clip-path: polygon(4% 0%, 96% 4%, 100% 96%, 0% 100%);
@@ -8497,7 +8497,7 @@
 
   .faq-item {
     background: #3a3530;
-    border: 2px solid #2e2a26;
+    border: 2px solid var(--color-bg);
     border-radius: 8px;
     padding: 0;
     cursor: pointer;

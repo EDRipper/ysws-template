@@ -360,7 +360,7 @@
 <div class="rock-strata" style="background:#786e5c" aria-hidden="true">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,40 140,25 300,55 440,20 580,50 720,15 860,48 1000,28 1140,58 1280,22 1440,45 1440,120 0,120" fill="#5e5648" />
-    <polygon points="0,65 160,50 320,78 460,45 600,72 760,48 900,80 1040,52 1180,82 1320,55 1440,70 1440,120 0,120" fill="#635a4e" />
+    <polygon points="0,65 160,50 320,78 460,45 600,72 760,48 900,80 1040,52 1180,82 1320,55 1440,70 1440,120 0,120" fill="var(--color-bg)" />
   </svg>
 </div>
 
@@ -405,7 +405,7 @@
   </div>
 </section>
 
-<div class="rock-strata" style="background:#635a4e" aria-hidden="true">
+<div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,35 160,55 320,28 480,60 640,20 800,52 960,30 1120,58 1280,22 1440,45 1440,120 0,120" fill="#544d42" />
     <polygon points="0,58 200,72 360,50 520,78 680,44 840,74 1000,48 1160,70 1320,52 1440,65 1440,120 0,120" fill="#56494a" />
@@ -438,8 +438,8 @@
 
 <div class="rock-strata strata-with-gears" style="background:#56494a" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,35 180,55 340,20 500,48 660,12 820,42 980,18 1140,52 1300,25 1440,40 1440,100 0,100" fill="#635a4e" />
-    <polygon points="0,58 140,72 300,50 460,78 620,46 780,68 940,44 1100,74 1260,48 1440,62 1440,100 0,100" fill="#635a4e" />
+    <polygon points="0,35 180,55 340,20 500,48 660,12 820,42 980,18 1140,52 1300,25 1440,40 1440,100 0,100" fill="var(--color-bg)" />
+    <polygon points="0,58 140,72 300,50 460,78 620,46 780,68 940,44 1100,74 1260,48 1440,62 1440,100 0,100" fill="var(--color-bg)" />
   </svg>
   <svg class="strata-gear strata-gear--lg gear-ccw" style="left:10%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#56494a"/>
@@ -477,7 +477,7 @@
 </section>
 </div>
 
-<div class="rock-strata" style="background:#635a4e" aria-hidden="true">
+<div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,30 180,45 340,20 500,48 660,22 820,52 980,28 1140,50 1300,25 1440,40 1440,100 0,100" fill="#544d42" />
     <polygon points="0,55 140,68 300,50 460,72 620,48 780,70 940,45 1100,65 1260,52 1440,62 1440,100 0,100" fill="var(--color-bg)" />
@@ -1201,7 +1201,7 @@
 
   /* ── wall of fame ───────────────────────────────── */
   .wall-of-fame {
-    background: #635a4e;
+    background: var(--color-bg);
     padding: 88px 48px 108px;
     color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -1463,7 +1463,7 @@
 
   /* ── info sections ──────────────────────────────── */
   .info-bg {
-    background: #635a4e;
+    background: var(--color-bg);
   }
 
   .info-section {
