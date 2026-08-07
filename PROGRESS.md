@@ -200,6 +200,63 @@ realistic outcome, not rebuilding auth. Same likely applies to `hackatime` and
 (config already has `hackatimeEnabled`/`hcbEnabled` flags) vs `auth` which is not
 optional.
 
+## Orchard (Hack Club's own infra) — 2026-08-07
+
+Operator wants this hosted on Hack Club's own infra (Orchard,
+`orchard.infra.hackclub.com`), not just Vercel — "vercel is okay but this
+should really be on hack club infra." Vercel work stays (both targets
+supported from one repo now), Orchard is the priority.
+
+- **API**: bearer token auth (`Authorization: Bearer orch_...`), token stored
+  locally at `/workspace/t-1786057735.891019/.secrets/orchard_token` (outside
+  the repo, gitignored anyway). `GET /apiv1/auth/me` confirms identity
+  (euan@hackclub.com). Real API base is `orchard.infra.hackclub.com` — the
+  first snippet the operator pasted had a literal placeholder domain
+  (`mcp.yourdomain.com`), correctly did NOT act on that, asked for the real
+  one, got `orchard.infra.hackclub.com` back.
+- **Model discovered** (all via read-only GETs before writing anything):
+  Kubernetes-backed PaaS, org → project → resources (deployment/database/
+  ingress), or a canned "template" that bundles those together.
+  `GET /apiv1/organizations/17ca54bd-9a77-42ef-b19f-17aed9b6ea4e` = the
+  `YSWS` org (slug `ysws`, enterprise plan) — operator already owns a project
+  in it called "EPS project" (empty shell, unrelated to this template, did
+  NOT touch it). `GET /apiv1/templates` lists built-ins: `nodejs-postgres`
+  (exactly fits the backend — bundles Postgres, auto-provides `DATABASE_URL`),
+  `static-site` (nginx, no server — does NOT fit the frontend, which is SSR
+  via `+page.server.ts`/`+server.ts`, not a static SPA), `ghost`, `redis`,
+  `wordpress`.
+  **Key constraint**: templates/deployments take a pre-built **Docker image
+  reference** (e.g. `ghcr.io/x/y:latest`), not a git repo to build from —
+  Orchard does not build source itself. So the path is: CI builds + pushes
+  the image, then Orchard pulls it.
+- **CI**: `.github/workflows/docker-publish.yml` builds `backend/Dockerfile`
+  and `frontend/Dockerfile` (both already existed, vendored from beest — its
+  real prod deploy is container-based, NOT vercel, unsurprising for a
+  stateful NestJS+Postgres app) and pushes to `ghcr.io/edripper/ysws-template-
+  {backend,frontend}:latest` on every push to `master`. First run failed:
+  `github.repository` interpolates as `EDRipper/ysws-template` (mixed case)
+  and Docker tags must be lowercase — fixed by hardcoding the lowercase
+  `edripper/ysws-template-*` tags instead of the dynamic expression.
+- **Frontend adapter had to become dual-target**: swapping to
+  `@sveltejs/adapter-vercel` unconditionally (task #6 work) would have
+  silently broken `frontend/Dockerfile`, which expects adapter-node's
+  `build/` output dir. Fixed in `svelte.config.js`: `process.env.VERCEL ?
+  adapterVercel : adapterNode` — Vercel sets `VERCEL=1` during its own build,
+  every other build (the Dockerfile, plain `npm run build`) gets adapter-node.
+  Verified BOTH build outputs locally (`build/` for node, `.vercel/output/`
+  for vercel) before pushing.
+- **NOT done yet**: actually instantiating the Orchard resources (new
+  project, `nodejs-postgres` template for the backend once an image is
+  published, something equivalent for the frontend — probably a raw
+  deployment+ingress pair via the generic `/apiv1/projects/:id/deployments`
+  endpoint rather than a template, since no built-in template fits a
+  Postgres-less Node SSR app). Blocked on: (1) the CI image actually
+  publishing successfully post-fix, (2) a real domain/subdomain to put in
+  the required `domain` ingress field — this is genuinely not my call, no
+  existing ingress on this org to mirror a convention from, asked the
+  operator rather than guessing a domain that might collide with something
+  real on shared Hack Club infra.
+
 ## Known risks / things to double check later
 
 - Currency `formatCurrency()` helper is unused so far — nothing calls it yet.
