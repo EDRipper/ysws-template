@@ -367,7 +367,7 @@
   <!-- Section 0: Go! (top — last seen) -->
   <div class="section-content go-section" style="top: {innerHeight}px;">
     <div class="go-box">
-      <p class="section-paragraph">You're all set! If you get stuck you can replay this tutorial, read the <a href="/FAQ" class="section-link">FAQ</a> or ask in <a href="https://hackclub.enterprise.slack.com/archives/C0AQ4T1CWH2" target="_blank" rel="noopener" class="section-link">#beest-help</a>.</p>
+      <p class="section-paragraph">You're all set! If you get stuck you can replay this tutorial, read the <a href="/FAQ" class="section-link">FAQ</a> or ask in the {data.yswsConfig.program.name} Slack channel.</p>
       <a href="/home" class="action-btn go-home-btn" data-sveltekit-reload>GO!</a>
     </div>
   </div>
@@ -375,7 +375,7 @@
   <!-- Section 1: Create a Project -->
   <div class="section-content" style="top: {innerHeight * 2}px;">
     <h2 class="section-title">Create a Project</h2>
-    <p class="section-paragraph">Tell us your idea! It doesn't have to be related to the beest, make an automation you've always wanted or a game for you and your friends. Make anything! (Just not AI slop or college projects, we only want to reward creativity and real learning.)</p>
+    <p class="section-paragraph">Tell us your idea! Make an automation you've always wanted, a game for you and your friends, or anything else you'd enjoy building. (Just not AI slop or college projects, we only want to reward creativity and real learning.)</p>
     {#if projectCreated && !showProjectForm}
       <button class="action-btn complete-btn" onclick={() => goToSection(0)}>Project created! Move on?</button>
     {:else if showProjectForm}
@@ -421,7 +421,7 @@
   <!-- Section 2: Connect Hackatime -->
   <div class="section-content" style="top: {innerHeight * 3}px;">
     <h2 class="section-title">Connect Hackatime</h2>
-    <p class="section-paragraph">We want to reward you for time spent building, so we made Hackatime! Its like a smart stopwatch that automatically tracks how long you code for, and it works in all your existing code editors. To be rewarded for your work youll need to set up an account on <a href="https://hackatime.hackclub.com" target="_blank" rel="noopener" class="section-link">hackatime.hackclub.com</a> and then hit connect to link it to Beest!</p>
+    <p class="section-paragraph">We want to reward you for time spent building, so we made Hackatime! Its like a smart stopwatch that automatically tracks how long you code for, and it works in all your existing code editors. To be rewarded for your work youll need to set up an account on <a href="https://hackatime.hackclub.com" target="_blank" rel="noopener" class="section-link">hackatime.hackclub.com</a> and then hit connect to link it to your account!</p>
     {#if data.onboarding.hackatime}
       <button class="action-btn complete-btn" onclick={() => goToSection(1)}>Complete! Move on?</button>
     {:else}

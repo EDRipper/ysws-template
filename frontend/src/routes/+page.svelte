@@ -387,14 +387,14 @@
               <img src={project.image} alt={dup ? '' : project.alt ?? `Screenshot of ${project.title}`} loading="lazy" decoding="async" />
             {:else}
               <div class="fame-terminal" role="img" aria-label="Terminal session of {project.title}">
-                <div class="term-bar"><span></span><span></span><span></span><p>peleg@beest ~ </p></div>
-                <pre class="term-body"><span class="t-dim">$</span> beest stats
-<span class="t-blue">┌─ peleg ──────────────────┐</span>
+                <div class="term-bar"><span></span><span></span><span></span><p>{project.author.toLowerCase()}@{data.yswsConfig.program.shortName} ~ </p></div>
+                <pre class="term-body"><span class="t-dim">$</span> stats
+<span class="t-blue">┌─ {project.author} ──────────────────┐</span>
 <span class="t-blue">│</span> hours logged       52.4h <span class="t-blue">│</span>
-<span class="t-blue">│</span> pipes earned          52 <span class="t-blue">│</span>
+<span class="t-blue">│</span> {data.yswsConfig.currency.namePlural} earned          52 <span class="t-blue">│</span>
 <span class="t-blue">│</span> projects shipped       1 <span class="t-blue">│</span>
 <span class="t-blue">└──────────────────────────┘</span>
-<span class="t-dim">$</span> beest devlog post "it walks!"
+<span class="t-dim">$</span> devlog post "shipped it!"
 <span class="t-ok">✓ devlog posted</span>
 <span class="t-dim">$</span> <span class="term-cursor">█</span></pre>
               </div>
@@ -623,8 +623,8 @@
     </p>
     <div class="footer-columns">
       <div class="footer-col">
-        <h3>beest</h3>
-        <a href="#what-is-this">what is beest</a>
+        <h3>{data.yswsConfig.program.shortName}</h3>
+        <a href="#what-is-this">what is this</a>
         <a href="#wall-of-fame">wall of fame</a>
         <a href="/FAQ">faq</a>
       </div>

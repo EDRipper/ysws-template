@@ -2270,7 +2270,7 @@
             <p class="section-subtitle">Track your progress and hours.</p>
           </div>
           <div class="event-countdown" aria-label="Countdown to {data.yswsConfig.program.name}">
-            <p class="event-countdown-kicker"><span class="event-countdown-logo">BEESTing</span> starts on</p>
+            <p class="event-countdown-kicker"><span class="event-countdown-logo">{data.yswsConfig.program.name}</span> starts on</p>
             {#if eventCountdown.live}
               <p class="event-countdown-live">Live</p>
             {:else}
@@ -2946,7 +2946,7 @@
         </svg>
 
         <h2 class="faq-title">Frequently Asked Questions</h2>
-        <p class="faq-intro">I'm sure you have lots of questions! Below is the most common ones I see, but if you need more help please email beest@hackclub.com or use the dedicated slack channel #beest-help</p>
+        <p class="faq-intro">I'm sure you have lots of questions! Below is the most common ones I see, but if you need more help please email {data.yswsConfig.admin.contactEmail} or ask in the {data.yswsConfig.program.name} Slack channel</p>
 
         <div class="faq-list">
           {#each faqItems as faq, i (faq.q)}
@@ -3162,7 +3162,7 @@
               </a>
               <a href="https://hackclub.enterprise.slack.com/archives/C0AQ4T1CWH2" target="_blank" rel="noopener" class="settings-link">
                 <h3 class="settings-link-title">Get Help</h3>
-                <p class="settings-link-desc">Ask questions in #beest-help on Slack.</p>
+                <p class="settings-link-desc">Ask questions in the {data.yswsConfig.program.name} Slack channel.</p>
               </a>
               <div class="settings-link">
                 <h3 class="settings-link-title">Security Bounty</h3>

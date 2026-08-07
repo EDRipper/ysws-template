@@ -2,6 +2,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
+  let { data } = $props();
+
   let scrollY = $state(0);
   const PARALLAX_TRAVEL = 700;
   const rawProgress = $derived(Math.min(scrollY / PARALLAX_TRAVEL, 1));
@@ -80,7 +82,7 @@
   </div>
   <!-- scroll room so the postScroll drift is scrubbable -->
   <div class="scroll-spacer"></div>
-  <div class="beest-bottom">BEEST</div>
+  <div class="beest-bottom">{data.yswsConfig.program.shortName.toUpperCase()}</div>
 </div>
 
 <style>

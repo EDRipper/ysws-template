@@ -326,6 +326,53 @@ instructions not to ask questions that can't be answered right now):
 Not blocking other work — continued backend genericization + the frontend
 color sweep above instead of stalling on these.
 
+## Tick 2 continued: real bug + more content genericization
+
+- **Real functional bug found and fixed**: `frontend/src/hooks.server.ts`
+  hardcoded a redirect from `beast.hackclub.com` (a typo domain) to
+  `https://beest.hackclub.com` — a deployed instance of this TEMPLATE would
+  have silently redirected any visitor hitting that typo host to the real
+  production beest site. Removed entirely (one-off historical accommodation
+  with no generic equivalent, not just a branding string). Worth a careful
+  look for anything similar elsewhere (hardcoded hostnames that assume
+  they're the canonical `beest.hackclub.com` deployment).
+- Fixed a second hardcoded specific person's name: the wall-of-fame
+  fallback terminal-mockup UI (shown for entries with no `image`, which is
+  now EVERY entry since the wall-of-fame data was replaced with placeholders
+  — see the "Genericize real content" commit) hardcoded `peleg@beest ~` and
+  `┌─ peleg ─┐` — a real participant's name baked into decorative UI.
+  Genericized to use `project.author`/`program.shortName`/`currency.namePlural`
+  dynamically.
+- Removed a hardcoded real internal Hack Club Slack channel URL
+  (`hackclub.enterprise.slack.com/archives/C0AQ4T1CWH2`) from the tutorial
+  page — pointed at a specific real channel other programs' participants
+  aren't in.
+- Swept remaining `#beest-help`/`#beest` channel-hashtag references (guide,
+  home, tutorial, admin/audit pages) to generic "the Slack channel" phrasing
+  — no config field exists for a specific channel name/hashtag, so this is
+  the honest generic default rather than inventing one.
+- Fixed: footer nav heading/link text, admin panel "Beest email"/"Beest
+  Slack" labels (display text only — the underlying `beestEmail`/
+  `beestSlackId` API field names are left as internal identifiers, same
+  precedent as `pipesGranted`), the event countdown's "BEESTing" label, the
+  standalone `/parallax` demo page's "BEEST" text.
+- **Deliberately left as internal/low-risk** (consistent with the
+  established "don't rename internal identifiers" decision): localStorage
+  keys (`beest_2nd_light`, `beest:devlog-autosave`, etc — zero external
+  visibility), the `beest-audit`/`beest-review-audit-embed` postMessage
+  source strings (real inter-service protocol with the private audit
+  service — renaming risks breaking that integration without knowing if the
+  other side hardcodes the string), decorative CSS class names.
+- **Still open, NOT attempted**: every `/images/beest-*.webp`,
+  `/images/beest.gif`, `/images/beest2.webp` asset path — these are the
+  actual hero/parallax/tutorial illustration files (real Beest artwork,
+  central to the landing page's visual identity) referenced by ~15+ `<img>`
+  tags across `+page.svelte`/`home/+page.svelte`/`parallax/+page.svelte`/
+  `tutorial/+page.svelte`. This is the "asset inventory" item flagged
+  earlier — replacing these needs actual new artwork or a layout
+  restructure, not a text edit, and is a bigger design decision than
+  anything else in this genericization pass. Do not attempt blindly.
+
 ## Known risks / things to double check later
 
 - Currency `formatCurrency()` helper is unused so far — nothing calls it yet.
