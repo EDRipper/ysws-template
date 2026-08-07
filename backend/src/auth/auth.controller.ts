@@ -67,12 +67,7 @@ export class AuthController {
       );
     } catch (err) {
       this.logger.error('oauth callback failed', err instanceof Error ? err.stack : err);
-      // TODO(debug): temporarily surfacing the real reason to diagnose the
-      // live "Authentication failed" report — revert to a generic message
-      // once the root cause is confirmed and fixed.
-      throw new UnauthorizedException(
-        err instanceof Error ? err.message : 'Authentication failed',
-      );
+      throw new UnauthorizedException('Authentication failed');
     }
   }
 
