@@ -68,8 +68,6 @@
   let activeSection = $state(sectionFromPath(page.url.pathname));
   let tileLoaded = $state(false);
   let customCursorEnabled = $state(typeof localStorage !== 'undefined' ? localStorage.getItem('customCursor') !== 'off' : true);
-  const EVENT_START = data.yswsConfig.event?.startDate ? new Date(data.yswsConfig.event.startDate).getTime() : 0;
-  let eventCountdown = $state({ days: 0, hours: 0, minutes: 0, seconds: 0, live: false });
   let creatingProject = $state(false);
   let editingProject = $state<any>(null);
   type ProjectReview = {
@@ -1284,23 +1282,6 @@
     pushState(sectionRoutes[id] ?? '/projects', {});
   }
 
-  function updateEventCountdown() {
-    const remaining = EVENT_START - Date.now();
-    if (remaining <= 0) {
-      eventCountdown = { days: 0, hours: 0, minutes: 0, seconds: 0, live: true };
-      return;
-    }
-
-    const totalSeconds = Math.floor(remaining / 1000);
-    eventCountdown = {
-      days: Math.floor(totalSeconds / 86400),
-      hours: Math.floor((totalSeconds % 86400) / 3600),
-      minutes: Math.floor((totalSeconds % 3600) / 60),
-      seconds: totalSeconds % 60,
-      live: false,
-    };
-  }
-
   async function fetchPipes() {
     try {
       const res = await fetch('/api/shop/pipes');
@@ -1586,8 +1567,6 @@
     // Returning from the Lookout recorder? Re-open the devlog draft we stashed.
     // Otherwise fall back to the locally autosaved draft (reload / window close).
     if (!restoreDevlogDraft()) restoreDevlogAutosave();
-    updateEventCountdown();
-    const countdownTimer = window.setInterval(updateEventCountdown, 1000);
 
     const handlePopstate = () => {
       const section = sectionFromPath(window.location.pathname);
@@ -1597,7 +1576,6 @@
     };
     window.addEventListener('popstate', handlePopstate);
     return () => {
-      window.clearInterval(countdownTimer);
       window.removeEventListener('popstate', handlePopstate);
     };
   });
@@ -2203,19 +2181,6 @@
           <div>
             <h2 class="section-title">My Projects</h2>
             <p class="section-subtitle">Track your progress and hours.</p>
-          </div>
-          <div class="event-countdown" aria-label="Countdown to {data.yswsConfig.program.name}">
-            <p class="event-countdown-kicker"><span class="event-countdown-logo">{data.yswsConfig.program.name}</span> starts on</p>
-            {#if eventCountdown.live}
-              <p class="event-countdown-live">Live</p>
-            {:else}
-              <div class="event-countdown-grid">
-                <div class="event-countdown-unit"><strong>{eventCountdown.days}</strong><span>days</span></div>
-                <div class="event-countdown-unit"><strong>{eventCountdown.hours}</strong><span>hours</span></div>
-                <div class="event-countdown-unit"><strong>{eventCountdown.minutes}</strong><span>minutes</span></div>
-                <div class="event-countdown-unit"><strong>{eventCountdown.seconds}</strong><span>seconds</span></div>
-              </div>
-            {/if}
           </div>
         </div>
 
@@ -6727,124 +6692,6 @@
   .section-projects {
     background: var(--color-bg);
     padding-top: 48px;
-  }
-
-  .event-countdown {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    flex: 1 1 420px;
-    max-width: 760px;
-    min-width: 0;
-    margin: 0;
-    padding: 10px 12px;
-    background: rgba(75, 72, 64, 0.58);
-    border: 2px solid rgba(230, 244, 254, 0.16);
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.14);
-  }
-
-  .event-countdown-kicker {
-    margin: 0;
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 22px;
-    color: var(--color-text);
-    white-space: nowrap;
-  }
-
-  .event-countdown-logo {
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    line-height: 1;
-    color: var(--color-text);
-  }
-
-  .event-countdown-title {
-    margin: 0;
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: clamp(30px, 3.6vw, 50px);
-    line-height: 0.95;
-    color: var(--color-text);
-    letter-spacing: 0;
-  }
-
-  .event-countdown-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(48px, 1fr));
-    gap: 6px;
-    min-width: min(100%, 250px);
-  }
-
-  .event-countdown-unit {
-    display: grid;
-    place-items: center;
-    min-height: 54px;
-    padding: 6px;
-    background: #586063;
-    border: 1px solid rgba(230, 244, 254, 0.22);
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.16);
-  }
-
-  .event-countdown-unit strong {
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: clamp(20px, 2vw, 30px);
-    line-height: 1;
-    color: var(--color-accent);
-  }
-
-  .event-countdown-unit span {
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 11px;
-    color: var(--color-text);
-    white-space: nowrap;
-  }
-
-  .event-countdown-live {
-    margin: 0;
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: clamp(24px, 3vw, 38px);
-    color: var(--color-accent);
-  }
-
-  @media (max-width: 760px) {
-    .event-countdown {
-      align-items: center;
-      flex: 0 0 auto;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 8px 10px;
-      width: 100%;
-      max-width: none;
-      min-width: 0;
-      padding: 10px;
-    }
-
-    .event-countdown-kicker {
-      flex: 1 1 100%;
-      white-space: normal;
-    }
-
-    .event-countdown-logo {
-      font-size: 28px;
-    }
-
-    .event-countdown-grid {
-      flex: 1 1 100%;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      min-width: 0;
-    }
-
-    .event-countdown-unit {
-      min-height: 48px;
-      padding: 5px;
-    }
-
-    .event-countdown-unit strong {
-      font-size: 22px;
-    }
   }
 
   .section-header {
