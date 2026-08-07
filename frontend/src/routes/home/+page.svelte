@@ -2790,10 +2790,10 @@
           <p class="intent-sub">Your answer's been saved.</p>
         {:else}
           <h2 class="intent-title">What brings you here?</h2>
-          <p class="intent-sub">Let me know your intention so I can work out the event budget</p>
+          <p class="intent-sub">Let me know your intention so we can tailor what you see</p>
           <div class="intent-options">
             <button class="intent-btn" onclick={() => chooseIntent('Hackathon')} disabled={intentSaving}>
-              <span>The hackathon</span>
+              <span>Shipping a project</span>
             </button>
             <button class="intent-btn" onclick={() => chooseIntent('Shop')} disabled={intentSaving}>
               <span>The shop</span>
