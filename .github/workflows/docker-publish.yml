@@ -28,7 +28,7 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}-backend:latest,${{ env.REGISTRY }}/${{ github.repository }}-backend:${{ github.sha }}
+          tags: ghcr.io/edripper/ysws-template-backend:latest,ghcr.io/edripper/ysws-template-backend:${{ github.sha }}
 
   frontend:
     name: Build & push frontend image
@@ -49,4 +49,4 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}-frontend:latest,${{ env.REGISTRY }}/${{ github.repository }}-frontend:${{ github.sha }}
+          tags: ghcr.io/edripper/ysws-template-frontend:latest,ghcr.io/edripper/ysws-template-frontend:${{ github.sha }}
