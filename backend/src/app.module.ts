@@ -40,6 +40,7 @@ import { HcbCredential } from './entities/hcb-credential.entity';
 import { LookoutSession } from './entities/lookout-session.entity';
 import { AppSetting } from './entities/app-setting.entity';
 import { HealthController } from './health.controller';
+import { ALL_MIGRATIONS } from './migrations';
 
 @Module({
   controllers: [HealthController],
@@ -54,7 +55,7 @@ import { HealthController } from './health.controller';
         type: 'postgres',
         url: config.getOrThrow('DATABASE_URL'),
         entities: [User, Session, Project, AuditLog, NewsItem, ProjectReview, Comment, ShopItem, Order, FulfillmentUpdate, Submission, ShopSuggestion, ShopSuggestionVote, Devlog, Event, FraudReview, HcbCredential, LookoutSession, AppSetting],
-        migrations: [__dirname + '/migrations/*{.ts,.js}'],
+        migrations: ALL_MIGRATIONS,
         migrationsRun: true,
         synchronize: false,
       }),
