@@ -1,4 +1,11 @@
-import adapter from '@sveltejs/adapter-vercel';
+import adapterNode from '@sveltejs/adapter-node';
+import adapterVercel from '@sveltejs/adapter-vercel';
+
+// Vercel sets VERCEL=1 during its own build step; every other build target
+// (the Dockerfile used for Orchard/self-hosting, plain `npm run build`) gets
+// the container-friendly Node adapter. Same repo, same build command, two
+// deploy targets — see SETUP.md.
+const adapter = process.env.VERCEL ? adapterVercel : adapterNode;
 
 // CSP is applied to production builds only. In `vite dev`, Vite's HMR client
 // uses inline/eval scripts that a strict policy would break — and dev isn't the
