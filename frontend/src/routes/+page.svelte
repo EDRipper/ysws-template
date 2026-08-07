@@ -21,20 +21,6 @@
   let scrollY = $state(0);
   let showScrollHint = $state(false);
   const scrollHintVisible = $derived(showScrollHint && scrollY < 10);
-  const PARALLAX_TRAVEL = 700;
-  // ease-out: parallax decelerates near the end for a smoother hero→content transition
-  const rawProgress = $derived(Math.min(scrollY / PARALLAX_TRAVEL, 1));
-  const easedProgress = $derived(rawProgress * (2 - rawProgress));
-
-  // Time-based hero animation: waiting → animating → done
-  let animPhase = $state<'waiting' | 'animating' | 'done'>('waiting');
-  let animValue = $state(0); // 0→1 during animation
-
-  const animEased = $derived(animPhase === 'animating' ? animValue * (2 - animValue) : animPhase === 'done' ? 1 : 0);
-  const progress = $derived(Math.max(easedProgress, animEased));
-  const pxRemaining = $derived(PARALLAX_TRAVEL * (1 - progress));
-  const postScroll = $derived(Math.max(scrollY - PARALLAX_TRAVEL, 0));
-  let heroHeight = $state(0);
 
   onMount(() => {
     const hintTimer = setTimeout(() => { showScrollHint = true; }, 3000);
@@ -44,51 +30,12 @@
     tileImg.src = '/images/tile.webp';
     tileImg.onload = () => document.documentElement.classList.add('tile-loaded');
 
-    // Hero entrance animation: 1s pause, then 2.5s parallax reveal, then auto-scroll
-    let animRaf: number;
-    const animDelay = setTimeout(() => {
-      animPhase = 'animating';
-      const duration = 2500;
-      const start = performance.now();
-      const tick = (now: number) => {
-        const elapsed = now - start;
-        animValue = Math.min(elapsed / duration, 1);
-        if (animValue < 1) {
-          animRaf = requestAnimationFrame(tick);
-        } else {
-          animPhase = 'done';
-        }
-      };
-      animRaf = requestAnimationFrame(tick);
-    }, 1000);
-
     return () => {
       clearTimeout(hintTimer);
-      clearTimeout(animDelay);
-      cancelAnimationFrame(animRaf);
     };
   });
 
-
   const subtitle = data.yswsConfig.program.tagline;
-
-  let winW = $state(0);
-  let winH = $state(0);
-
-  // Shrink the big strandbeest layer (6.webp) just enough that its flag
-  // clears the .hero-crop top-crop. Mirrors the CSS reserve: 200px in the
-  // 901–1400px range, 260px above that. The flag's top sits at ~5% of the
-  // layer's height; scaling from the top-center origin (with the feet
-  // re-planted via translateY) moves it down to (1 - 0.95 × scale).
-  const beestScale = $derived.by(() => {
-    if (!winW || !winH || winW <= 900) return 0.88;
-    const natural = winW * 0.5625;
-    const reserve = winW <= 1400 ? 200 : 260;
-    const visible = Math.min(natural, winH - reserve);
-    const cropFrac = Math.max(0, 1 - visible / natural);
-    const fit = (1 - cropFrac - 0.03) / 0.95;
-    return Math.min(0.88, Math.max(0.6, fit));
-  });
 
   const eventPhotos = [
     { src: '/images/frames/75 teens at Campfire Flagship.webp', caption: '75 teens at Campfire Flagship' },
@@ -189,7 +136,7 @@
 </script>
 
 
-<svelte:window bind:scrollY bind:innerWidth={winW} bind:innerHeight={winH} />
+<svelte:window bind:scrollY />
 
 <div class="scroll-hint" class:visible={scrollHintVisible}>
   <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -212,53 +159,30 @@
   <a class="hc-flag" href="https://hackclub.com" target="_blank" rel="noreferrer" aria-label="Hack Club">
     <img src="/images/hack-club-flag.svg" alt="" decoding="async" />
   </a>
-  <div class="hero-mobile">
-    <img
-      src="/images/hero-1024w.webp"
-      alt="Hero"
-      fetchpriority="high"
-      decoding="async"
-    />
+  {#snippet heroStrata()}
     <svg class="hero-strata" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <polygon points="0,38 60,35 120,40 180,32 240,28 300,25 340,30 380,26 440,22 500,26 560,30 620,24 680,28 720,35 780,40 840,44 880,40 940,46 1000,50 1060,46 1100,42 1140,48 1200,52 1260,48 1300,44 1340,50 1400,46 1440,42 1440,80 0,80" fill="var(--color-bg)" />
+      <polygon points="0,50 1440,25 1440,80 0,80" fill="var(--color-bg)" />
     </svg>
+  {/snippet}
+  <div class="hero-mobile">
+    <div class="hero-scene">
+      <svg class="hero-scene-sun" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" /></svg>
+      <div class="hero-scene-cloud cloud-a"></div>
+      <div class="hero-scene-cloud cloud-b"></div>
+      <div class="hero-scene-cloud cloud-c"></div>
+    </div>
+    {@render heroStrata()}
   </div>
   <div class="hero-crop">
-  <div class="hero-parallax" bind:clientHeight={heroHeight}>
-    {#each [
-      { src: '', x: 0, rot: 0, scale: 0, drift: 0, isBg: true },
-      { src: '/images/beest-cropped/2.webp', x: 0, rot: 0.003, scale: 0.0003, drift: 0.02, offsetY: -60 },
-      { src: '/images/beest-cropped/3.webp', x: 0, rot: 0, scale: 0, drift: 0.04, crop: { left: 0, top: 53.5926, width: 100, height: 46.4074 } },
-      { src: '/images/beest-cropped/4.webp', x: 0, rot: 0, scale: 0, drift: 0.06, crop: { left: 0, top: 64.6667, width: 44.5625, height: 21.9259 } },
-      { src: '/images/beest-cropped/5.webp', x: 0, rot: 0, scale: 0, drift: 0.08, crop: { left: 13.7708, top: 67.2222, width: 86.2292, height: 32.7778 } },
-      { src: '/images/beest-cropped/6.webp', x: 0.06, rot: 0, scale: 0, drift: 0.10, baseScale: beestScale },
-      { src: '/images/beest-cropped/7.webp', x: 0.06, rot: 0, scale: 0, drift: 0.04, stretchX: 0.00015, crop: { left: 0, top: 57.5556, width: 89.5625, height: 42.4444 } },
-      { src: '/images/beest-cropped/8.webp', x: 0, rot: 0, scale: 0, drift: 0.08, crop: { left: 3.625, top: 79.1852, width: 25, height: 10.0741 } },
-      { src: '/images/beest-cropped/9.webp', x: 0, rot: 0, scale: 0, drift: 0.08, crop: { left: 10.1667, top: 60.4444, width: 88.4375, height: 36.2593 } },
-      { src: '/images/beest-cropped/10.webp', x: 0, rot: 0, scale: 0, drift: 0.16, crop: { left: 37.3333, top: 46.8519, width: 62.6667, height: 53.1481 } },
-      { src: '/images/beest-cropped/11.webp', x: 0, rot: 0, scale: 0, drift: 0.20, offsetY: 10, crop: { left: 65.625, top: 72.0741, width: 34.375, height: 27.9259 } },
-    ] as layer, i}
-      {#if layer.isBg}
-        <div
-          class="hero-layer hero-layer-bg"
-          style="z-index: {i};"
-        ></div>
-      {:else}
-        <img
-          src={layer.src}
-          alt=""
-          class="hero-layer"
-          class:hero-layer-cropped={!!layer.crop}
-          style="z-index: {i}; transform-origin: top center; {layer.crop ? `left: ${layer.crop.left}%; top: ${layer.crop.top}%; width: ${layer.crop.width}%; height: ${layer.crop.height}%;` : ''} transform: translateX({pxRemaining * layer.x}px) translateY({(layer.offsetY ?? 0) + heroHeight * (1 - (layer.baseScale ?? 1)) - postScroll * layer.drift}px) rotate({pxRemaining * layer.rot}deg) scale({(layer.baseScale ?? 1) * (1 + pxRemaining * layer.scale)}) scaleX({1 + pxRemaining * (layer.stretchX ?? 0)}) scaleY({heroHeight ? layer.crop ? 1 + (postScroll * layer.drift) / (heroHeight * layer.crop.height / 100) : (heroHeight + postScroll * layer.drift) / heroHeight : 1});"
-          fetchpriority={i === 0 ? 'high' : 'auto'}
-          loading={i <= 2 ? 'eager' : 'lazy'}
-          decoding="async"
-        />
-      {/if}
-    {/each}
-    <svg class="hero-strata" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <polygon points="0,38 60,35 120,40 180,32 240,28 300,25 340,30 380,26 440,22 500,26 560,30 620,24 680,28 720,35 780,40 840,44 880,40 940,46 1000,50 1060,46 1100,42 1140,48 1200,52 1260,48 1300,44 1340,50 1400,46 1440,42 1440,80 0,80" fill="var(--color-bg)" />
-    </svg>
+  <div class="hero-parallax">
+    <div class="hero-layer hero-layer-bg"></div>
+    <div class="hero-scene">
+      <svg class="hero-scene-sun" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" /></svg>
+      <div class="hero-scene-cloud cloud-a"></div>
+      <div class="hero-scene-cloud cloud-b"></div>
+      <div class="hero-scene-cloud cloud-c"></div>
+    </div>
+    {@render heroStrata()}
   </div>
   </div><!-- hero-crop -->
   <div class="hero-overlay">
@@ -648,12 +572,9 @@
     display: none;
     position: relative;
     line-height: 0;
-  }
-
-  .hero-mobile img {
-    display: block;
-    width: 100%;
-    height: auto;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #8aadc8 0%, #99b7cf 25%, #a9c3d8 50%, #b0c9dc 75%);
   }
 
   .hero-wrap {
@@ -695,16 +616,38 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    will-change: transform;
     pointer-events: none;
-  }
-  .hero-layer-cropped {
-    inset: auto;
-    object-fit: fill;
   }
   .hero-layer-bg {
     background: linear-gradient(to bottom, #8aadc8 0%, #99b7cf 25%, #a9c3d8 50%, #b0c9dc 75%);
   }
+
+  /* simple, generic hero scene: sun + a few soft clouds, no site-specific art */
+  .hero-scene {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hero-scene-sun {
+    position: absolute;
+    top: 12%;
+    right: 14%;
+    width: clamp(70px, 12vw, 160px);
+    fill: rgba(255, 255, 255, 0.85);
+  }
+
+  .hero-scene-cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 999px;
+    filter: blur(0.5px);
+  }
+
+  .cloud-a { top: 20%; left: 8%; width: 22%; height: 7%; }
+  .cloud-b { top: 34%; left: 55%; width: 16%; height: 5%; }
+  .cloud-c { top: 12%; left: 30%; width: 12%; height: 4%; }
 
   .hero-overlay {
     /* the wordmark's letter frame starts ~17% into the logo image (the gear
