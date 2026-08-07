@@ -295,7 +295,7 @@
 		font-size: 0.85rem;
 	}
 	.ib-error {
-		color: #ff6b6b;
+		color: var(--color-danger);
 		font-size: 0.85rem;
 	}
 	.ib-info {

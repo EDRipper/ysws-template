@@ -1,13 +1,13 @@
 <!-- src/routes/home/+page.svelte -->
 <!-- Color Pallet
  #c48382 - Light Red
- #93b4cd - Light Blue
+ var(--color-accent) - Light Blue
  #4b4840 - Dark Gray
  #6c6659 - Medium Gray
  #7f796d - Light Gray
  #cbc1ae - Beige
  #809fb7 - Light Steel Blue
- #e6f4fe - Light Cyan
+ var(--color-text) - Light Cyan
  #9a9285 - Warm Granite (devlogs accent)
  #52504a - Basalt       (devlogs section bg)
  #ffffff - White
@@ -632,7 +632,7 @@
   }
 
   function launchConfetti() {
-    const colors = ['#5a9e6f', '#93b4cd', '#cbc1ae', '#c48382', '#809fb7', '#e6f4fe'];
+    const colors = ['var(--color-success)', 'var(--color-accent)', '#cbc1ae', '#c48382', '#809fb7', 'var(--color-text)'];
     confetti({
       particleCount: 120,
       spread: 80,
@@ -3687,7 +3687,7 @@
 
   .nav-btn:hover {
     background: transparent;
-    color: #e6f4fe;
+    color: var(--color-text);
     border-color: transparent;
   }
 
@@ -3698,7 +3698,7 @@
 
   .nav-btn.active {
     background: transparent;
-    color: #e6f4fe;
+    color: var(--color-text);
     border-color: transparent;
     text-decoration: underline;
     text-decoration-color: #c48382;
@@ -3791,7 +3791,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 42px);
     letter-spacing: 0.04em;
-    color: #e6f4fe;
+    color: var(--color-text);
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   }
 
@@ -3812,7 +3812,7 @@
     font-size: clamp(16px, 1.6vw, 20px);
     letter-spacing: 0.02em;
     line-height: 1.5;
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .events-grid {
@@ -3834,7 +3834,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.25rem;
     letter-spacing: 0.04em;
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .event-card p {
@@ -3855,13 +3855,13 @@
     border: 1px solid rgba(203, 193, 174, 0.18);
     border-radius: 4px;
     background: rgba(203, 193, 174, 0.12);
-    color: #e6f4fe;
+    color: var(--color-text);
     font-weight: 700;
     box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.14);
   }
 
   .event-hosted-by a {
-    color: #93b4cd;
+    color: var(--color-accent);
     text-decoration: underline;
   }
 
@@ -3872,7 +3872,7 @@
     align-items: center;
     margin-bottom: 16px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-size: 20px;
     line-height: 1.1;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
@@ -3893,13 +3893,13 @@
   .event-location {
     margin: 0 0 12px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-weight: 600;
   }
 
   .event-card a {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    color: #93b4cd;
+    color: var(--color-accent);
     text-decoration: underline;
   }
 
@@ -3938,7 +3938,7 @@
     margin: 0 0 16px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(18px, 2vw, 24px);
-    color: #e6f4fe;
+    color: var(--color-text);
     letter-spacing: 0.04em;
   }
 
@@ -3981,8 +3981,8 @@
   }
 
   .timeline-dot.shipped {
-    background: #93b4cd;
-    border-color: #93b4cd;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
   }
 
   .timeline-dot.feedback {
@@ -3991,8 +3991,8 @@
   }
 
   .timeline-dot.submitted {
-    background: #5a9e6f;
-    border-color: #5a9e6f;
+    background: var(--color-success);
+    border-color: var(--color-success);
   }
 
   .timeline-dot.updated {
@@ -4011,7 +4011,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-    color: #e6f4fe;
+    color: var(--color-text);
     line-height: 1.4;
   }
 
@@ -4047,7 +4047,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-    color: #e6f4fe;
+    color: var(--color-text);
     white-space: nowrap;
     flex-shrink: 0;
     padding-top: 2px;
@@ -4111,7 +4111,7 @@
   }
 
   .form-cancel:hover {
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .form-grid {
@@ -4157,8 +4157,8 @@
   }
 
   .form-checkbox input[type="checkbox"]:checked {
-    background: #93b4cd;
-    border-color: #93b4cd;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
   }
 
   .form-checkbox input[type="checkbox"]:checked::after {
@@ -4214,7 +4214,7 @@
     border-radius: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #e6f4fe;
+    color: var(--color-text);
     background: rgba(0, 0, 0, 0.2);
     transition: border-color 150ms ease;
     clip-path: polygon(
@@ -4250,7 +4250,7 @@
 
   .form-select option {
     background: #4b4840;
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .screenshot-row {
@@ -4322,8 +4322,8 @@
 
   .screenshot-tab.active {
     background: rgba(147, 180, 205, 0.2);
-    border-color: #93b4cd;
-    color: #e6f4fe;
+    border-color: var(--color-accent);
+    color: var(--color-text);
   }
 
   .screenshot-box {
@@ -4372,7 +4372,7 @@
     right: 6px;
     background: rgba(0, 0, 0, 0.5);
     border: none;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-size: 18px;
     width: 24px;
     height: 24px;
@@ -4583,7 +4583,7 @@
   }
 
   .form-btn-review.ready {
-    background: #5a9e6f;
+    background: var(--color-success);
     border-color: #488a5a;
     border-bottom-color: #3a7a4a;
     cursor: pointer;
@@ -4639,7 +4639,7 @@
     margin: 0 12px 0 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 32px;
-    color: #e6f4fe;
+    color: var(--color-text);
     display: inline;
     vertical-align: middle;
   }
@@ -4662,7 +4662,7 @@
   }
 
   .approved-summary-meta a {
-    color: #93b4cd;
+    color: var(--color-accent);
     text-decoration: none;
   }
 
@@ -4682,7 +4682,7 @@
     margin: 0 0 4px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
-    color: #e6f4fe;
+    color: var(--color-text);
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
   }
 
@@ -4698,7 +4698,7 @@
   }
 
   .review-feedback-approved {
-    border-left-color: #5a9e6f;
+    border-left-color: var(--color-success);
   }
 
   .review-feedback-header {
@@ -4722,7 +4722,7 @@
 
   .review-feedback-badge.approved {
     background: rgba(90, 158, 111, 0.2);
-    color: #5a9e6f;
+    color: var(--color-success);
   }
 
   .review-feedback-reviewer {
@@ -4742,7 +4742,7 @@
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #e6f4fe;
+    color: var(--color-text);
     line-height: 1.5;
     white-space: pre-wrap;
   }
@@ -4766,7 +4766,7 @@
     margin-bottom: 10px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
-    color: #93b4cd;
+    color: var(--color-accent);
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
   }
 
@@ -4953,7 +4953,7 @@
   .lapse-card.selected {
     opacity: 1;
     background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 0 2px #93b4cd;
+    box-shadow: 0 0 0 2px var(--color-accent);
   }
   .lapse-thumb {
     aspect-ratio: 16 / 9;
@@ -5007,7 +5007,7 @@
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
-    background: #93b4cd;
+    background: var(--color-accent);
     color: #2a2824;
     display: grid;
     place-items: center;
@@ -5139,7 +5139,7 @@
     overflow: hidden;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #e6f4fe;
+    color: var(--color-text);
     transition: border-color 150ms ease;
     clip-path: polygon(
       0% 6%, 4% 0%, 8% 4%, 14% 1%, 20% 5%, 28% 0%, 35% 3%, 42% 1%, 50% 5%, 58% 0%, 65% 4%, 72% 1%, 80% 5%, 86% 0%, 92% 3%, 96% 1%, 100% 4%,
@@ -5585,7 +5585,7 @@
     margin: 0 0 6px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
-    color: #e6f4fe;
+    color: var(--color-text);
     letter-spacing: 0.02em;
     line-height: 1.25;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
@@ -5734,7 +5734,7 @@
     align-items: center;
     gap: 8px;
     background: #4b4840;
-    color: #e6f4fe;
+    color: var(--color-text);
     border: 2px solid #1a1a1a;
     padding: 10px 16px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -5908,7 +5908,7 @@
     box-sizing: border-box;
   }
   .suggestions-input:focus {
-    outline: 2px solid #93b4cd;
+    outline: 2px solid var(--color-accent);
     outline-offset: 1px;
   }
   .suggestions-new-footer {
@@ -5923,7 +5923,7 @@
     color: #6c6659;
   }
   .suggestions-submit {
-    background: #5a9e6f;
+    background: var(--color-success);
     color: #fff;
     border: 2px solid #1a1a1a;
     padding: 8px 18px;
@@ -5988,11 +5988,11 @@
   .suggestion-vote svg { width: 16px; height: 16px; }
   .suggestion-vote-count { font-size: 16px; line-height: 1; }
   .suggestion-vote:hover {
-    background: #e6f4fe;
+    background: var(--color-text);
     border-color: #4b4840;
   }
   .suggestion-vote.voted {
-    background: #5a9e6f;
+    background: var(--color-success);
     border-color: #1a1a1a;
     color: #fff;
   }
@@ -6068,7 +6068,7 @@
   .pipes-box-value {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 28px;
-    color: #e6f4fe;
+    color: var(--color-text);
     letter-spacing: 0.04em;
     line-height: 1;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
@@ -6102,7 +6102,7 @@
     font-size: 22px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #e6f4fe;
+    color: var(--color-text);
     text-shadow: 2px 2px 0 rgba(26, 26, 26, 0.35);
   }
 
@@ -6150,7 +6150,7 @@
   }
 
   .shop-spotlight:focus-visible {
-    outline: 3px solid #e6f4fe;
+    outline: 3px solid var(--color-text);
     outline-offset: -3px;
   }
 
@@ -6245,7 +6245,7 @@
     margin: -6px 0 16px 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
-    color: #e6f4fe;
+    color: var(--color-text);
     opacity: 0.85;
   }
 
@@ -6305,7 +6305,7 @@
   .shop-card:focus-visible {
     transform: translate(-2px, -2px);
     box-shadow: 6px 6px 0 rgba(26, 26, 26, 0.45);
-    outline-color: #e6f4fe;
+    outline-color: var(--color-text);
   }
 
   .shop-card:active {
@@ -6631,7 +6631,7 @@
   }
   .intent-btn:hover:not(:disabled) {
     background: #5d5a52;
-    border-color: #93b4cd;
+    border-color: var(--color-accent);
     transform: translateY(-2px);
   }
   .intent-btn:disabled {
@@ -6863,7 +6863,7 @@
   .shop-modal-buy:focus-visible {
     transform: translate(-2px, -2px);
     box-shadow: 6px 6px 0 rgba(26, 26, 26, 0.45);
-    background: #93b4cd;
+    background: var(--color-accent);
   }
 
   .shop-modal-buy:active {
@@ -6958,7 +6958,7 @@
     font-weight: 700;
     letter-spacing: 0.06em;
     line-height: 1;
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .event-countdown-title {
@@ -6966,7 +6966,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(30px, 3.6vw, 50px);
     line-height: 0.95;
-    color: #e6f4fe;
+    color: var(--color-text);
     letter-spacing: 0;
   }
 
@@ -6991,13 +6991,13 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(20px, 2vw, 30px);
     line-height: 1;
-    color: #93b4cd;
+    color: var(--color-accent);
   }
 
   .event-countdown-unit span {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
-    color: #e6f4fe;
+    color: var(--color-text);
     white-space: nowrap;
   }
 
@@ -7005,7 +7005,7 @@
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(24px, 3vw, 38px);
-    color: #93b4cd;
+    color: var(--color-accent);
   }
 
   @media (max-width: 760px) {
@@ -7091,7 +7091,7 @@
     min-width: 4px;
   }
 
-  .progress-fill.approved { background: #93b4cd; }
+  .progress-fill.approved { background: var(--color-accent); }
   .progress-fill.unreviewed { background: #cbc1ae; }
   .progress-fill.changes_needed { background: #d4a55a; }
   .progress-fill.unshipped { background: #c48382; }
@@ -7151,7 +7151,7 @@
   }
 
   .key-swatch.approved {
-    background: #93b4cd;
+    background: var(--color-accent);
   }
 
   .key-swatch.unreviewed {
@@ -7279,8 +7279,8 @@
 
   .shipping-prompt-item.done {
     background: rgba(90, 158, 111, 0.15);
-    border: 2px solid #5a9e6f;
-    color: #5a9e6f;
+    border: 2px solid var(--color-success);
+    color: var(--color-success);
   }
 
   .shipping-icon {
@@ -7297,7 +7297,7 @@
     font-size: 18px;
     text-align: center;
     text-decoration: none;
-    background: #5a9e6f;
+    background: var(--color-success);
     border: 3px solid #488a5a;
     border-bottom: 7px solid #3a7a4a;
     color: #fff;
@@ -7373,7 +7373,7 @@
   }
 
   .review-check input[type="checkbox"]:checked {
-    background: #5a9e6f;
+    background: var(--color-success);
     border-color: #488a5a;
   }
 
@@ -7421,7 +7421,7 @@
     padding: 16px;
     font-size: 20px;
     text-align: center;
-    background: #5a9e6f;
+    background: var(--color-success);
     border: 3px solid #488a5a;
     border-bottom: 7px solid #3a7a4a;
     color: #fff;
@@ -7546,7 +7546,7 @@
   .project-name {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(22px, 2.2vw, 30px);
-    color: #e6f4fe;
+    color: var(--color-text);
     margin: 0;
     letter-spacing: 0.02em;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
@@ -7590,12 +7590,12 @@
   }
 
   .project-status-badge.approved {
-    background: #93b4cd;
+    background: var(--color-accent);
     color: #635a4e;
   }
 
   .project-status-badge.golden {
-    background: #d4a017;
+    background: var(--color-warning);
     color: #fff;
   }
 
@@ -7624,14 +7624,14 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     font-weight: 700;
-    color: #93b4cd;
+    color: var(--color-accent);
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
 
   .project-link:hover {
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .project-hackatime {
@@ -7777,7 +7777,7 @@
     transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.5);
     border: none;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-size: 22px;
     width: 28px;
     height: 36px;
@@ -7826,7 +7826,7 @@
   }
 
   .explore-dot-active {
-    background: #e6f4fe;
+    background: var(--color-text);
   }
 
   .explore-card-body {
@@ -7845,7 +7845,7 @@
   .explore-card-name {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
-    color: #e6f4fe;
+    color: var(--color-text);
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     margin: 0;
   }
@@ -7881,7 +7881,7 @@
 
   .explore-card-hours {
     font-weight: 700;
-    color: #93b4cd;
+    color: var(--color-accent);
   }
 
   .explore-card-links {
@@ -7894,14 +7894,14 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     font-weight: 700;
-    color: #93b4cd;
+    color: var(--color-accent);
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
 
   .explore-link:hover {
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   /* ── project detail overlay ──────────────────────── */
@@ -7944,7 +7944,7 @@
     z-index: 10;
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(230, 244, 254, 0.2);
-    color: #e6f4fe;
+    color: var(--color-text);
     font-size: 28px;
     width: 40px;
     height: 40px;
@@ -7998,7 +7998,7 @@
     top: 50%;
     transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.5);
-    color: #e6f4fe;
+    color: var(--color-text);
     border: none;
     font-size: 32px;
     line-height: 1;
@@ -8027,7 +8027,7 @@
     background: rgba(255, 255, 255, 0.35);
   }
   .detail-dot-active {
-    background: #e6f4fe;
+    background: var(--color-text);
   }
 
   /* Info */
@@ -8045,7 +8045,7 @@
   .detail-name {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 32px;
-    color: #e6f4fe;
+    color: var(--color-text);
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     margin: 0;
   }
@@ -8073,7 +8073,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: 700;
-    color: #93b4cd;
+    color: var(--color-accent);
     margin: 4px 0 0;
   }
 
@@ -8122,7 +8122,7 @@
   }
 
   .detail-btn-demo {
-    background: #93b4cd;
+    background: var(--color-accent);
     border-color: #809fb7;
     color: #1a1a1a;
   }
@@ -8134,7 +8134,7 @@
   .detail-btn-code {
     background: rgba(230, 244, 254, 0.08);
     border-color: rgba(230, 244, 254, 0.2);
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .detail-btn-code:hover {
@@ -8150,7 +8150,7 @@
   .detail-comments-title {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
-    color: #e6f4fe;
+    color: var(--color-text);
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     margin: 0 0 16px;
   }
@@ -8164,7 +8164,7 @@
     box-sizing: border-box;
     background: rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(230, 244, 254, 0.15);
-    color: #e6f4fe;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     padding: 12px 14px;
@@ -8181,7 +8181,7 @@
 
   .detail-comment-input:focus {
     outline: none;
-    border-color: #93b4cd;
+    border-color: var(--color-accent);
   }
 
   .detail-comment-form-footer {
@@ -8201,7 +8201,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: 700;
-    background: #93b4cd;
+    background: var(--color-accent);
     color: #1a1a1a;
     border: none;
     padding: 10px 24px;
@@ -8315,7 +8315,7 @@
   .lb-total-label {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
-    color: #e6f4fe;
+    color: var(--color-text);
     letter-spacing: 0.04em;
     text-transform: uppercase;
     margin-bottom: 4px;
@@ -8324,7 +8324,7 @@
   .lb-total-value {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 40px);
-    color: #e6f4fe;
+    color: var(--color-text);
     letter-spacing: 0.04em;
   }
 
@@ -8370,7 +8370,7 @@
     flex: 1;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .lb-hours {
@@ -8427,7 +8427,7 @@
     margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(32px, 4vw, 52px);
-    color: #e6f4fe;
+    color: var(--color-text);
     letter-spacing: 0.06em;
     text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
     text-transform: uppercase;
@@ -8583,7 +8583,7 @@
     margin: 0 0 20px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 26px;
-    color: #e6f4fe;
+    color: var(--color-text);
     letter-spacing: 0.04em;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
   }
@@ -8604,7 +8604,7 @@
   .account-label {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
-    color: #93b4cd;
+    color: var(--color-accent);
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
   }
@@ -8619,7 +8619,7 @@
   }
 
   .account-link {
-    color: #93b4cd;
+    color: var(--color-accent);
     text-decoration: underline;
   }
 
@@ -8642,15 +8642,15 @@
 
   .nickname-input:focus {
     outline: none;
-    border-color: #93b4cd;
+    border-color: var(--color-accent);
   }
 
   .nickname-save {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
-    color: #e6f4fe;
+    color: var(--color-text);
     background: rgba(147, 180, 205, 0.25);
-    border: 1px solid #93b4cd;
+    border: 1px solid var(--color-accent);
     padding: 4px 10px;
     cursor: pointer;
     flex-shrink: 0;
@@ -8683,7 +8683,7 @@
 
   .gender-select:focus {
     outline: none;
-    border-color: #93b4cd;
+    border-color: var(--color-accent);
   }
 
   .gender-select:disabled {
@@ -8780,7 +8780,7 @@
     margin: 0 0 6px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 26px;
-    color: #e6f4fe;
+    color: var(--color-text);
     letter-spacing: 0.04em;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
   }
@@ -8795,7 +8795,7 @@
   }
 
   .settings-link-desc a {
-    color: #e6f4fe;
+    color: var(--color-text);
     text-decoration: underline;
   }
 
@@ -8848,7 +8848,7 @@
   }
 
   .fulfillment-unread {
-    border-left: 3px solid #93b4cd;
+    border-left: 3px solid var(--color-accent);
   }
 
   .fulfillment-item-header {
@@ -8861,7 +8861,7 @@
   .fulfillment-item-name {
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
-    color: #e6f4fe;
+    color: var(--color-text);
     letter-spacing: 0.03em;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
   }
@@ -8910,7 +8910,7 @@
   .shop-modal-success {
     padding: 14px;
     background: rgba(90, 158, 111, 0.18);
-    border: 2px solid #5a9e6f;
+    border: 2px solid var(--color-success);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
     color: #2c4f37;

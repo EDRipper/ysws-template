@@ -220,13 +220,13 @@
 		cursor: not-allowed;
 	}
 	.btn-primary {
-		background: #ec3750;
-		border-color: #ec3750;
+		background: var(--color-danger);
+		border-color: var(--color-danger);
 		color: #fff;
 		font-weight: 600;
 	}
 	.sg-error {
-		color: #ff6b6b;
+		color: var(--color-danger);
 		font-size: 0.85rem;
 	}
 	.sg-success {

@@ -742,7 +742,7 @@
 
   .go-home-btn {
     text-decoration: none;
-    background: #47453f;
+    background: var(--color-bg);
     color: white;
     font-weight: bold;
   }
@@ -801,7 +801,7 @@
   }
 
   .form-error {
-    color: #ff6b6b;
+    color: var(--color-danger);
     font-size: 0.9rem;
     margin: 0;
   }

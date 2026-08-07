@@ -143,7 +143,7 @@
 		--surface-color: #1e1e1e;
 		--primary-text-color: #e0e0e0;
 		--secondary-text-color: #a0a0a0;
-		--accent-color: #ec3750;
+		--accent-color: var(--color-danger);
 		--code-bg-color: #2a2a2a;
 
 		min-height: 100vh;

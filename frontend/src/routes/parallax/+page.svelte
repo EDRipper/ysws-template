@@ -129,10 +129,10 @@
   }
   .scroll-spacer {
     height: 1500px;
-    background: #47453f;
+    background: var(--color-bg);
   }
   .beest-bottom {
-    background: #47453f;
+    background: var(--color-bg);
     color: #ffffff;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(64px, 14vw, 220px);

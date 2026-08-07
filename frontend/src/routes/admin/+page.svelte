@@ -4169,7 +4169,7 @@
 		padding: 0.5rem 1rem;
 		border: none;
 		border-radius: 8px;
-		background: #d4a017;
+		background: var(--color-warning);
 		color: #1a1200;
 		font-weight: 600;
 		cursor: pointer;
@@ -4181,7 +4181,7 @@
 	.golden-backfill-result {
 		margin: 0.75rem 0 0;
 		font-size: 0.85rem;
-		color: #d4a017;
+		color: var(--color-warning);
 	}
 	.golden-backfill-error {
 		margin: 0.75rem 0 0;
@@ -4796,7 +4796,7 @@
 	.pill-changes_needed { background: #d4a55a; border-color: #e6ba70; color: #fff; }
 	.pill-changes_needed.active { background: #e0b468; border-color: #f0ca80; }
 
-	.pill-approved { background: #93b4cd; border-color: #aaccdd; color: #fff; }
+	.pill-approved { background: var(--color-accent); border-color: #aaccdd; color: #fff; }
 	.pill-approved.active { background: #a8c6dd; border-color: #c0ddef; }
 
 	.pill-rejected { background: #c25a5a; border-color: #d47070; color: #fff; }
@@ -4870,20 +4870,20 @@
 	}
 
 	.marker { display: inline-block; padding: 0.05rem 0.4rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; vertical-align: middle; }
-	.marker-watch { background: var(--reject, #e23); color: #fff; }
-	.marker-cool { background: var(--approve, #2a7); color: #fff; }
-	.marker-gold { background: #d4a017; color: #fff; }
-	.marker-gold-author { background: #fdf3d7; color: #a07408; border: 1px solid #d4a017; }
-	.gold-star { color: #d4a017; }
+	.marker-watch { background: var(--reject, var(--color-danger)); color: #fff; }
+	.marker-cool { background: var(--approve, var(--color-success)); color: #fff; }
+	.marker-gold { background: var(--color-warning); color: #fff; }
+	.marker-gold-author { background: #fdf3d7; color: #a07408; border: 1px solid var(--color-warning); }
+	.gold-star { color: var(--color-warning); }
 	.marker-sm { padding: 0; width: 1.05rem; height: 1.05rem; line-height: 1.05rem; text-align: center; border-radius: 999px; font-size: 0.6rem; margin-left: 0.3rem; }
 	.marker-controls { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin-top: 0.5rem; }
 	.marker-btn { padding: 0.2rem 0.55rem; border-radius: 6px; border: 1px solid var(--border, #999); background: transparent; color: inherit; cursor: pointer; font-size: 0.8rem; }
-	.marker-btn:hover:not(:disabled) { border-color: var(--reject, #e23); }
-	.marker-btn.on { background: var(--reject, #e23); border-color: var(--reject, #e23); color: #fff; }
-	.marker-btn-cool:hover:not(:disabled) { border-color: var(--approve, #2a7); }
-	.marker-btn-cool.on { background: var(--approve, #2a7); border-color: var(--approve, #2a7); color: #fff; }
+	.marker-btn:hover:not(:disabled) { border-color: var(--reject, var(--color-danger)); }
+	.marker-btn.on { background: var(--reject, var(--color-danger)); border-color: var(--reject, var(--color-danger)); color: #fff; }
+	.marker-btn-cool:hover:not(:disabled) { border-color: var(--approve, var(--color-success)); }
+	.marker-btn-cool.on { background: var(--approve, var(--color-success)); border-color: var(--approve, var(--color-success)); color: #fff; }
 	.marker-btn:disabled { opacity: 0.5; cursor: default; }
-	.marker-err { color: var(--reject, #e23); font-size: 0.78rem; }
+	.marker-err { color: var(--reject, var(--color-danger)); font-size: 0.78rem; }
 
 	/* ── Project claims + intent (PR #37) ── */
 	.claim-badge {
@@ -5677,12 +5677,12 @@
 	}
 
 	.review-btn-reject {
-		background: #c44040;
+		background: var(--color-danger);
 	}
 
 	.review-btn-hard-reject {
 		background: #7a1f1f;
-		border: 2px solid #c44040;
+		border: 2px solid var(--color-danger);
 	}
 
 	.review-btn-reopen {
@@ -5696,7 +5696,7 @@
 		gap: 1rem;
 		margin-top: 1rem;
 		padding: 0.85rem 1rem;
-		border: 1px solid #c44040;
+		border: 1px solid var(--color-danger);
 		border-radius: 8px;
 		background: rgba(196, 64, 64, 0.1);
 	}
@@ -5713,8 +5713,8 @@
 
 	.review-btn-ban {
 		background: #1a1a1a;
-		border: 2px solid #c44040;
-		color: #c44040;
+		border: 2px solid var(--color-danger);
+		color: var(--color-danger);
 	}
 
 	.leaderboard {
@@ -5791,7 +5791,7 @@
 	}
 
 	.review-card-approved { border-left: 3px solid #4a9a5a; }
-	.review-card-changes_needed { border-left: 3px solid #c44040; }
+	.review-card-changes_needed { border-left: 3px solid var(--color-danger); }
 
 	.review-card-header {
 		display: flex;
@@ -5858,7 +5858,7 @@
 
 	.devlog-card {
 		border: 1px solid #444;
-		border-left: 3px solid #93b4cd;
+		border-left: 3px solid var(--color-accent);
 		border-radius: 6px;
 		padding: 0.55rem 0.8rem;
 		background: #1e1e1e;
@@ -5926,8 +5926,8 @@
 		border: 1px solid;
 	}
 	.devlog-approve {
-		background: #2a7;
-		border-color: #2a7;
+		background: var(--color-success);
+		border-color: var(--color-success);
 		color: #fff;
 	}
 	.devlog-unapprove {
@@ -5943,18 +5943,18 @@
 	.devlog-approved-tag {
 		font-size: 0.8rem;
 		font-weight: 700;
-		color: #5a9e6f;
+		color: var(--color-success);
 	}
 	.devlog-approved-total {
 		font-size: 0.8rem;
 		font-weight: 600;
-		color: #5a9e6f;
+		color: var(--color-success);
 	}
 
 	.devlog-card-title {
 		margin: 0 0 4px;
 		font-size: 0.95rem;
-		color: #e6f4fe;
+		color: var(--color-text);
 		font-weight: 600;
 		line-height: 1.3;
 	}
@@ -6091,7 +6091,7 @@
 	}
 	.ht-lookout-hours {
 		font-weight: 700;
-		color: #5a9e6f;
+		color: var(--color-success);
 	}
 	.lookout-review-head {
 		display: flex;
@@ -6107,7 +6107,7 @@
 	.lookout-review-total {
 		font-size: 0.85rem;
 		font-weight: 700;
-		color: #5a9e6f;
+		color: var(--color-success);
 	}
 	.lookout-review-grid {
 		display: grid;
@@ -6277,7 +6277,7 @@
 
 	.ht-ai-pill.flag {
 		background: rgba(220, 50, 50, 0.18);
-		border-color: #c44040;
+		border-color: var(--color-danger);
 		color: #f44336;
 	}
 
@@ -6333,7 +6333,7 @@
 
 	.unified-duplicate-alert {
 		background: rgba(220, 50, 50, 0.15);
-		border: 2px solid #c44040;
+		border: 2px solid var(--color-danger);
 		border-radius: 6px;
 		color: #f44336;
 		font-weight: 700;
@@ -6344,7 +6344,7 @@
 
 	.ht-ownership-alert {
 		background: rgba(220, 50, 50, 0.12);
-		border: 2px solid #c44040;
+		border: 2px solid var(--color-danger);
 		border-radius: 6px;
 		color: #f6a0a0;
 		font-size: 0.85rem;
@@ -6354,7 +6354,7 @@
 		flex-direction: column;
 		gap: 0.35rem;
 	}
-	.ht-ownership-alert strong { color: #ff6b6b; }
+	.ht-ownership-alert strong { color: var(--color-danger); }
 	.ht-ownership-meta {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -7023,7 +7023,7 @@
 	.grant-batch .cg-hint { opacity: 0.6; font-weight: 400; }
 	.grant-batch-results { list-style: none; margin: 0.75rem 0 0; padding: 0; font-size: 0.8rem; }
 	.grant-batch-results li.ok { color: #6bd968; }
-	.grant-batch-results li.fail { color: #ff6b6b; }
+	.grant-batch-results li.fail { color: var(--color-danger); }
 
 	.fulfillment-toolbar {
 		display: flex;
@@ -7046,7 +7046,7 @@
 	}
 
 	.admin-table th {
-		color: #93b4cd;
+		color: var(--color-accent);
 		font-weight: 600;
 		font-size: 0.8rem;
 		text-transform: uppercase;
@@ -7065,7 +7065,7 @@
 		text-transform: uppercase;
 	}
 	.status-pending { background: rgba(196, 131, 130, 0.25); color: #c48382; }
-	.status-fulfilled { background: rgba(147, 180, 205, 0.25); color: #93b4cd; }
+	.status-fulfilled { background: rgba(147, 180, 205, 0.25); color: var(--color-accent); }
 	.status-cancelled { background: rgba(150, 150, 150, 0.25); color: #9a978f; }
 
 	.fulfillment-actions {
@@ -7092,7 +7092,7 @@
 
 	.fulfillment-msg-input:focus {
 		outline: none;
-		border-color: #93b4cd;
+		border-color: var(--color-accent);
 	}
 
 	.btn-sm {
@@ -7102,8 +7102,8 @@
 
 	.btn-primary {
 		background: rgba(147, 180, 205, 0.3);
-		border-color: #93b4cd;
-		color: #e6f4fe;
+		border-color: var(--color-accent);
+		color: var(--color-text);
 	}
 	.btn-primary:hover { background: rgba(147, 180, 205, 0.5); }
 
@@ -7156,7 +7156,7 @@
 	.admin-shell.light .status-cancelled { background: rgba(150, 150, 150, 0.15); }
 
 	.order-row { cursor: pointer; }
-	.order-row-toggle { display: inline-block; width: 1em; color: #93b4cd; }
+	.order-row-toggle { display: inline-block; width: 1em; color: var(--color-accent); }
 	.order-row-open { background: rgba(147, 180, 205, 0.06); }
 
 	.order-detail-row td {
@@ -7204,7 +7204,7 @@
 		font-size: 0.85rem;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
-		color: #93b4cd;
+		color: var(--color-accent);
 	}
 	.order-detail-hint { font-weight: 400; text-transform: none; letter-spacing: 0; color: rgba(255,255,255,0.5); font-size: 0.75rem; margin-left: 0.4rem; }
 	.admin-shell.light .order-detail-hint { color: rgba(0,0,0,0.5); }
@@ -7238,7 +7238,7 @@
 	.address-value { font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.9rem; word-break: break-word; }
 	.address-copied { font-size: 0.7rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.05em; }
 	.admin-shell.light .address-line { background: #fff; border-color: #ddd; }
-	.admin-shell.light .address-line:hover { background: #eef4fa; border-color: #93b4cd; }
+	.admin-shell.light .address-line:hover { background: #eef4fa; border-color: var(--color-accent); }
 	.admin-shell.light .address-copied { color: rgba(0,0,0,0.5); }
 
 	.approved-projects { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; }
@@ -7255,11 +7255,11 @@
 	.approved-project-name { font-weight: 600; }
 	.approved-project-type { color: rgba(255,255,255,0.55); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
 	.admin-shell.light .approved-project-type { color: rgba(0,0,0,0.55); }
-	.approved-project-hours { color: #93b4cd; font-variant-numeric: tabular-nums; }
+	.approved-project-hours { color: var(--color-accent); font-variant-numeric: tabular-nums; }
 	.approved-project-date { margin-left: auto; color: rgba(255,255,255,0.5); font-size: 0.75rem; }
 	.admin-shell.light .approved-project-date { color: rgba(0,0,0,0.55); }
 
-	.link-btn { background: none; border: none; color: #93b4cd; cursor: pointer; padding: 0; font: inherit; text-decoration: underline; }
+	.link-btn { background: none; border: none; color: var(--color-accent); cursor: pointer; padding: 0; font: inherit; text-decoration: underline; }
 
 	.ht-files {
 		margin-top: 1rem;
@@ -7281,13 +7281,13 @@
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.06em;
-		color: #93b4cd;
+		color: var(--color-accent);
 	}
 
 	.ht-files-toggle {
 		border: 1px solid rgba(147, 180, 205, 0.35);
 		background: rgba(147, 180, 205, 0.08);
-		color: #93b4cd;
+		color: var(--color-accent);
 		padding: 0.28rem 0.65rem;
 		border-radius: 6px;
 		font: inherit;
@@ -7322,7 +7322,7 @@
 	.ht-file-hours {
 		flex: none;
 		font-variant-numeric: tabular-nums;
-		color: #93b4cd;
+		color: var(--color-accent);
 	}
 
 	.ht-files-list {
@@ -7380,7 +7380,7 @@
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.06em;
-		color: #93b4cd;
+		color: var(--color-accent);
 	}
 
 	.review-user-projects-count {
@@ -7464,7 +7464,7 @@
 	}
 	
 	.review-user-projects-link:focus-visible{
-		outline: 2px solid #93b4cd;
+		outline: 2px solid var(--color-accent);
 		outline-offset: 2px;
 	}
 

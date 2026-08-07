@@ -1,13 +1,13 @@
 <!-- src/routes/FAQ/+page.svelte -->
 <!-- Color Pallet
  #c48382 - Light Red
- #93b4cd - Light Blue
+ var(--color-accent) - Light Blue
  #4b4840 - Dark Gray
  #6c6659 - Medium Gray
  #7f796d - Light Gray
  #cbc1ae - Beige
  #809fb7 - Light Steel Blue
- #e6f4fe - Light Cyan
+ var(--color-text) - Light Cyan
  #ffffff - White
 -->
 

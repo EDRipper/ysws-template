@@ -24,7 +24,7 @@
   }
 
   .error {
-    color: #ff6b6b;
+    color: var(--color-danger);
   }
 
   a {

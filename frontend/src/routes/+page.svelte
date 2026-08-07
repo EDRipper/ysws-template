@@ -1,13 +1,13 @@
 <!-- src/routes/+page.svelte -->
  <!-- Color Pallet
   #c48382 - Light Red
-  #93b4cd - Light Blue
+  var(--color-accent) - Light Blue
   #4b4840 - Dark Gray
   #6c6659 - Medium Gray
   #7f796d - Light Gray
   #cbc1ae - Beige
   #809fb7 - Light Steel Blue
-  #e6f4fe - Light Cyan
+  var(--color-text) - Light Cyan
   #ffffff - White
  
  -->
@@ -505,7 +505,7 @@
 <div class="rock-strata" style="background:#635a4e" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,30 180,45 340,20 500,48 660,22 820,52 980,28 1140,50 1300,25 1440,40 1440,100 0,100" fill="#544d42" />
-    <polygon points="0,55 140,68 300,50 460,72 620,48 780,70 940,45 1100,65 1260,52 1440,62 1440,100 0,100" fill="#47453f" />
+    <polygon points="0,55 140,68 300,50 460,72 620,48 780,70 940,45 1100,65 1260,52 1440,62 1440,100 0,100" fill="var(--color-bg)" />
   </svg>
 </div>
 
@@ -563,7 +563,7 @@
 
 </div>
 
-<div class="rock-strata" style="background:#47453f" aria-hidden="true">
+<div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,32 160,48 320,26 480,52 640,22 800,50 960,28 1120,54 1280,30 1440,44 1440,100 0,100" fill="#5e5648" />
     <polygon points="0,58 200,70 360,52 520,74 680,48 840,72 1000,50 1160,68 1320,54 1440,62 1440,100 0,100" fill="#6c6659" />
@@ -874,7 +874,7 @@
     box-sizing: border-box;
     padding: 13px 12px;
     border: 2px solid #4b4840;
-    background: #e6f4fe;
+    background: var(--color-text);
     color: #4b4840;
     font-size: 18px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -947,7 +947,7 @@
     padding: 10px 12px;
     background: rgba(0, 0, 0, 0.32);
     border: 1px solid rgba(230, 244, 254, 0.15);
-    color: #e6f4fe;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     line-height: 1.4;
@@ -965,7 +965,7 @@
 
   .signup-note a,
   .signup-note a:visited {
-    color: #93b4cd;
+    color: var(--color-accent);
     text-decoration: underline;
   }
 
@@ -1089,7 +1089,7 @@
   :global(body) {
     margin: 0;
     padding: 0;
-    background-color: #47453f;
+    background-color: var(--color-bg);
   }
 
   .saturate-wrap {
@@ -1228,7 +1228,7 @@
   .wall-of-fame {
     background: #635a4e;
     padding: 88px 48px 108px;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     position: relative;
     z-index: 1;
@@ -1357,7 +1357,7 @@
 
   .term-bar span:first-child { background: #c48382; }
   .term-bar span:nth-child(2) { background: #cbc1ae; }
-  .term-bar span:nth-child(3) { background: #93b4cd; }
+  .term-bar span:nth-child(3) { background: var(--color-accent); }
 
   .term-bar p {
     margin: 0 0 0 8px;
@@ -1376,7 +1376,7 @@
   }
 
   .t-dim { color: #7f796d; }
-  .t-blue { color: #93b4cd; }
+  .t-blue { color: var(--color-accent); }
   .t-ok { color: #a3b579; }
 
   .term-cursor {
@@ -1434,7 +1434,7 @@
     margin-top: 12px;
     padding: 8px 12px;
     border: 1px solid #4b4840;
-    background: #93b4cd;
+    background: var(--color-accent);
     color: #ffffff;
     font-size: 14px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -1452,7 +1452,7 @@
   /* ── what-is-this ───────────────────────────────── */
   .what-is-this {
     padding: 80px 48px 72px;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     background: #786e5c;
   }
@@ -1501,7 +1501,7 @@
 
   .info-block {
     flex: 1;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
@@ -1603,7 +1603,7 @@
     margin: 0 0 14px;
     padding: 14px 12px;
     border: 1px solid #cbc1ae;
-    background: #e6f4fe;
+    background: var(--color-text);
     color: #4b4840;
     font-size: 18px;
     font-family: inherit;
@@ -1667,7 +1667,7 @@
   .updates {
     display: none;
     margin: 14px 0 0;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-size: 14px;
     line-height: 1.4;
   }
@@ -1678,13 +1678,13 @@
 
   .updates a,
   .updates a:visited {
-    color: #93b4cd;
+    color: var(--color-accent);
     text-decoration: underline;
   }
 
   .rsvp-note {
     margin: 20px 0 0;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     line-height: 1.35;
@@ -1718,7 +1718,7 @@
   .callout {
     position: absolute;
     max-width: 35cqi;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(14px, 1.8cqi, 18px);
     letter-spacing: 0.03em;
@@ -1741,7 +1741,7 @@
     content: '';
     position: absolute;
     height: 1px;
-    background: linear-gradient(90deg, rgba(147, 180, 205, 0), #93b4cd 35%, #e6f4fe);
+    background: linear-gradient(90deg, rgba(147, 180, 205, 0), var(--color-accent) 35%, var(--color-text));
     opacity: calc(0.35 + (var(--r) * 0.65));
   }
 
@@ -1749,7 +1749,7 @@
     content: '';
     position: absolute;
     width: 1px;
-    background: linear-gradient(180deg, rgba(147, 180, 205, 0), #e6f4fe);
+    background: linear-gradient(180deg, rgba(147, 180, 205, 0), var(--color-text));
     opacity: calc(0.35 + (var(--r) * 0.65));
   }
 
@@ -1767,14 +1767,14 @@
     left: calc(-1 * (55cqi - 24.5cqi));
     width: calc(55cqi - 24.5cqi);
     top: 18px;
-    background: linear-gradient(90deg, #93b4cd, #e6f4fe);
+    background: linear-gradient(90deg, var(--color-accent), var(--color-text));
   }
 
   .c1::after {
     height: 70px;
     left: calc(-1 * (55cqi - 24.5cqi));
     top: 18px;
-    background: linear-gradient(180deg, #93b4cd, rgba(147, 180, 205, 0));
+    background: linear-gradient(180deg, var(--color-accent), rgba(147, 180, 205, 0));
   }
 
   .c2 {
@@ -1797,14 +1797,14 @@
     left: calc(-1 * (55cqi - 24.5cqi));
     width: calc(55cqi - 24.5cqi);
     top: 19px;
-    background: linear-gradient(90deg, #93b4cd, #e6f4fe);
+    background: linear-gradient(90deg, var(--color-accent), var(--color-text));
   }
 
   .c3::after {
     height: 70px;
     left: calc(-1 * (55cqi - 24.5cqi));
     bottom: calc(100% - 20px);
-    background: linear-gradient(180deg, rgba(147, 180, 205, 0), #93b4cd);
+    background: linear-gradient(180deg, rgba(147, 180, 205, 0), var(--color-accent));
   }
 
   .carousel-section {
@@ -1818,7 +1818,7 @@
     padding: 100px 0 100px;
     display: grid;
     grid-template: 1fr / 1fr;
-    background: #47453f;
+    background: var(--color-bg);
   }
 
   .carousel-title {
@@ -1828,7 +1828,7 @@
     transform: translate(-50%, -50%) rotate(-12deg);
     z-index: 3;
     margin: 0;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(32px, 4vw, 56px);
     letter-spacing: 0.04em;
@@ -1929,7 +1929,7 @@
     height: auto;
     object-fit: contain;
     border: 1px solid #6c6659;
-    background: #e6f4fe;
+    background: var(--color-text);
     display: block;
   }
 
@@ -2059,18 +2059,18 @@
     margin: 0 0 22px;
     font-size: clamp(22px, 2vw, 28px);
     letter-spacing: 0.03em;
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .footer-heading a,
   .footer-heading a:visited {
-    color: #93b4cd;
+    color: var(--color-accent);
     text-decoration: underline;
     text-underline-offset: 4px;
   }
 
   .footer-heading a:hover {
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .footer-about {
@@ -2132,7 +2132,7 @@
   .footer-love a:visited,
   .footer-love a:hover,
   .footer-love a:active {
-    color: #93b4cd;
+    color: var(--color-accent);
   }
 
   .footer-cog {
@@ -2147,7 +2147,7 @@
   /* ── bottom RSVP ─────────────────────────────────── */
   /* ── hack club section ────────────────────────────── */
   .hackclub-section {
-    background: #47453f;
+    background: var(--color-bg);
     padding: 96px 48px 0;
   }
 
@@ -2172,16 +2172,16 @@
 
   .faq-link a,
   .faq-link a:visited {
-    color: #93b4cd;
+    color: var(--color-accent);
   }
 
   .faq-link a:hover {
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .hackclub-text {
     flex: 1;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
@@ -2245,7 +2245,7 @@
     top: 8px;
     left: 3px;
     transform: rotate(-1deg);
-    background: #e6f4fe;
+    background: var(--color-text);
     overflow: hidden;
   }
 
@@ -2284,7 +2284,7 @@
 
   .bottom-rsvp-text {
     flex: 1;
-    color: #e6f4fe;
+    color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
@@ -2319,12 +2319,12 @@
 
   .bottom-rsvp-text a,
   .bottom-rsvp-text a:visited {
-    color: #93b4cd;
+    color: var(--color-accent);
     text-decoration: underline;
   }
 
   .bottom-rsvp-text a:hover {
-    color: #e6f4fe;
+    color: var(--color-text);
   }
 
   .bottom-rsvp .rsvp-box {

@@ -257,6 +257,75 @@ supported from one repo now), Orchard is the priority.
   operator rather than guessing a domain that might collide with something
   real on shared Hack Club infra.
 
+## Frontend color sweep — tick 2 (2026-08-07)
+
+Scoped the full hardcoded-hex-color surface: `grep -rho '#[0-9a-fA-F]\{3,8\}' frontend/src --include=*.svelte` —
+~1900 total occurrences, ~370+ distinct values, concentrated in
+`routes/admin/+page.svelte` (784!), `routes/home/+page.svelte` (545),
+`routes/+page.svelte` (214), plus smaller counts across ~18 other files.
+
+Applied only the HIGH-CONFIDENCE exact mappings this tick (214 replacements,
+13 files) — colors I could tie to a known role without guessing:
+- `#47453f` -> `var(--color-bg)`, `#e6f4fe` -> `var(--color-text)` (the exact
+  original body bg/text values from beest's old `+layout.svelte`, captured
+  before that file was edited — not a guess).
+- `#93b4cd` -> `var(--color-accent)` (was the exact old focus-outline color).
+- `#5a9e6f`/`#2a7` -> `var(--color-success)`, `#c44040`/`#ff6b6b`/`#ec3750`/
+  `#e23` -> `var(--color-danger)`, `#d4a017` -> `var(--color-warning)` — safe
+  under the universal red=danger/green=success/amber=warning convention,
+  regardless of which specific component uses them.
+Verified both build paths (plain `npm run build` and `VERCEL=1 npm run
+build`) clean after.
+
+**Deliberately did NOT touch** the large ambiguous families this tick:
+- `#4b4840`/`#3a3832`/`#6c6659`/`#7f796d`/`#635a4e`/`#2e2a26`/`#5a564c`/
+  `#2c2a25`/`#3a3530`/`#56494a`/`#9a9285` — Beest's warm dark brown/olive
+  ramp (borders vs elevated-surface vs shadow all plausible, ~11 distinct
+  close shades, no way to tell which role each plays from grep alone).
+- `#cbc1ae`/`#e8e0d4`/`#f5f4f1`/`#ddd7cf`/`#e6e2da`/`#f0ebe5`/`#eae8e3`/
+  `#e8e6e1`/`#f5ebdc` — a light cream/beige family (literally the "cream...
+  that looks like every site" the operator said to avoid — high priority to
+  fix, but still needs per-usage classification first).
+- `#93b4cd`'s blue-family siblings `#5b9bd5`/`#3b7bb5`/`#2a6699`/`#809fb7` —
+  likely the same "interactive blue" role and safe to also map to
+  `var(--color-accent)`, but not confirmed visually, left for next pass.
+- `#eac` (106 occurrences — expands to `#eeaacc`, a pink) and `#c48382`
+  (dusty rose, 37) and `#d4a55a` (gold, 9) — these look less like semantic
+  UI colors and more like specific hand-picked illustration/art hues (the
+  `#eac` count especially, likely inline SVG fills). These belong with the
+  still-open "inventory Beest mascot/pipe art" item, not a blind token swap.
+- Plain grayscale (`#333`/`#444`/`#555`.../`#ccc`/`#ddd`/`#e0e0e0` etc) — very
+  high volume but generic, not specifically "Beest-branded," lower priority.
+
+**Why the rest wasn't attempted blind this tick**: reclassifying ~350 more
+distinct hex values into bg/elevated/border/text roles from grep frequency
+alone, with no visual check, risks real regressions on an 8900-line landing
+page — "keep it looking good" is an explicit requirement, and this was an
+unattended autonomous tick with no one able to catch a bad call in the
+moment. **Recommended approach for whoever continues this**: use
+`test_repo`/screenshots (or a real local `npm run dev` + browser) to see
+`home/+page.svelte` and `admin/+page.svelte` rendered BEFORE touching more
+colors, note which hex belongs to which visual role from the screenshot,
+then batch-replace with confidence instead of guessing from grep counts.
+
+## Orchard — tick 2 update
+
+Two blockers from the last update to the operator are still open (no
+response yet, this is an unattended tick — not chasing further, per
+instructions not to ask questions that can't be answered right now):
+1. Real domain/subdomain for the required `ingress.domain` template field —
+   nothing on the `YSWS` org to infer a convention from. Did NOT guess one
+   (wrong guess = a failed ACME/TLS cert or ingress collision on shared
+   Hack Club infra, worse than doing nothing).
+2. ghcr.io package visibility (`ysws-template-backend`/`-frontend`, both
+   likely private-by-default) — bot's `gh` token lacks `read:packages`/
+   `write:packages` scope to check/fix this itself, and the browser profile
+   isn't logged into github.com as a real user (confirmed: hit a signed-out
+   page). Needs the operator's own GitHub access.
+
+Not blocking other work — continued backend genericization + the frontend
+color sweep above instead of stalling on these.
+
 ## Known risks / things to double check later
 
 - Currency `formatCurrency()` helper is unused so far — nothing calls it yet.
