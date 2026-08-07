@@ -1,0 +1,5 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="32" cy="32" r="28" fill="#d9c86a" stroke="#8a7a2e" stroke-width="3"/>
+  <circle cx="32" cy="32" r="20" fill="none" stroke="#8a7a2e" stroke-width="2"/>
+  <text x="32" y="40" font-family="ui-monospace, monospace" font-size="24" font-weight="700" fill="#8a7a2e" text-anchor="middle">$</text>
+</svg>

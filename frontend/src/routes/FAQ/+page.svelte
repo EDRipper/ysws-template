@@ -22,8 +22,6 @@
     openIndex = openIndex === i ? null : i;
   }
 
-  let gearAngle = $derived(openIndex !== null ? (openIndex + 1) * 45 : 0);
-
   const cfg = data.yswsConfig;
   const whenWhere = [cfg.event?.startDate && cfg.event?.endDate ? `${cfg.event.startDate} to ${cfg.event.endDate}` : null, cfg.event?.location].filter(Boolean).join(' at ');
 
@@ -60,24 +58,6 @@
 </script>
 
 <div class="faq-page">
-  <!-- Side gears — desktop only, rotate based on open question -->
-  <svg class="side-gear side-gear-l1" style="transform: rotate({gearAngle * 0.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-  </svg>
-  <svg class="side-gear side-gear-l2" style="transform: rotate({-gearAngle * 1.8 + 22.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-  </svg>
-  <svg class="side-gear side-gear-l3" style="transform: rotate({gearAngle * 2.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-  </svg>
-
-  <svg class="side-gear side-gear-r1" style="transform: rotate({-gearAngle * 1.3}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-  </svg>
-  <svg class="side-gear side-gear-r2" style="transform: rotate({gearAngle * 0.3 + 22.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-  </svg>
-
   <h1>Frequently Asked Questions</h1>
   <p class="faq-intro">I'm sure you have lots of questions! Below is the most common ones I see, but if you need more help please email {cfg.admin.contactEmail} or ask in the {cfg.program.name} Slack channel</p>
 
@@ -253,51 +233,7 @@
     background: var(--color-bg);
   }
 
-  .side-gear {
-    position: absolute;
-    z-index: 3;
-    pointer-events: none;
-    width: 200px;
-    height: 200px;
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  /* Left side gears — embedded in the left edge */
-  .side-gear-l1 {
-    left: -115px;
-    top: 10%;
-  }
-
-  .side-gear-l2 {
-    left: -130px;
-    top: 40%;
-    width: 240px;
-    height: 240px;
-  }
-
-  .side-gear-l3 {
-    left: -115px;
-    top: 72%;
-  }
-
-  /* Right side gears — embedded in the right edge */
-  .side-gear-r1 {
-    right: -115px;
-    top: 20%;
-  }
-
-  .side-gear-r2 {
-    right: -130px;
-    top: 53%;
-    width: 240px;
-    height: 240px;
-  }
-
-
   @media (max-width: 600px) {
-    .side-gear {
-      display: none;
-    }
     h1 {
       font-size: 2rem;
     }

@@ -66,7 +66,6 @@
   const sectionFromPath = (pathname: string) => pathSections[pathname] ?? 'projects';
 
   let activeSection = $state(sectionFromPath(page.url.pathname));
-  let tileLoaded = $state(false);
   let customCursorEnabled = $state(typeof localStorage !== 'undefined' ? localStorage.getItem('customCursor') !== 'off' : true);
   let creatingProject = $state(false);
   let editingProject = $state<any>(null);
@@ -1549,12 +1548,6 @@
       document.documentElement.classList.remove('custom-cursor');
     }
 
-    let loaded = 0;
-    for (const src of ['/images/tile.webp', '/images/tile2.webp', '/images/tile3.webp']) {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => { if (++loaded === 3) tileLoaded = true; };
-    }
     fetchProjects();
     fetchHackatimeProjects();
     fetchAuditLog();
@@ -1581,7 +1574,7 @@
   });
 </script>
 
-<div class="home" class:tile-loaded={tileLoaded}>
+<div class="home">
 
   <!-- Sidebar -->
   <nav class="sidebar pinned" aria-label="Home navigation">
@@ -1624,8 +1617,6 @@
         </ul>
       </div>
     </div>
-    <div class="teeth outer" aria-hidden="true"></div>
-    <div class="teeth inner" aria-hidden="true"></div>
     <div class="expand-hint" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M9 18l6-6-6-6" />
@@ -2296,11 +2287,11 @@
                   <span>Suggestions</span>
                 </button>
                 <div class="pipes-box">
-                  <img src="/images/pipes.png" alt="" class="pipe-img" />
+                  <img src={data.yswsConfig.currency.iconAsset} alt="" class="pipe-img" />
                   <div class="pipes-box-text">
                     <span class="pipes-box-label">{data.yswsConfig.currency.namePlural}</span>
                     <span class="pipes-box-value">{userPipes}</span>
-                    <span class="pipes-box-hint">1 approved hour = 1 Pipe</span>
+                    <span class="pipes-box-hint">1 approved hour = 1 {data.yswsConfig.currency.nameSingular}</span>
                   </div>
                 </div>
               </div>
@@ -2327,7 +2318,7 @@
                 <p class="shop-card-desc">{item.description}</p>
                 <div class="shop-card-footer">
                   <p class="shop-card-cost" aria-label="{item.priceHours} {currencyLabel(item.priceHours)}">
-                    <img src="/images/pipes.png" alt="" class="cost-pipe" />
+                    <img src={data.yswsConfig.currency.iconAsset} alt="" class="cost-pipe" />
                     <span>{item.priceHours}</span>
                   </p>
                   {#if item.stock !== null}
@@ -2362,7 +2353,7 @@
                     <p class="shop-spotlight-desc">{spotlightItem.description}</p>
                     <div class="shop-spotlight-footer">
                       <p class="shop-card-cost shop-spotlight-cost" aria-label="{spotlightItem.priceHours} {currencyLabel(spotlightItem.priceHours)}">
-                        <img src="/images/pipes.png" alt="" class="cost-pipe" />
+                        <img src={data.yswsConfig.currency.iconAsset} alt="" class="cost-pipe" />
                         <span>{spotlightItem.priceHours}</span>
                       </p>
                       {#if spotlightItem.stock !== null}
@@ -2767,22 +2758,6 @@
     {#if activeSection === 'faq'}
     <section class="section section-faq">
       <div class="faq-page">
-        <svg class="side-gear side-gear-l1" style="transform: rotate({(faqOpenIndex !== null ? (faqOpenIndex + 1) * 45 : 0) * 0.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-        </svg>
-        <svg class="side-gear side-gear-l2" style="transform: rotate({(faqOpenIndex !== null ? (faqOpenIndex + 1) * 45 : 0) * -1.8 + 22.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-        </svg>
-        <svg class="side-gear side-gear-l3" style="transform: rotate({(faqOpenIndex !== null ? (faqOpenIndex + 1) * 45 : 0) * 2.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-        </svg>
-        <svg class="side-gear side-gear-r1" style="transform: rotate({(faqOpenIndex !== null ? (faqOpenIndex + 1) * 45 : 0) * -1.3}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-        </svg>
-        <svg class="side-gear side-gear-r2" style="transform: rotate({(faqOpenIndex !== null ? (faqOpenIndex + 1) * 45 : 0) * 0.3 + 22.5}deg)" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t (t)}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-        </svg>
-
         <h2 class="faq-title">Frequently Asked Questions</h2>
         <p class="faq-intro">I'm sure you have lots of questions! Below is the most common ones I see, but if you need more help please email {data.yswsConfig.admin.contactEmail} or ask in the {data.yswsConfig.program.name} Slack channel</p>
 
@@ -3373,7 +3348,8 @@
     width: calc(100% - 55px);
     max-width: 0;
     height: 100%;
-    background: var(--color-bg);
+    background: var(--color-bg-elevated);
+    border-right: 1px solid var(--color-border);
     overflow: hidden;
     transition: max-width 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -3381,52 +3357,6 @@
   .sidebar:hover .sidebar-panel,
   .sidebar.pinned .sidebar-panel {
     max-width: 220px;
-  }
-
-  .teeth {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .teeth.inner {
-    width: 30px;
-    background: var(--color-border);
-    z-index: 3;
-    clip-path: polygon(
-      0% 0%,
-      65% 0%,
-      80% 10%,
-      55% 22%,
-      90% 35%,
-      50% 48%,
-      85% 60%,
-      58% 72%,
-      95% 85%,
-      70% 100%,
-      0% 100%
-    );
-  }
-
-  .teeth.outer {
-    width: 60px;
-    background: var(--color-bg);
-    z-index: 4;
-    clip-path: polygon(
-      0% 0%,
-      70% 0%,
-      55% 15%,
-      88% 28%,
-      60% 42%,
-      92% 55%,
-      52% 68%,
-      82% 80%,
-      58% 92%,
-      65% 100%,
-      0% 100%
-    );
   }
 
   .expand-hint {
@@ -3478,7 +3408,6 @@
   .sidebar-brand {
     display: block;
     margin-bottom: 24px;
-    line-height: 0;
   }
 
   .sidebar-logo {
@@ -3486,6 +3415,7 @@
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 20px;
     font-weight: 700;
+    line-height: 1.25;
     letter-spacing: 0.02em;
     color: var(--color-text);
     transition: color 150ms ease;
@@ -3580,39 +3510,6 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-  }
-
-  .section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.12;
-    mix-blend-mode: overlay;
-    background-size: 512px 512px;
-    background-repeat: repeat;
-  }
-
-  .tile-loaded .section-projects::after,
-  .tile-loaded .section-settings::after,
-  .tile-loaded .section-resubmit::after,
-  .tile-loaded .create-project-form::after {
-    background-image: url('/images/tile.webp');
-  }
-
-  .tile-loaded .section-shop::after,
-  .tile-loaded .section-leaderboard::after,
-  .tile-loaded .section-events::after {
-    background-image: url('/images/tile2.webp');
-  }
-
-  .tile-loaded .section-explore::after {
-    background-image: url('/images/tile3.webp');
-  }
-
-  .tile-loaded .section-devlogs::after {
-    background-image: url('/images/tile2.webp');
-    opacity: 0.18;
   }
 
   .section-inner {
@@ -3903,7 +3800,7 @@
 
   /* ── create project form ─────────────────────────── */
   .create-project-form {
-    background: var(--color-bg);
+    background: var(--color-bg-elevated);
     padding: 48px 48px 32px 150px;
     min-height: 100vh;
     box-sizing: border-box;
@@ -4076,6 +3973,10 @@
   .form-textarea {
     min-height: 60px;
     resize: none;
+  }
+
+  #project-desc {
+    min-height: 160px;
   }
 
   .form-select {
@@ -4444,7 +4345,7 @@
 
   /* ── Resubmit section ─────────────────────────── */
   .section-resubmit {
-    background: var(--color-bg);
+    background: var(--color-bg-elevated);
   }
 
   .approved-summary {
@@ -4640,7 +4541,7 @@
     position: absolute;
     bottom: calc(100% + 8px);
     right: 0;
-    background: var(--color-bg);
+    background: var(--color-bg-elevated-2);
     color: var(--color-text);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
@@ -4713,7 +4614,7 @@
     padding: 1.25rem;
     border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.14);
-    background: var(--color-bg);
+    background: var(--color-bg-elevated-2);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   }
   .lookout-modal-header {
@@ -5113,7 +5014,7 @@
 
   /* ── Devlogs section ───────────────────────── */
   .section-devlogs {
-    background: #52504a;
+    background: var(--color-bg-elevated);
     padding-top: 48px;
   }
 
@@ -5515,7 +5416,7 @@
 
   /* ── shop ────────────────────────────────────────── */
   .section-shop {
-    background: #56494a;
+    background: var(--color-bg-elevated);
     overflow-y: auto;
   }
 
@@ -5554,8 +5455,8 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    background: var(--color-bg);
-    border: 2px solid #1a1a1a;
+    background: var(--color-bg-elevated-2);
+    border: 2px solid var(--color-border);
     box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
     padding: 10px 16px;
     flex-shrink: 0;
@@ -6690,7 +6591,7 @@
 
   /* ── projects ────────────────────────────────────── */
   .section-projects {
-    background: var(--color-bg);
+    background: var(--color-bg-elevated);
     padding-top: 48px;
   }
 
@@ -7226,7 +7127,7 @@
 
   /* ── explore ─────────────────────────────────────── */
   .section-explore {
-    background: var(--color-bg);
+    background: var(--color-bg-elevated);
   }
 
   .explore-placeholder {
@@ -7469,7 +7370,7 @@
 
   .detail-panel {
     position: relative;
-    background: var(--color-bg);
+    background: var(--color-bg-elevated-2);
     border: 2px solid rgba(230, 244, 254, 0.15);
     max-width: 820px;
     width: 100%;
@@ -7840,7 +7741,7 @@
 
   /* ── leaderboard ─────────────────────────────────── */
   .section-leaderboard {
-    background: var(--color-bg);
+    background: var(--color-bg-elevated);
   }
 
   .leaderboard-head {
@@ -7980,26 +7881,16 @@
 
   /* ── faq ─────────────────────────────────────────── */
   .section-faq {
-    background: var(--color-bg);
+    background: var(--color-bg-elevated);
     padding: 0;
   }
 
   .faq-page {
-    background: var(--color-bg);
+    background: var(--color-bg-elevated);
     min-height: 100%;
     padding: 2rem 3rem;
     position: relative;
     overflow-x: hidden;
-  }
-
-  .faq-page::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('/images/tile.webp') repeat;
-    opacity: 0.06;
-    mix-blend-mode: overlay;
-    pointer-events: none;
   }
 
   .faq-page > * {
@@ -8035,8 +7926,8 @@
   }
 
   .faq-item {
-    background: #3a3530;
-    border: 2px solid var(--color-bg);
+    background: var(--color-bg-elevated-2);
+    border: 2px solid var(--color-bg-elevated);
     border-radius: 8px;
     padding: 0;
     cursor: pointer;
@@ -8049,12 +7940,12 @@
   }
 
   .faq-item:hover {
-    background: var(--color-bg);
+    background: color-mix(in srgb, var(--color-bg-elevated-2) 85%, white);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35), 0 12px 28px rgba(0, 0, 0, 0.3);
   }
 
   .faq-item.open {
-    background: #3a3530;
+    background: var(--color-bg-elevated-2);
     border-color: var(--color-text);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 16px 36px rgba(0, 0, 0, 0.3);
   }
@@ -8095,24 +7986,9 @@
     margin: 0;
   }
 
-  .side-gear {
-    position: absolute;
-    z-index: 3;
-    pointer-events: none;
-    width: 200px;
-    height: 200px;
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .side-gear-l1 { left: -115px; top: 10%; }
-  .side-gear-l2 { left: -130px; top: 40%; width: 240px; height: 240px; }
-  .side-gear-l3 { left: -115px; top: 72%; }
-  .side-gear-r1 { right: -115px; top: 20%; }
-  .side-gear-r2 { right: -130px; top: 53%; width: 240px; height: 240px; }
-
   /* ── settings ────────────────────────────────────── */
   .section-settings {
-    background: var(--color-bg);
+    background: var(--color-bg-elevated);
     overflow-y: auto;
   }
 
@@ -8578,10 +8454,6 @@
 
     .section {
       padding: 40px 20px 48px;
-    }
-
-    .side-gear {
-      display: none;
     }
 
     .faq-title {
