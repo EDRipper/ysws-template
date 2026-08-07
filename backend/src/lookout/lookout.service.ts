@@ -2,8 +2,8 @@ import { BadRequestException, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { InjectRepository } from "@nestjs/typeorm";
 import { In, IsNull, LessThan, Repository } from "typeorm";
-import { fetchWithTimeout } from "src/fetch.util";
-import { LookoutSession } from "src/entities/lookout-session.entity";
+import { fetchWithTimeout } from "../fetch.util";
+import { LookoutSession } from "../entities/lookout-session.entity";
 
 export type CreatedSession = {
     token: string;

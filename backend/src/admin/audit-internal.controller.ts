@@ -1,8 +1,8 @@
 import { Controller, Get, Param, ParseUUIDPipe, UseGuards, NotFoundException } from '@nestjs/common';
 import { AuditServiceKeyGuard } from './audit-service-key.guard';
 import { IframeContextService } from './iframe-context.service';
-import { DevlogsService } from 'src/devlogs/devlogs.service';
-import { LookoutService } from 'src/lookout/lookout.service';
+import { DevlogsService } from '../devlogs/devlogs.service';
+import { LookoutService } from '../lookout/lookout.service';
 /**
  * Internal, shared-key-gated route the private audit service calls to exchange
  * an opaque iframe ctx for its payload. Separate from AdminController so the
