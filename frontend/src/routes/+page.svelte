@@ -572,7 +572,7 @@
     --logo-indent: calc(var(--logo-w) * 0.17);
     position: absolute;
     /* hangs below the hero so the whole block sits on the brown ground */
-    inset: auto clamp(48px, 7vw, 160px) -120px;
+    inset: auto clamp(48px, 7vw, 160px) -145px;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -1141,7 +1141,9 @@
     margin-top: 12px;
     padding: 8px 12px;
     border: 1px solid var(--color-bg);
-    background: var(--color-accent);
+    /* fixed Hack Club red, not the deployment's --color-accent — that can
+       be set to a light/cream tone per-program and wash out white text */
+    background: var(--hc-red);
     color: #ffffff;
     font-size: 14px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -1195,7 +1197,8 @@
 
   /* ── info sections ──────────────────────────────── */
   .info-bg {
-    background: var(--color-bg);
+    /* same textured blue-gray as .what-is-this, not the plain page bg */
+    background: var(--color-border);
   }
 
   .info-section {

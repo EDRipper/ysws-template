@@ -3349,7 +3349,9 @@
     max-width: 0;
     height: 100%;
     background: var(--color-bg-elevated);
-    border-right: 1px solid var(--color-border);
+    /* a hack club color, not the near-invisible neutral border, so the
+       menu actually reads as separate from the page behind it */
+    border-right: 2px solid var(--hc-blue);
     overflow: hidden;
     transition: max-width 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }

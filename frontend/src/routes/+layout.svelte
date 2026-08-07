@@ -74,8 +74,8 @@
 	   deliberately-chosen neutral scale — not shadcn zinc/slate, not cream. */
 	:global(:root) {
 		--color-bg: #14161b;
-		--color-bg-elevated: #1c1f26;
-		--color-bg-elevated-2: #262a33;
+		--color-bg-elevated: #23262f;
+		--color-bg-elevated-2: #2c303b;
 		--color-border: #333846;
 		--color-text: #edf0f4;
 		--color-text-muted: #a7adba;
@@ -85,6 +85,17 @@
 		--color-danger: #e5484d;
 		--color-success: #4caf7d;
 		--color-warning: #e8b339;
+
+		/* Hack Club brand palette — used sparingly as accent/contrast cues,
+		   not as the base neutral scale above. */
+		--hc-red: #EC3750;
+		--hc-orange: #FF8C37;
+		--hc-yellow: #F1C40F;
+		--hc-green: #33D6A6;
+		--hc-cyan: #5BC0DE;
+		--hc-blue: #338EDA;
+		--hc-purple: #A633D6;
+		--hc-muted: #8492A6;
 	}
 
 	:global(html) {
