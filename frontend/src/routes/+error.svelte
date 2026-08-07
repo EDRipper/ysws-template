@@ -16,23 +16,7 @@
 </div>
 
 <style>
-	@font-face {
-		font-family: "Stone Breaker";
-		src: url("/fonts/Stone Breaker.woff2") format("woff2");
-		font-weight: normal;
-		font-style: normal;
-		font-display: swap;
-	}
-
-	@font-face {
-		font-family: "Sunny Mood";
-		src: url("/fonts/SunnyMood.woff2") format("woff2");
-		font-weight: normal;
-		font-style: normal;
-		font-display: swap;
-	}
-
-	.error-page {
+.error-page {
 		min-height: 100vh;
 		display: flex;
 		align-items: center;
@@ -50,14 +34,14 @@
 		font-size: 3rem;
 		color: #d4c9a8;
 		margin: 0;
-		font-family: "Stone Breaker", "Courier New", monospace;
+		font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
 	}
 
 	p {
 		font-size: 1.4rem;
 		color: #a89e8a;
 		margin: 0.5rem 0 2rem;
-		font-family: "Sunny Mood", "Courier New", monospace;
+		font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
 	}
 
 	.cat-img {
@@ -82,7 +66,7 @@
 		color: #d4c9a8;
 		text-decoration: none;
 		font-size: 1.2rem;
-		font-family: "Sunny Mood", "Courier New", monospace;
+		font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
 		padding: 0.6rem 1.4rem;
 		background: #635a4e;
 		clip-path: polygon(

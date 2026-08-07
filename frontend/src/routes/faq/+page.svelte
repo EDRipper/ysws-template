@@ -114,23 +114,7 @@
 </div>
 
 <style>
-  @font-face {
-    font-family: "Stone Breaker";
-    src: url("/fonts/Stone Breaker.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Sunny Mood";
-    src: url("/fonts/SunnyMood.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  :global(body) {
+:global(body) {
     margin: 0;
     padding: 0;
     background-color: #4b4840;
@@ -161,7 +145,7 @@
   }
 
   h1 {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     color: #cbc1ae;
     font-size: 3rem;
     text-align: center;
@@ -169,7 +153,7 @@
   }
 
   .faq-intro {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     color: #cbc1ae;
     text-align: center;
     max-width: 600px;
@@ -223,14 +207,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 3rem 1.25rem 5rem;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.2rem;
     color: #e6e2da;
     gap: 1rem;
   }
 
   .faq-icon {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.5rem;
     color: #e6e2da;
     flex-shrink: 0;
@@ -247,7 +231,7 @@
   }
 
   .faq-answer p {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     color: #e6e2da;
     font-size: 0.9rem;
     line-height: 1.7;
@@ -259,7 +243,7 @@
     width: fit-content;
     margin: 1.5rem auto 0;
     padding: 0.75rem 2rem;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.3rem;
     color: #e6e2da;
     background: #3a3530;

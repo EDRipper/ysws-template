@@ -7235,7 +7235,7 @@
 	.address-line-full { font-style: italic; }
 	.address-label { font-size: 0.75rem; text-transform: uppercase; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
 	.admin-shell.light .address-label { color: rgba(0,0,0,0.55); }
-	.address-value { font-family: ui-monospace, "Courier New", monospace; font-size: 0.9rem; word-break: break-word; }
+	.address-value { font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.9rem; word-break: break-word; }
 	.address-copied { font-size: 0.7rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.05em; }
 	.admin-shell.light .address-line { background: #fff; border-color: #ddd; }
 	.admin-shell.light .address-line:hover { background: #eef4fa; border-color: #93b4cd; }

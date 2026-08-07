@@ -3493,23 +3493,7 @@
 {/if}
 
 <style>
-  @font-face {
-    font-family: "Stone Breaker";
-    src: url("/fonts/Stone Breaker.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Sunny Mood";
-    src: url("/fonts/SunnyMood.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  /* ── globals ─────────────────────────────────────── */
+/* ── globals ─────────────────────────────────────── */
   :global(html) {
     scroll-behavior: smooth;
   }
@@ -3693,7 +3677,7 @@
     border-radius: 6px;
     background: transparent;
     color: #cbc1ae;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     letter-spacing: 0.03em;
     text-align: left;
@@ -3804,7 +3788,7 @@
 
   .section-title {
     margin: 0 0 6px;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 42px);
     letter-spacing: 0.04em;
     color: #e6f4fe;
@@ -3813,7 +3797,7 @@
 
   .section-subtitle {
     margin: 0 0 32px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(14px, 1.2vw, 17px);
     color: #cbc1ae;
     letter-spacing: 0.02em;
@@ -3824,7 +3808,7 @@
   }
 
   .section-events .section-copy {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(16px, 1.6vw, 20px);
     letter-spacing: 0.02em;
     line-height: 1.5;
@@ -3847,7 +3831,7 @@
 
   .event-card h3 {
     margin: 0 0 10px;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.25rem;
     letter-spacing: 0.04em;
     color: #e6f4fe;
@@ -3855,7 +3839,7 @@
 
   .event-card p {
     margin: 0 0 12px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     line-height: 1.45;
     color: #cbc1ae;
@@ -3887,7 +3871,7 @@
     gap: 8px;
     align-items: center;
     margin-bottom: 16px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     color: #e6f4fe;
     font-size: 20px;
     line-height: 1.1;
@@ -3908,13 +3892,13 @@
 
   .event-location {
     margin: 0 0 12px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     color: #e6f4fe;
     font-weight: 600;
   }
 
   .event-card a {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     color: #93b4cd;
     text-decoration: underline;
   }
@@ -3952,7 +3936,7 @@
   .action-log-title,
   .news-title {
     margin: 0 0 16px;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(18px, 2vw, 24px);
     color: #e6f4fe;
     letter-spacing: 0.04em;
@@ -4024,7 +4008,7 @@
 
   .timeline-label {
     margin: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     color: #e6f4fe;
@@ -4032,7 +4016,7 @@
   }
 
   .timeline-empty {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     color: rgba(230, 244, 254, 0.4);
     font-size: 17px;
     font-style: italic;
@@ -4040,7 +4024,7 @@
   }
 
   .timeline-time {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     color: #7f796d;
@@ -4060,7 +4044,7 @@
   }
 
   .news-date {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     color: #e6f4fe;
@@ -4071,7 +4055,7 @@
 
   .news-text {
     margin: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     color: #cbc1ae;
@@ -4150,7 +4134,7 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #cbc1ae;
   }
@@ -4196,13 +4180,13 @@
   }
 
   .form-caption {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #cbc1ae;
   }
 
   .form-charcount {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
     color: #7f796d;
   }
@@ -4218,7 +4202,7 @@
   }
 
   .form-label {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 19px;
     color: #cbc1ae;
     letter-spacing: 0.04em;
@@ -4228,7 +4212,7 @@
     padding: 10px 14px;
     border: 1px solid rgba(230, 244, 254, 0.15);
     border-radius: 0;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #e6f4fe;
     background: rgba(0, 0, 0, 0.2);
@@ -4300,7 +4284,7 @@
   }
 
   .upload-btn-text {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #cbc1ae;
   }
@@ -4321,7 +4305,7 @@
   .screenshot-tab {
     flex: 1;
     padding: 8px 0;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: bold;
     color: #cbc1ae;
@@ -4475,7 +4459,7 @@
     border: 3px solid #c48382;
     border-bottom: 7px solid #a06a69;
     border-radius: 4px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: 700;
     color: #c48382;
@@ -4500,7 +4484,7 @@
     border: 3px solid #a06a69;
     border-bottom: 7px solid #8a5857;
     border-radius: 4px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: 700;
     color: #fff;
@@ -4538,7 +4522,7 @@
 
   .in-review-text {
     margin: 0;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #cbc1ae;
     line-height: 1.4;
@@ -4547,7 +4531,7 @@
 
   .in-review-queue {
     margin: 8px 0 0;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #cbc1ae;
     line-height: 1.4;
@@ -4561,7 +4545,7 @@
     border: 2px solid #cbc1ae;
     border-bottom: 5px solid #9e9888;
     border-radius: 4px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     font-weight: 700;
     color: #cbc1ae;
@@ -4589,7 +4573,7 @@
     border: 3px solid #6a655a;
     border-bottom: 7px solid #5a5549;
     border-radius: 4px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: 700;
     color: #fff;
@@ -4653,7 +4637,7 @@
 
   .approved-summary-title {
     margin: 0 12px 0 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 32px;
     color: #e6f4fe;
     display: inline;
@@ -4662,7 +4646,7 @@
 
   .approved-summary-desc {
     margin: 10px 0 8px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
     color: #cbc1ae;
     line-height: 1.4;
@@ -4671,7 +4655,7 @@
   .approved-summary-meta {
     display: flex;
     gap: 14px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #7f796d;
     flex-wrap: wrap;
@@ -4696,7 +4680,7 @@
 
   .review-feedback-heading {
     margin: 0 0 4px;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
     color: #e6f4fe;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
@@ -4726,7 +4710,7 @@
   }
 
   .review-feedback-badge {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -4742,13 +4726,13 @@
   }
 
   .review-feedback-reviewer {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #cbc1ae;
   }
 
   .review-feedback-date {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
     color: #7f796d;
     margin-left: auto;
@@ -4756,7 +4740,7 @@
 
   .review-feedback-text {
     margin: 0;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #e6f4fe;
     line-height: 1.5;
@@ -4780,7 +4764,7 @@
   .resubmit-label {
     display: block;
     margin-bottom: 10px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     color: #93b4cd;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
@@ -4819,7 +4803,7 @@
     right: 0;
     background: #3a3832;
     color: #cbc1ae;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     padding: 8px 12px;
     white-space: nowrap;
@@ -5153,7 +5137,7 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #e6f4fe;
     transition: border-color 150ms ease;
@@ -5166,13 +5150,13 @@
   }
 
   .hackatime-placeholder {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #7f796d;
   }
 
   .hackatime-selected {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #cbc1ae;
     overflow: hidden;
@@ -5202,7 +5186,7 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #222;
     padding: 5px 8px;
@@ -5230,7 +5214,7 @@
   }
 
   .hackatime-empty {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #999;
     padding: 5px 8px;
@@ -5296,7 +5280,7 @@
 
   .devlogs-blurb {
     color: #cbc1ae;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     margin: 0 0 18px;
     max-width: 700px;
@@ -5312,7 +5296,7 @@
     padding: 10px 22px;
     background: #9a9285;
     color: #2e2a26;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
     border: 2px solid #2e2a26;
     border-radius: 6px;
@@ -5336,7 +5320,7 @@
     padding: 6px 14px;
     background: transparent;
     color: #cbc1ae;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     border: 1px solid rgba(203, 193, 174, 0.35);
     border-radius: 4px;
@@ -5410,7 +5394,7 @@
 
   .devlog-images-hint {
     margin: 2px 0 0;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     color: #7f796d;
     line-height: 1.4;
@@ -5508,7 +5492,7 @@
     padding: 10px 22px;
     background: #9a9285;
     color: #2e2a26;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     border: 2px solid #2e2a26;
     border-radius: 6px;
@@ -5541,7 +5525,7 @@
   .devlog-empty {
     color: #cbc1ae;
     opacity: 0.7;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
   }
 
@@ -5561,7 +5545,7 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 8px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
     color: #cbc1ae;
   }
@@ -5599,7 +5583,7 @@
 
   .devlog-card-title {
     margin: 0 0 6px;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
     color: #e6f4fe;
     letter-spacing: 0.02em;
@@ -5610,7 +5594,7 @@
   .devlog-card-text {
     margin: 0;
     color: #e6e2da;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     line-height: 1.55;
     white-space: pre-wrap;
@@ -5753,7 +5737,7 @@
     color: #e6f4fe;
     border: 2px solid #1a1a1a;
     padding: 10px 16px;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -5820,13 +5804,13 @@
   }
   .order-note-title {
     margin: 0 0 6px;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 20px;
     letter-spacing: 0.02em;
   }
   .order-note-hint {
     margin: 0 0 14px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     opacity: 0.75;
   }
@@ -5837,13 +5821,13 @@
     background: #ded5c3;
     border: 2px solid #1a1a1a;
     padding: 10px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #4b4840;
   }
   .order-note-count {
     text-align: right;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
     opacity: 0.6;
     margin-top: 4px;
@@ -5858,7 +5842,7 @@
   .order-note-confirm {
     padding: 8px 18px;
     border: 2px solid #1a1a1a;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -5893,13 +5877,13 @@
   .suggestions-close:hover { color: #c48382; }
 
   .suggestions-title {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 28px;
     margin: 0 0 4px;
     color: #4b4840;
   }
   .suggestions-subtitle {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #6c6659;
     margin: 0 0 20px;
@@ -5917,7 +5901,7 @@
     background: #f0ebe5;
     border: 2px solid #4b4840;
     padding: 8px 10px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #4b4840;
     resize: vertical;
@@ -5934,7 +5918,7 @@
     margin-top: 8px;
   }
   .suggestions-counter {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     color: #6c6659;
   }
@@ -5943,7 +5927,7 @@
     color: #fff;
     border: 2px solid #1a1a1a;
     padding: 8px 18px;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -5960,7 +5944,7 @@
   }
   .suggestions-error {
     color: #8a4a49;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     margin: 8px 0 0;
   }
@@ -5973,7 +5957,7 @@
   .suggestions-empty {
     text-align: center;
     color: #6c6659;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     padding: 24px 0;
   }
 
@@ -5998,7 +5982,7 @@
     color: #4b4840;
     padding: 6px 8px;
     cursor: pointer;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
   }
   .suggestion-vote svg { width: 16px; height: 16px; }
@@ -6026,14 +6010,14 @@
   }
   .suggestion-text {
     margin: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #4b4840;
     word-break: break-word;
   }
   .suggestion-meta {
     margin: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
     color: #6c6659;
     display: flex;
@@ -6045,7 +6029,7 @@
     border: none;
     color: #8a4a49;
     cursor: pointer;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
     text-decoration: underline;
     padding: 0;
@@ -6074,7 +6058,7 @@
   }
 
   .pipes-box-label {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     color: #cbc1ae;
     letter-spacing: 0.08em;
@@ -6082,7 +6066,7 @@
   }
 
   .pipes-box-value {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 28px;
     color: #e6f4fe;
     letter-spacing: 0.04em;
@@ -6092,7 +6076,7 @@
 
   .pipes-box-hint {
     margin-top: 4px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     color: #a89c86;
     white-space: nowrap;
@@ -6114,7 +6098,7 @@
     align-items: center;
     gap: 14px;
     margin: 0 0 16px 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -6200,7 +6184,7 @@
 
   .shop-spotlight-name {
     margin: 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(22px, 2.6vw, 32px);
     letter-spacing: 0.02em;
     line-height: 1.15;
@@ -6209,7 +6193,7 @@
 
   .shop-spotlight-desc {
     margin: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     line-height: 1.5;
     color: #4b4840;
@@ -6259,7 +6243,7 @@
 
   .shop-bm-note {
     margin: -6px 0 16px 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #e6f4fe;
     opacity: 0.85;
@@ -6353,7 +6337,7 @@
 
   .shop-card-name {
     margin: 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     letter-spacing: 0.02em;
     color: #1a1a1a;
@@ -6362,7 +6346,7 @@
 
   .shop-card-desc {
     margin: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #4b4840;
     line-height: 1.4;
@@ -6388,7 +6372,7 @@
     align-items: center;
     gap: 6px;
     margin: 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
     color: #1a1a1a;
   }
@@ -6401,7 +6385,7 @@
   }
 
   .shop-card-stock {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     color: #4b4840;
     background: rgba(26, 26, 26, 0.12);
@@ -6422,14 +6406,14 @@
 
   .my-orders-empty {
     margin: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #ded5c3;
   }
 
   .my-orders-error {
     margin: 0 0 10px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #f6d7d6;
   }
@@ -6462,7 +6446,7 @@
   }
 
   .my-orders-name {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: 600;
     color: #4b4840;
@@ -6472,7 +6456,7 @@
   }
 
   .my-orders-meta {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
     color: #6c6659;
   }
@@ -6485,7 +6469,7 @@
   }
 
   .my-orders-status {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     padding: 3px 8px;
     border-radius: 4px;
@@ -6509,7 +6493,7 @@
   }
 
   .my-orders-refund {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -6740,7 +6724,7 @@
 
   .shop-modal-name {
     margin: 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(24px, 3vw, 36px);
     color: #4b4840;
     line-height: 1.2;
@@ -6748,7 +6732,7 @@
 
   .shop-modal-desc {
     margin: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
     color: #1a1a1a;
     line-height: 1.5;
@@ -6756,7 +6740,7 @@
 
   .shop-modal-detailed-desc {
     margin: 8px 0 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #4b4840;
     line-height: 1.5;
@@ -6770,13 +6754,13 @@
   }
 
   .shop-modal-price {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 28px;
     color: #8a4a49;
   }
 
   .shop-modal-stock {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     padding: 3px 10px;
     background: rgba(26, 26, 26, 0.1);
@@ -6790,7 +6774,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #6c6659;
   }
@@ -6809,7 +6793,7 @@
   }
 
   .shop-modal-qty-label {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
     color: #4b4840;
   }
@@ -6824,7 +6808,7 @@
   .qty-input {
     width: 96px;
     text-align: center;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 20px;
     color: #4b4840;
     background: #e6e0d4;
@@ -6844,7 +6828,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
     color: #4b4840;
     padding-top: 8px;
@@ -6852,7 +6836,7 @@
   }
 
   .shop-modal-total-value {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 24px;
     color: #8a4a49;
   }
@@ -6864,7 +6848,7 @@
     border: 2px solid #1a1a1a;
     box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.45);
     color: #1a1a1a;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
     letter-spacing: 0.04em;
     cursor: pointer;
@@ -6892,7 +6876,7 @@
     padding: 16px;
     background: rgba(196, 131, 130, 0.1);
     border: 2px solid rgba(196, 131, 130, 0.3);
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #4b4840;
   }
@@ -6921,7 +6905,7 @@
   }
 
   .shop-modal-keep-building {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
     color: #8a4a49;
   }
@@ -6962,14 +6946,14 @@
 
   .event-countdown-kicker {
     margin: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
     color: #cbc1ae;
     white-space: nowrap;
   }
 
   .event-countdown-logo {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 32px;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -6979,7 +6963,7 @@
 
   .event-countdown-title {
     margin: 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(30px, 3.6vw, 50px);
     line-height: 0.95;
     color: #e6f4fe;
@@ -7004,14 +6988,14 @@
   }
 
   .event-countdown-unit strong {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(20px, 2vw, 30px);
     line-height: 1;
     color: #93b4cd;
   }
 
   .event-countdown-unit span {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     color: #e6f4fe;
     white-space: nowrap;
@@ -7019,7 +7003,7 @@
 
   .event-countdown-live {
     margin: 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(24px, 3vw, 38px);
     color: #93b4cd;
   }
@@ -7075,14 +7059,14 @@
   }
 
   .progress-hours {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 40px);
     color: #cbc1ae;
     letter-spacing: 0.04em;
   }
 
   .progress-goal {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 40px);
     color: #cbc1ae;
     letter-spacing: 0.04em;
@@ -7116,7 +7100,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 6px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     font-weight: 700;
     color: #cbc1ae;
@@ -7152,7 +7136,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 20px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     color: #cbc1ae;
@@ -7204,7 +7188,7 @@
 
   .empty-text {
     margin: 10px 0 16px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
     color: #cbc1ae;
     letter-spacing: 0.02em;
@@ -7216,7 +7200,7 @@
     padding: 8px 22px;
     background: #c48382;
     color: #fff;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -7254,7 +7238,7 @@
   }
 
   .review-note {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #9e9888;
     line-height: 1.6;
@@ -7263,7 +7247,7 @@
 
   /* ── shipping eligibility prompt ────────────────── */
   .shipping-prompt-text {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #cbc1ae;
     line-height: 1.6;
@@ -7281,7 +7265,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     padding: 10px 14px;
     clip-path: polygon(1% 0%, 99% 2%, 100% 98%, 0% 100%);
@@ -7317,7 +7301,7 @@
     border: 3px solid #488a5a;
     border-bottom: 7px solid #3a7a4a;
     color: #fff;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-weight: 700;
     cursor: pointer;
     clip-path: polygon(0% 3%, 3% 0%, 97% 2%, 100% 5%, 100% 95%, 97% 100%, 3% 98%, 0% 95%);
@@ -7330,7 +7314,7 @@
   }
 
   .shipping-prompt-note {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #9e9888;
     line-height: 1.5;
@@ -7339,7 +7323,7 @@
   }
 
   .shipping-prompt-poll {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #9e9888;
     line-height: 1.5;
@@ -7368,7 +7352,7 @@
     align-items: flex-start;
     gap: 14px;
     cursor: pointer;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #cbc1ae;
     line-height: 1.5;
@@ -7441,7 +7425,7 @@
     border: 3px solid #488a5a;
     border-bottom: 7px solid #3a7a4a;
     color: #fff;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-weight: 700;
     cursor: pointer;
     clip-path: polygon(0% 3%, 3% 0%, 97% 2%, 100% 5%, 100% 95%, 97% 100%, 3% 98%, 0% 95%);
@@ -7560,7 +7544,7 @@
   }
 
   .project-name {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(22px, 2.2vw, 30px);
     color: #e6f4fe;
     margin: 0;
@@ -7569,7 +7553,7 @@
   }
 
   .project-type-badge {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
@@ -7581,7 +7565,7 @@
   }
 
   .project-status-badge {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
@@ -7616,7 +7600,7 @@
   }
 
   .project-desc {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 20px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     color: #cbc1ae;
@@ -7637,7 +7621,7 @@
   }
 
   .project-link {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     font-weight: 700;
     color: #93b4cd;
@@ -7651,7 +7635,7 @@
   }
 
   .project-hackatime {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #7f796d;
   }
@@ -7659,7 +7643,7 @@
   .new-project-btn {
     width: fit-content;
     flex-shrink: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     padding: 8px 20px;
@@ -7679,7 +7663,7 @@
   .guide-btn {
     width: fit-content;
     flex-shrink: 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     padding: 8px 20px;
     text-decoration: none;
@@ -7859,7 +7843,7 @@
   }
 
   .explore-card-name {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     color: #e6f4fe;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
@@ -7867,7 +7851,7 @@
   }
 
   .explore-card-type {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 9px;
     font-weight: 700;
     text-transform: uppercase;
@@ -7879,7 +7863,7 @@
   }
 
   .explore-card-desc {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     color: rgba(230, 244, 254, 0.7);
     line-height: 1.35;
@@ -7890,7 +7874,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 10px;
     color: rgba(230, 244, 254, 0.45);
   }
@@ -7907,7 +7891,7 @@
   }
 
   .explore-link {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     font-weight: 700;
     color: #93b4cd;
@@ -8005,7 +7989,7 @@
   .detail-no-img {
     height: 200px;
     color: rgba(230, 244, 254, 0.3);
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
   }
 
@@ -8059,7 +8043,7 @@
   }
 
   .detail-name {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 32px;
     color: #e6f4fe;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
@@ -8067,7 +8051,7 @@
   }
 
   .detail-type {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
@@ -8079,14 +8063,14 @@
   }
 
   .detail-builder {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: rgba(230, 244, 254, 0.5);
     margin: 6px 0 0;
   }
 
   .detail-hours {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: 700;
     color: #93b4cd;
@@ -8094,7 +8078,7 @@
   }
 
   .detail-desc {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: rgba(230, 244, 254, 0.75);
     line-height: 1.6;
@@ -8113,7 +8097,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
     font-weight: 700;
     text-decoration: none;
@@ -8164,7 +8148,7 @@
   }
 
   .detail-comments-title {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
     color: #e6f4fe;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
@@ -8181,7 +8165,7 @@
     background: rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(230, 244, 254, 0.15);
     color: #e6f4fe;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     padding: 12px 14px;
     resize: vertical;
@@ -8208,13 +8192,13 @@
   }
 
   .detail-comment-charcount {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     color: rgba(230, 244, 254, 0.3);
   }
 
   .detail-comment-submit {
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     font-weight: 700;
     background: #93b4cd;
@@ -8242,7 +8226,7 @@
 
   .detail-comments-loading,
   .detail-comments-empty {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: rgba(230, 244, 254, 0.35);
     margin: 0;
@@ -8271,14 +8255,14 @@
   }
 
   .detail-comment-author {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     font-weight: 700;
     color: #cbc1ae;
   }
 
   .detail-comment-date {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 11px;
     color: rgba(230, 244, 254, 0.3);
   }
@@ -8300,7 +8284,7 @@
   }
 
   .detail-comment-body {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: rgba(230, 244, 254, 0.7);
     line-height: 1.5;
@@ -8329,7 +8313,7 @@
   }
 
   .lb-total-label {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #e6f4fe;
     letter-spacing: 0.04em;
@@ -8338,7 +8322,7 @@
   }
 
   .lb-total-value {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 40px);
     color: #e6f4fe;
     letter-spacing: 0.04em;
@@ -8355,7 +8339,7 @@
     align-items: center;
     padding: 10px 16px;
     border-bottom: 2px solid rgba(230, 244, 254, 0.15);
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
     color: #7f796d;
     letter-spacing: 0.04em;
@@ -8377,14 +8361,14 @@
   .lb-rank {
     width: 40px;
     flex-shrink: 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
     color: #cbc1ae;
   }
 
   .lb-name {
     flex: 1;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #e6f4fe;
   }
@@ -8393,7 +8377,7 @@
     width: 60px;
     text-align: right;
     flex-shrink: 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
     color: #cbc1ae;
   }
@@ -8405,7 +8389,7 @@
     border: 2px solid rgba(230, 244, 254, 0.2);
     border-bottom: 5px solid rgba(230, 244, 254, 0.1);
     color: #cbc1ae;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -8441,7 +8425,7 @@
 
   .coming-soon {
     margin: 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(32px, 4vw, 52px);
     color: #e6f4fe;
     letter-spacing: 0.06em;
@@ -8479,7 +8463,7 @@
   }
 
   .faq-title {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     color: #cbc1ae;
     font-size: 3rem;
     text-align: center;
@@ -8487,7 +8471,7 @@
   }
 
   .faq-intro {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     color: #cbc1ae;
     text-align: center;
     max-width: 600px;
@@ -8535,14 +8519,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.25rem;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.2rem;
     color: #e6e2da;
     gap: 1rem;
   }
 
   .faq-icon {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.5rem;
     color: #e6e2da;
     flex-shrink: 0;
@@ -8559,7 +8543,7 @@
   }
 
   .faq-answer p {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     color: #e6e2da;
     font-size: 0.9rem;
     line-height: 1.7;
@@ -8597,7 +8581,7 @@
 
   .account-card-heading {
     margin: 0 0 20px;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 26px;
     color: #e6f4fe;
     letter-spacing: 0.04em;
@@ -8618,7 +8602,7 @@
   }
 
   .account-label {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #93b4cd;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
@@ -8626,7 +8610,7 @@
   }
 
   .account-value {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #cbc1ae;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
@@ -8646,7 +8630,7 @@
   }
 
   .nickname-input {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #cbc1ae;
     background: rgba(0, 0, 0, 0.25);
@@ -8662,7 +8646,7 @@
   }
 
   .nickname-save {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 13px;
     color: #e6f4fe;
     background: rgba(147, 180, 205, 0.25);
@@ -8682,7 +8666,7 @@
   }
 
   .gender-select {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #cbc1ae;
     background: rgba(0, 0, 0, 0.25);
@@ -8765,7 +8749,7 @@
 
 
   .pref-label-text {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #cbc1ae;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
@@ -8794,7 +8778,7 @@
 
   .settings-link-title {
     margin: 0 0 6px;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 26px;
     color: #e6f4fe;
     letter-spacing: 0.04em;
@@ -8803,7 +8787,7 @@
 
   .settings-link-desc {
     margin: 0;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 17px;
     color: #cbc1ae;
     line-height: 1.4;
@@ -8843,7 +8827,7 @@
   }
 
   .fulfillment-empty {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #7f796d;
     margin: 0;
@@ -8875,7 +8859,7 @@
   }
 
   .fulfillment-item-name {
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 18px;
     color: #e6f4fe;
     letter-spacing: 0.03em;
@@ -8883,14 +8867,14 @@
   }
 
   .fulfillment-item-date {
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 12px;
     color: #7f796d;
   }
 
   .fulfillment-item-msg {
     margin: 0;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #cbc1ae;
     line-height: 1.4;
@@ -8917,7 +8901,7 @@
   /* ── Shop purchase feedback ──────────────────────── */
   .shop-modal-error {
     margin: 8px 0 0;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     color: #8a4a49;
     text-align: center;
@@ -8927,7 +8911,7 @@
     padding: 14px;
     background: rgba(90, 158, 111, 0.18);
     border: 2px solid #5a9e6f;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
     color: #2c4f37;
     text-align: center;

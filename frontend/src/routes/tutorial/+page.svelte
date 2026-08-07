@@ -492,15 +492,7 @@
     filter: none !important;
   }
 
-  @font-face {
-    font-family: "Sunny Mood";
-    src: url("/fonts/SunnyMood.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  .scroll-container {
+.scroll-container {
     height: 100vh;
     background: #2e3563;
   }
@@ -716,7 +708,7 @@
 
   .section-title {
     color: white;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 3rem;
     margin-bottom: 2rem;
     text-align: center;
@@ -894,7 +886,7 @@
 
   .section-paragraph {
     color: white;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 1.3rem;
     line-height: 1.8;
     max-width: 550px;

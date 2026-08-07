@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { children } = $props();
+	let { children, data } = $props();
 
 	let impersonating = $state(false);
 
@@ -47,7 +47,13 @@
 </script>
 
 <svelte:head>
-	<title>Beest</title>
+	<title>{data.yswsConfig.program.name}</title>
+	<meta name="description" content={data.yswsConfig.program.tagline} />
+	<style>
+		:root {
+			--color-accent: {data.yswsConfig.theme.accentColor};
+		}
+	</style>
 </svelte:head>
 
 {#if impersonating}
@@ -63,6 +69,24 @@
 		box-sizing: border-box;
 	}
 
+	/* Design tokens. --color-accent is set per-deployment above from
+	   ysws.config.json (theme.accentColor); everything else is a fixed,
+	   deliberately-chosen neutral scale — not shadcn zinc/slate, not cream. */
+	:global(:root) {
+		--color-bg: #14161b;
+		--color-bg-elevated: #1c1f26;
+		--color-bg-elevated-2: #262a33;
+		--color-border: #333846;
+		--color-text: #edf0f4;
+		--color-text-muted: #a7adba;
+		--color-text-faint: #6b7181;
+		--color-accent-hover: color-mix(in srgb, var(--color-accent) 85%, white);
+		--color-accent-text: color-mix(in srgb, var(--color-accent) 20%, black);
+		--color-danger: #e5484d;
+		--color-success: #4caf7d;
+		--color-warning: #e8b339;
+	}
+
 	:global(html) {
 		min-height: 100%;
 		scroll-behavior: smooth;
@@ -72,9 +96,9 @@
 		margin: 0;
 		padding: 0;
 		min-height: 100vh;
-		font-family: "Courier New", monospace;
-		background-color: #47453f;
-		color: #e6f4fe;
+		font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+		background-color: var(--color-bg);
+		color: var(--color-text);
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
@@ -116,7 +140,7 @@
 	}
 
 	:global(a:focus-visible), :global(button:focus-visible), :global(input:focus-visible) {
-		outline: 2px solid #93b4cd;
+		outline: 2px solid var(--color-accent);
 		outline-offset: 3px;
 	}
 	.end-impersonate {

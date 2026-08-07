@@ -673,23 +673,7 @@
 
 
 <style>
-  @font-face {
-    font-family: "Stone Breaker";
-    src: url("/fonts/Stone Breaker.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Sunny Mood";
-    src: url("/fonts/SunnyMood.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  .top-bg {
+.top-bg {
     background: #4b4840;
   }
 
@@ -893,7 +877,7 @@
     background: #e6f4fe;
     color: #4b4840;
     font-size: 18px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     cursor: text;
     rotate: -2deg;
   }
@@ -914,7 +898,7 @@
     border: 2px solid #4b4840;
     background: #AD9E83;
     color: #4C483D;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 22px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -964,7 +948,7 @@
     background: rgba(0, 0, 0, 0.32);
     border: 1px solid rgba(230, 244, 254, 0.15);
     color: #e6f4fe;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     line-height: 1.4;
     opacity: 0;
@@ -996,7 +980,7 @@
      dimmer than the tagline below it */
   .hero-credit {
     margin: 0 0 0 var(--logo-indent);
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(16px, 1.6vw, 24px);
     color: #cbc1ae;
     letter-spacing: 0.04em;
@@ -1007,7 +991,7 @@
 
   .hero-subtitle {
     margin: 4px 0 0 var(--logo-indent);
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(19px, 2vw, 28px);
     color: #ffffff;
     letter-spacing: 0.03em;
@@ -1245,7 +1229,7 @@
     background: #635a4e;
     padding: 88px 48px 108px;
     color: #e6f4fe;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     position: relative;
     z-index: 1;
   }
@@ -1254,7 +1238,7 @@
     margin: 0 auto 18px;
     max-width: 1100px;
     color: #ddd7cf;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 52px);
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -1265,7 +1249,7 @@
     max-width: 1100px;
     margin: 0 auto 44px;
     color: #ddd7cf;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(18px, 1.7vw, 24px);
     line-height: 1.6;
     letter-spacing: 0.02em;
@@ -1352,7 +1336,7 @@
     flex-direction: column;
     background: #23221f;
     color: #cbc1ae;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
   .term-bar {
@@ -1421,7 +1405,7 @@
 
   .fame-plate h3 {
     margin: 0;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     letter-spacing: 0.03em;
     text-transform: uppercase;
     font-size: 20px;
@@ -1433,7 +1417,7 @@
     margin: 4px 0 0;
     font-size: 16px;
     color: #6c6659;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
   .fame-description {
@@ -1442,7 +1426,7 @@
     line-height: 1.35;
     letter-spacing: 0.01em;
     color: #4b4840;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
   .fame-link {
@@ -1453,7 +1437,7 @@
     background: #93b4cd;
     color: #ffffff;
     font-size: 14px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-weight: 700;
     text-decoration: none;
     box-shadow: 3px 3px 0 rgba(75, 72, 64, 0.95);
@@ -1469,7 +1453,7 @@
   .what-is-this {
     padding: 80px 48px 72px;
     color: #e6f4fe;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     background: #786e5c;
   }
 
@@ -1478,7 +1462,7 @@
     max-width: 1100px;
     margin: 0 auto 20px;
     color: #ddd7cf;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(28px, 3vw, 42px);
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -1489,7 +1473,7 @@
     max-width: 1100px;
     margin: 0 auto;
     color: #ddd7cf;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(20px, 2vw, 26px);
     line-height: 1.55;
     letter-spacing: 0.02em;
@@ -1518,13 +1502,13 @@
   .info-block {
     flex: 1;
     color: #e6f4fe;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
   .info-block h2 {
     margin: 0 0 24px;
     color: #ddd7cf;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(22px, 2.4vw, 34px);
     letter-spacing: 0.04em;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55);
@@ -1534,7 +1518,7 @@
   .info-block p {
     margin: 0;
     color: #ddd7cf;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(19px, 1.8vw, 24px);
     line-height: 1.55;
     letter-spacing: 0.02em;
@@ -1574,7 +1558,7 @@
     background: #7f796d;
     border: none;
     color: #4b4840;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   }
 
@@ -1607,7 +1591,7 @@
   .rsvp-box h2 {
     margin: 0 0 16px;
     color: #4b4840;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 32px;
     line-height: 1;
     letter-spacing: 0.04em;
@@ -1637,7 +1621,7 @@
     border: 2px solid #4b4840;
     background: #a89f8d;
     color: #4b4840;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 26px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -1701,7 +1685,7 @@
   .rsvp-note {
     margin: 20px 0 0;
     color: #e6f4fe;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 14px;
     line-height: 1.35;
     background: rgba(0, 0, 0, 0.25);
@@ -1735,7 +1719,7 @@
     position: absolute;
     max-width: 35cqi;
     color: #e6f4fe;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(14px, 1.8cqi, 18px);
     letter-spacing: 0.03em;
     line-height: 1.35;
@@ -1747,7 +1731,7 @@
   .callout p {
     margin: 0;
     padding: 12px 14px;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     border: 1px solid rgba(230, 244, 254, 0.35);
     background: #6c6659;
     backdrop-filter: blur(1.5px);
@@ -1845,7 +1829,7 @@
     z-index: 3;
     margin: 0;
     color: #e6f4fe;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(32px, 4vw, 56px);
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -1859,7 +1843,7 @@
     z-index: 3;
     margin: 0;
     color: #ddd7cf;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(14px, 1.6vw, 20px);
     letter-spacing: 0.03em;
   }
@@ -1952,7 +1936,7 @@
   .card-caption {
     margin: 8px 0 0;
     color: #4b4840;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 16px;
     line-height: 1.25;
     text-align: center;
@@ -2055,7 +2039,7 @@
     background: #000;
     padding: 64px clamp(48px, 8vw, 160px) 44px;
     color: #7f796d;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
   .footer-content {
@@ -2178,7 +2162,7 @@
     width: 100%;
     text-align: center;
     color: #ddd7cf;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 36px;
     letter-spacing: 0.04em;
     padding: 48px 0;
@@ -2198,13 +2182,13 @@
   .hackclub-text {
     flex: 1;
     color: #e6f4fe;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
   .hackclub-text h2 {
     margin: 35px 0 16px;
     color: #ddd7cf;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(22px, 2.4vw, 34px);
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55);
     letter-spacing: 0.04em;
@@ -2214,7 +2198,7 @@
   .hackclub-text p {
     margin: 0;
     color: #ddd7cf;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(19px, 1.8vw, 24px);
     line-height: 1.55;
     letter-spacing: 0.02em;
@@ -2276,7 +2260,7 @@
   .photo-caption {
     margin: 16px 0 0;
     text-align: center;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 15px;
     color: #cbc1ae;
     letter-spacing: 0.03em;
@@ -2301,13 +2285,13 @@
   .bottom-rsvp-text {
     flex: 1;
     color: #e6f4fe;
-    font-family: "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
   .bottom-rsvp-text h2 {
     margin: 0 0 16px;
     color: #ddd7cf;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(22px, 2.4vw, 34px);
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55);
     letter-spacing: 0.04em;
@@ -2317,7 +2301,7 @@
   .bottom-rsvp-text p {
     margin: 0 0 12px;
     color: #ddd7cf;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(15px, 1.4vw, 19px);
     line-height: 1.55;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55);
@@ -2327,7 +2311,7 @@
     margin: 0;
     padding-left: 20px;
     color: #ddd7cf;
-    font-family: "Sunny Mood", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(15px, 1.4vw, 19px);
     line-height: 1.75;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55);

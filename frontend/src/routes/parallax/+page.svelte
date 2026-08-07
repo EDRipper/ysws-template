@@ -84,15 +84,7 @@
 </div>
 
 <style>
-  @font-face {
-    font-family: "Stone Breaker";
-    src: url("/fonts/Stone Breaker.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  .saturate-wrap {
+.saturate-wrap {
     filter: saturate(1.5);
   }
   .top-bg {
@@ -142,7 +134,7 @@
   .beest-bottom {
     background: #47453f;
     color: #ffffff;
-    font-family: "Stone Breaker", "Courier New", monospace;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: clamp(64px, 14vw, 220px);
     font-weight: 700;
     letter-spacing: 0.08em;

@@ -108,6 +108,60 @@ Read this file first each session, update it before stopping.
   to strip. Only touch actual display copy ("Hack Club", "powered by Hack Club"
   strings shown in UI), not integration hostnames/API endpoints.
 
+## Frontend design system foundation (2026-08-07)
+
+- **Removed `Stone Breaker`/`SunnyMood`, Beest's custom display fonts** —
+  unknown license, real legal risk to redistribute in a public template.
+  Deleted the actual font files (`frontend/static/fonts/*`), the 12
+  `@font-face` blocks across 7 route files, the two `<link rel=preload>` tags
+  in `app.html`, and globally replaced all ~230 `font-family` declarations
+  (`"Stone Breaker", "Courier New", monospace` / `"Sunny Mood", ...` / bare
+  `"Courier New", monospace`) with one clean stack: `ui-monospace,
+  "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace`. This kept
+  the original monospace/terminal "shape" everywhere (all were already
+  falling back past the missing custom fonts anyway) without shipping
+  unlicensed assets or leaving dead "Stone Breaker" strings in the code.
+- **Design tokens**: `frontend/src/routes/+layout.svelte` now defines a real
+  neutral+accent token system at `:global(:root)` — `--color-bg`,
+  `--color-bg-elevated`, `--color-bg-elevated-2`, `--color-border`,
+  `--color-text`, `--color-text-muted`, `--color-text-faint`,
+  `--color-danger`, `--color-success`, `--color-warning`, plus
+  `--color-accent`/`--color-accent-hover`/`--color-accent-text` derived from
+  `theme.accentColor` in `ysws.config.json` via `color-mix()`. This is a deep
+  ink neutral scale (`#14161b` bg, `#edf0f4` text) — deliberately NOT
+  shadcn zinc/slate, NOT cream, NOT a purple/blue gradient. Body
+  background/text and the focus-visible outline now use these tokens instead
+  of Beest's hardcoded `#47453f`/`#e6f4fe`/`#93b4cd`.
+- **Config reaches the frontend at runtime**: new
+  `frontend/src/lib/server/ysws-config.ts` (mirrors the backend's
+  `YswsConfigService` — reads `ysws.config.json`, falls back to
+  `ysws.config.example.json`) + `frontend/src/routes/+layout.server.ts` loads
+  it and exposes `program`/`currency`/`theme` as page data. `+layout.svelte`
+  uses it for `<title>`/`<meta description>` and the accent color — no more
+  hardcoded `<title>Beest</title>`. Needed `@types/node` added to
+  `frontend/package.json` devDependencies (frontend had never directly
+  imported a Node builtin before; `svelte-check` failed without it).
+- Verified: `npm run build` and `npx svelte-check` both clean (one
+  pre-existing `observer` reference error in `+page.svelte:76` is NOT from
+  this work — was already broken before any of these changes, unrelated to
+  theming, worth a separate fix).
+- **NOT done yet, this is the bulk of task #5 remaining**: the actual
+  per-component sweep. `home/+page.svelte` alone is ~8900 lines with
+  hundreds of hardcoded hex colors in scoped `<style>` blocks (this was
+  Beest's heavily custom-illustrated landing page) — same story across most
+  of the other ~150 route/component files to a lesser degree. The tokens
+  above exist now so that sweep has somewhere to point at:
+  replace hardcoded hex colors with `var(--color-*)` equivalents (nearest
+  match by role — background/elevated-surface/border/text/accent — not a
+  literal find-replace since Beest's exact hex values won't map 1:1). Do
+  this file-by-file, verify `npm run build` after each batch, watch for
+  colors used for MEANING (status colors: approved/green,
+  rejected/red, pending/yellow) vs decorative ones — don't accidentally
+  recolor a status indicator to the accent color. Also still open: any
+  Beest-mascot/pipe-themed SVG illustrations or images under
+  `frontend/static/images` need inventory + a decision (generic replacement
+  vs removal) — not yet scoped.
+
 ## Next up (in order)
 
 1. **Task #4 — backend genericization**: systematically walk the 36 `beest`-mention
