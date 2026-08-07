@@ -1,5 +1,4 @@
-import { readFileSync, existsSync } from 'fs';
-import { join } from 'path';
+import exampleConfig from '../../../../ysws.config.example.json';
 
 export interface YswsPublicConfig {
 	program: { name: string; shortName: string; tagline: string; description: string };
@@ -10,30 +9,30 @@ export interface YswsPublicConfig {
 	admin: { contactEmail: string };
 }
 
+// Vite's import.meta.glob is resolved at BUILD time, so — unlike a runtime
+// fs.readFileSync(path) — it's visible to every adapter's bundler (Vercel's
+// included) whether or not the file happens to exist. Returns an empty
+// object if ysws.config.json isn't present (the common case: it's
+// gitignored in this shared template, real per-deployment values are meant
+// to be committed in each program's own fork — see SETUP.md).
+const realConfigModules = import.meta.glob('../../../../ysws.config.json', {
+	eager: true,
+	import: 'default'
+});
+const realConfig = Object.values(realConfigModules)[0] as Record<string, unknown> | undefined;
+
 let cached: YswsPublicConfig | undefined;
 
 /**
- * Reads ysws.config.json from the repo root (falling back to the committed
- * ysws.config.example.json so a fresh checkout still boots) and returns only
- * the subset that's safe to send to the browser. Mirrors the backend's
- * YswsConfigService — kept separate since this one only exposes public
- * fields and lives in frontend/, not backend/.
+ * Returns the subset of ysws.config.json (or, absent that, the committed
+ * ysws.config.example.json) that's safe to send to the browser. Mirrors the
+ * backend's YswsConfigService — kept separate since this one only exposes
+ * public fields and lives in frontend/, not backend/.
  */
 export function getPublicYswsConfig(): YswsPublicConfig {
 	if (cached) return cached;
 
-	const candidates = [
-		join(process.cwd(), 'ysws.config.json'),
-		join(process.cwd(), '..', 'ysws.config.json'),
-		join(process.cwd(), 'ysws.config.example.json'),
-		join(process.cwd(), '..', 'ysws.config.example.json')
-	];
-	const path = candidates.find((p) => existsSync(p));
-	if (!path) {
-		throw new Error('No ysws.config.json or ysws.config.example.json found. See SETUP.md.');
-	}
-
-	const full = JSON.parse(readFileSync(path, 'utf-8'));
+	const full = (realConfig ?? exampleConfig) as any;
 	cached = {
 		program: full.program,
 		currency: full.currency,
