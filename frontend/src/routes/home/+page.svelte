@@ -8369,7 +8369,9 @@
       display: none;
     }
 
-    .sidebar-panel {
+    .sidebar-panel,
+    .sidebar.pinned .sidebar-panel,
+    .sidebar:hover .sidebar-panel {
       position: static;
       max-width: 100%;
       width: 100%;
