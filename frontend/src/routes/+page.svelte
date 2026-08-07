@@ -72,7 +72,6 @@
     }, 1000);
 
     return () => {
-      observer.disconnect();
       window.removeEventListener('resize', updateTop);
       clearTimeout(hintTimer);
       clearTimeout(animDelay);
@@ -283,8 +282,7 @@
   </div><!-- hero-crop -->
   <div class="hero-overlay">
     <div class="hero-copy">
-      <h1 class="hero-title"><img class="hero-logo" src="/images/beest-logo.webp" alt={data.yswsConfig.program.name} fetchpriority="high" decoding="async" /></h1>
-      <div class="hero-credit">from Euan Ripper, ascpixi, and guac md</div>
+      <h1 class="hero-title hero-title-text">{data.yswsConfig.program.name}</h1>
       <p class="hero-subtitle">{subtitle}</p>
     </div>
     <div class="hero-signup" aria-label="Sign Up">
@@ -328,22 +326,9 @@
 
   </div>
 
-<div class="rock-strata strata-with-gears" style="background:var(--color-bg)" aria-hidden="true">
+<div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,45 160,28 320,55 480,22 640,50 800,18 960,48 1120,30 1280,52 1440,35 1440,100 0,100" fill="#786e5c" />
-    <polygon points="0,62 200,50 380,72 540,44 700,68 860,40 1020,66 1180,46 1340,64 1440,55 1440,100 0,100" fill="#786e5c" />
-  </svg>
-  <svg class="strata-gear gear-cw" style="left:4%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-  </svg>
-  <svg class="strata-gear strata-gear--lg gear-ccw" style="left:28%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-  </svg>
-  <svg class="strata-gear gear-cw" style="right:20%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
-  </svg>
-  <svg class="strata-gear strata-gear--lg gear-ccw" style="right:2%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="var(--color-bg)"/>
+    <polygon points="0,60 1440,30 1440,100 0,100" fill="#786e5c" />
   </svg>
 </div>
 
@@ -359,8 +344,7 @@
 
 <div class="rock-strata" style="background:#786e5c" aria-hidden="true">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,40 140,25 300,55 440,20 580,50 720,15 860,48 1000,28 1140,58 1280,22 1440,45 1440,120 0,120" fill="#5e5648" />
-    <polygon points="0,65 160,50 320,78 460,45 600,72 760,48 900,80 1040,52 1180,82 1320,55 1440,70 1440,120 0,120" fill="var(--color-bg)" />
+    <polygon points="0,72 1440,36 1440,120 0,120" fill="var(--color-bg)" />
   </svg>
 </div>
 
@@ -407,8 +391,7 @@
 
 <div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,35 160,55 320,28 480,60 640,20 800,52 960,30 1120,58 1280,22 1440,45 1440,120 0,120" fill="#544d42" />
-    <polygon points="0,58 200,72 360,50 520,78 680,44 840,74 1000,48 1160,70 1320,52 1440,65 1440,120 0,120" fill="#56494a" />
+    <polygon points="0,72 1440,36 1440,120 0,120" fill="#56494a" />
   </svg>
 </div>
 
@@ -436,19 +419,9 @@
 
 </div>
 
-<div class="rock-strata strata-with-gears" style="background:#56494a" aria-hidden="true">
+<div class="rock-strata" style="background:#56494a" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,35 180,55 340,20 500,48 660,12 820,42 980,18 1140,52 1300,25 1440,40 1440,100 0,100" fill="var(--color-bg)" />
-    <polygon points="0,58 140,72 300,50 460,78 620,46 780,68 940,44 1100,74 1260,48 1440,62 1440,100 0,100" fill="var(--color-bg)" />
-  </svg>
-  <svg class="strata-gear strata-gear--lg gear-ccw" style="left:10%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#56494a"/>
-  </svg>
-  <svg class="strata-gear gear-cw" style="left:42%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="var(--color-text-faint)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#56494a"/>
-  </svg>
-  <svg class="strata-gear gear-ccw" style="right:8%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="var(--color-border)"><circle cx="50" cy="50" r="30"/>{#each Array(8) as _, t}<rect x="43" y="4" width="14" height="22" rx="3" transform="rotate({t*45} 50 50)"/>{/each}</g><circle cx="50" cy="50" r="12" fill="#56494a"/>
+    <polygon points="0,60 1440,30 1440,100 0,100" fill="var(--color-bg)" />
   </svg>
 </div>
 
@@ -479,8 +452,7 @@
 
 <div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,30 180,45 340,20 500,48 660,22 820,52 980,28 1140,50 1300,25 1440,40 1440,100 0,100" fill="#544d42" />
-    <polygon points="0,55 140,68 300,50 460,72 620,48 780,70 940,45 1100,65 1260,52 1440,62 1440,100 0,100" fill="var(--color-bg)" />
+    <polygon points="0,60 1440,30 1440,100 0,100" fill="#544d42" />
   </svg>
 </div>
 
@@ -540,8 +512,7 @@
 
 <div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,32 160,48 320,26 480,52 640,22 800,50 960,28 1120,54 1280,30 1440,44 1440,100 0,100" fill="#5e5648" />
-    <polygon points="0,58 200,70 360,52 520,74 680,48 840,72 1000,50 1160,68 1320,54 1440,62 1440,100 0,100" fill="var(--color-border)" />
+    <polygon points="0,60 1440,30 1440,100 0,100" fill="var(--color-border)" />
   </svg>
 </div>
 
@@ -597,16 +568,13 @@
 
 <div class="rock-strata" style="background:var(--color-border)" aria-hidden="true">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,35 160,55 320,28 480,60 640,20 800,52 960,30 1120,58 1280,22 1440,45 1440,120 0,120" fill="#56494a" />
-    <polygon points="0,58 200,72 360,50 520,78 680,44 840,74 1000,48 1160,70 1320,52 1440,65 1440,120 0,120" fill="var(--color-bg)" />
-    <polygon points="0,80 140,90 300,75 460,95 620,72 780,92 940,78 1100,96 1260,82 1440,88 1440,120 0,120" fill="#23221f" />
-    <polygon points="0,95 180,100 340,92 500,105 660,90 820,100 980,94 1140,102 1300,96 1440,100 1440,120 0,120" fill="#000" />
+    <polygon points="0,72 1440,36 1440,120 0,120" fill="#23221f" />
   </svg>
 </div>
 
 <footer class="site-footer">
   <div class="footer-content">
-    <img class="footer-logo" src="/images/beest-logo.webp" alt={data.yswsConfig.program.name} loading="lazy" decoding="async" />
+    <p class="footer-logo-text">{data.yswsConfig.program.name}</p>
     <p class="footer-heading">a project by <a href="https://hackclub.com" target="_blank" rel="noreferrer">Hack Club</a></p>
     <p class="footer-about">
       Hack Club is a 501(c)(3) nonprofit and network of 100k+ technical high schoolers. We believe
@@ -951,19 +919,6 @@
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
-  /* signature credit — directly under the logo, on the brown, deliberately
-     dimmer than the tagline below it */
-  .hero-credit {
-    margin: 0 0 0 var(--logo-indent);
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: clamp(16px, 1.6vw, 24px);
-    color: var(--color-text);
-    letter-spacing: 0.04em;
-    line-height: 1;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
-    pointer-events: none;
-  }
-
   .hero-subtitle {
     margin: 4px 0 0 var(--logo-indent);
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -985,11 +940,15 @@
     line-height: 0;
   }
 
-  .hero-logo {
+  .hero-title-text {
     display: block;
-    width: var(--logo-w);
-    height: auto;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+    margin: 0 0 0 var(--logo-indent);
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: clamp(32px, 5vw, 72px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
   }
 
   /* Whenever the 16:9 hero leaves too little room for the text block, the
@@ -1147,7 +1106,7 @@
     z-index: 1;
   }
 
-  .rock-strata svg:not(.strata-gear) {
+  .rock-strata svg {
     display: block;
     width: 100%;
     height: 100px;
@@ -1165,34 +1124,8 @@
     margin: 0 auto;
   }
 
-
-  .strata-with-gears {
-    position: relative;
-    overflow: visible;
-    z-index: 0;
-  }
-
-  .strata-gear {
-    position: absolute;
-    bottom: 0;
-    width: 150px;
-    height: 150px;
-    will-change: transform;
-    z-index: -1;
-    pointer-events: none;
-  }
-
-  .strata-gear--lg {
-    width: 200px;
-    height: 200px;
-  }
-
   .gear-cw {
-    transform: translateY(20%) rotate(calc(var(--sy) * 0.1deg));
-  }
-
-  .gear-ccw {
-    transform: translateY(20%) rotate(calc(var(--sy) * -0.1deg + 22.5deg));
+    transform: rotate(calc(var(--sy) * 0.1deg));
   }
 
   .footer-cog.gear-cw {
@@ -2023,11 +1956,14 @@
     text-align: left;
   }
 
-  .footer-logo {
+  .footer-logo-text {
     display: block;
-    margin: 0 0 26px;
-    width: min(210px, 55vw);
-    height: auto;
+    margin: 0 0 14px;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
   }
 
   .footer-heading {
@@ -2440,6 +2376,43 @@
 
     .rsvp-box {
       max-width: 360px;
+    }
+
+    /* clean stacked layout: drop the overhanging plate/rotation gimmick,
+       card and caption just flow top to bottom */
+    .wall-of-fame {
+      padding: 56px 20px 72px;
+    }
+
+    .fame-carousel {
+      margin: 12px -20px 0;
+      padding: 16px 0 24px;
+    }
+
+    .fame-item {
+      width: min(340px, 82vw);
+      margin-right: 20px;
+    }
+
+    .fame-item:nth-child(odd) .fame-shot,
+    .fame-item:nth-child(even) .fame-shot {
+      transform: none;
+    }
+
+    .fame-shot {
+      box-shadow: none;
+    }
+
+    .fame-plate {
+      position: static;
+      width: 100%;
+      margin-top: 10px;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .fame-item:nth-child(even) .fame-plate {
+      transform: none;
     }
   }
 
