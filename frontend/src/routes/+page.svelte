@@ -175,12 +175,14 @@
     { src: '/images/shop/framework.webp', caption: 'Framework Laptop' },
     { src: '/images/shop/headphones.webp', caption: 'Headphones' },
     { src: '/images/shop/polaroid.webp', caption: 'Instax Camera' },
-    { src: '/images/shop/poster.webp', caption: 'Beest Poster' },
+    { src: '/images/shop/poster.webp', caption: 'Event Poster' },
     { src: '/images/shop/printer.webp', caption: '3D Printer' },
     { src: '/images/shop/stickers.webp', caption: 'Sticker Pack' }
   ];
 
-  // Wall of Fame
+  // Wall of Fame — replace with real shipped projects from your own program.
+  // These are placeholder examples; the originals were real participants'
+  // names/projects/screenshots and don't belong in a generic template.
   const wallOfFameProjects: {
     title: string;
     author: string;
@@ -190,38 +192,18 @@
     alt?: string;
   }[] = [
     {
-      title: 'Seaward',
-      author: 'moaaz',
+      title: 'Example Project One',
+      author: 'A Builder',
       description:
-        'A 3D game where the player is in the form of a boat aiming for victory.',
-      link: 'https://moaazkamel.itch.io/seaward',
-      image: '/images/fame/seaward.webp',
-      alt: 'Seaward gameplay: a low-poly boat weaving between canyon gates'
+        'A short description of a real project someone shipped through this program.',
+      link: '#'
     },
     {
-      title: 'vp3',
-      author: 'Violet',
+      title: 'Example Project Two',
+      author: 'Another Builder',
       description:
-        'TUI music player',
-      link: 'https://github.com/vivithequeen/vp3/releases/tag/v1',
-      image: '/images/fame/vp3.webp',
-      alt: 'vp3 playing an album in the terminal, with cover art rendered as ASCII'
-    },
-    {
-      title: 'Speedtickers',
-      author: 'Juan',
-      description:
-        'Speedrun your way trough short yet difficult levels before the timer hits zero.',
-      link: 'https://juanes10201.itch.io/speedtickers-latest',
-      image: '/images/fame/speedtickers.webp',
-      alt: 'Speedtickers cover art: a blue character sliding across a neon grid'
-    },
-    {
-      title: 'Beest Cli',
-      author: 'Peleg',
-      description:
-        'Beest.hackclub.com but in CLI!',
-      link: 'https://beest.peleg2210.me/'
+        'Swap these placeholder entries for your own community\'s shipped work.',
+      link: '#'
     },
   ];
 
@@ -304,7 +286,7 @@
   </div><!-- hero-crop -->
   <div class="hero-overlay">
     <div class="hero-copy">
-      <h1 class="hero-title"><img class="hero-logo" src="/images/beest-logo.webp" alt="Beest" fetchpriority="high" decoding="async" /></h1>
+      <h1 class="hero-title"><img class="hero-logo" src="/images/beest-logo.webp" alt={data.yswsConfig.program.name} fetchpriority="high" decoding="async" /></h1>
       <div class="hero-credit">from Euan Ripper, ascpixi, and guac md</div>
       <p class="hero-subtitle">{subtitle}</p>
     </div>
@@ -371,7 +353,7 @@
 <section class="what-is-this" id="what-is-this">
   <h2>What is this?</h2>
   <p>
-    Beest is a <a href="https://hackclub.com" target="_blank" rel="noreferrer">Hack Club</a> Event
+    {data.yswsConfig.program.name} is a <a href="https://hackclub.com" target="_blank" rel="noreferrer">Hack Club</a> Event
     running <strong>August 19–21</strong> in the Netherlands.
     We're flying 30 teens out to build walking mechanisms on the same beach the famous
     Strandbeest was constructed. A strandbeest is a kinetic sculpture - a giant walking mechanism of
@@ -392,7 +374,7 @@
 <section class="wall-of-fame" id="wall-of-fame">
   <h2>Wall of Fame</h2>
   <p class="wall-of-fame-subtitle">
-    Some of the best builds from the Beest community :D
+    Some of the best builds from our community :D
   </p>
 
   <div class="fame-carousel" role="region" aria-label="Wall of Fame projects">
@@ -485,7 +467,7 @@
       If you are a teen, yes! The only criteria is being a teenager and building a real open-source
       software/hardware project for 40 hours. We can help you get a visa, cover the cost of your flight
       or hop on a call with parents! If you aren't sure, join the slack and ask - and if you can't make
-      it, stay for the community! Hack Club is much bigger than Beest, we run events like this every
+      it, stay for the community! Hack Club is much bigger than just this program, we run events like this every
       few weeks!
     </p>
   </div>
@@ -631,7 +613,7 @@
 
 <footer class="site-footer">
   <div class="footer-content">
-    <img class="footer-logo" src="/images/beest-logo.webp" alt="Beest" loading="lazy" decoding="async" />
+    <img class="footer-logo" src="/images/beest-logo.webp" alt={data.yswsConfig.program.name} loading="lazy" decoding="async" />
     <p class="footer-heading">a project by <a href="https://hackclub.com" target="_blank" rel="noreferrer">Hack Club</a></p>
     <p class="footer-about">
       Hack Club is a 501(c)(3) nonprofit and network of 100k+ technical high schoolers. We believe

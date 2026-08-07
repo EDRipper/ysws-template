@@ -5,6 +5,9 @@ export interface YswsPublicConfig {
 	program: { name: string; shortName: string; tagline: string; description: string };
 	currency: { nameSingular: string; namePlural: string; symbol: string };
 	theme: { accentColor: string; logoAsset?: string; faviconAsset?: string };
+	event: { startDate?: string; endDate?: string; location?: string; timezone?: string };
+	/** Only the public contact email is exposed here — NOT admin.superAdminSlackIds. */
+	admin: { contactEmail: string };
 }
 
 let cached: YswsPublicConfig | undefined;
@@ -34,7 +37,9 @@ export function getPublicYswsConfig(): YswsPublicConfig {
 	cached = {
 		program: full.program,
 		currency: full.currency,
-		theme: full.theme
+		theme: full.theme,
+		event: full.event ?? {},
+		admin: { contactEmail: full.admin?.contactEmail }
 	};
 	return cached;
 }

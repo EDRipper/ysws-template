@@ -1308,17 +1308,16 @@
 
 
   let faqOpenIndex: number | null = $state(null);
+  const faqCfg = data.yswsConfig;
+  const faqWhenWhere = [faqCfg.event?.startDate && faqCfg.event?.endDate ? `${faqCfg.event.startDate} to ${faqCfg.event.endDate}` : null, faqCfg.event?.location].filter(Boolean).join(' at ');
   const faqItems = [
-    { q: 'What is Beest?', a: 'Beest is a Hack Club hackathon/event in the Netherlands! Participants qualify by building any project and documenting the process, and those who qualify fly to the Netherlands to build their own beests (mechanical animals!). The event is themed around Strandbeests, a kinetic sculpture developed in the netherlands by Theo Jansen. Participants will have the opportunity to go to a strandbeest exhibit!' },
-    { q: 'Who can participate?', a: 'Any teens 13-19 or in high school can participate. We can also provide flight stipends for international students to get to the event.' },
-    { q: 'How much does it cost?', a: 'Beest is completely free to participate in! All costs for the event are covered, including food, accommodation, day-off travel and merchandise. Additionally participants can earn stipends for visa application fees and flight costs.' },
-    { q: 'Where and when does Beest take place?', a: 'Beest runs August 19–21 at The Hague Tech in the Netherlands. The Strandbeest exhibition happens during that same window, so participants get to see it as part of the event, before exhibiting their own mechanisms on Scheveningen beach on the final day.' },
-    { q: 'How will the event run?', a: 'Beest runs August 19–21. Participants will watch the Strandbeest exhibition during the event and, in teams of three, make their own walking mechanisms, before exhibiting them on Scheveningen beach on the final day.' },
-    { q: 'How do I qualify?', a: "Build an open source coding or hardware project! Anything you can dream up is possible, just make the project you want to exist. Please don't AI generate the project, instead focus on making something fun, silly, useful to you or a project that forces you to learn something new. 40 hours of tracked work will automatically qualify you, and working for additional hours will contribute $8/hr toward your flight cost or visa application fees." },
-    { q: 'What should I bring?', a: 'A laptop, a sleeping bag, clothes, a charger, a mobile phone... A more conclusive list will be sent out closer to the event.' },
-    { q: 'Do I need prior engineering or building experience?', a: 'No! Hack Club is all about learning by doing, so we welcome builders of all experience levels. We will provide resources and support to help you build your mechanical animal, and we can help you in the #beest channel on Slack!' },
-    { q: 'What is a Strandbeest?', a: 'A Strandbeest is a kinetic sculpture that walks using wind power. They are made from lightweight materials like PVC pipe and can range in size from small tabletop models to large structures that can walk on the beach.' },
-    { q: 'I have more questions — how do I get in touch?', a: 'Contact us in the #beest channel on Hack Club Slack or email beest@hackclub.com!' }
+    { q: `What is ${faqCfg.program.name}?`, a: `${faqCfg.program.name} is a Hack Club You-Ship-We-Ship program: ${faqCfg.program.description} Participants build and ship real projects, document their process as they go, and earn ${faqCfg.currency.namePlural} for what they build.` },
+    { q: 'Who can participate?', a: 'Any teens 13-19 or in high school can participate.' },
+    { q: 'How much does it cost?', a: `${faqCfg.program.name} is completely free to participate in!` },
+    { q: `When and where does ${faqCfg.program.name} run?`, a: faqWhenWhere ? `${faqCfg.program.name} runs ${faqWhenWhere}.` : `Check the ${faqCfg.program.name} Slack channel for the current schedule.` },
+    { q: 'How do I qualify?', a: "Build an open source coding or hardware project! Anything you can dream up is possible, just make the project you want to exist. Please don't AI generate the project — instead focus on making something fun, useful to you, or something that forces you to learn something new." },
+    { q: 'Do I need prior engineering or building experience?', a: `No! Hack Club is all about learning by doing, so we welcome builders of all experience levels. We will provide resources and support along the way, and you can always ask for help in the ${faqCfg.program.name} channel on Slack.` },
+    { q: 'I have more questions — how do I get in touch?', a: `Reach out on the Hack Club Slack, or email ${faqCfg.admin.contactEmail}.` }
   ];
 
   // `icon` is inline SVG content (Lucide-style, 24×24 viewBox, stroked with
@@ -1676,7 +1675,7 @@
     <div class="sidebar-panel">
       <div class="sidebar-content">
         <a href="/" class="sidebar-brand">
-          <img src="/images/beest-logo.webp" alt="Beest" class="sidebar-logo" decoding="async" />
+          <img src="/images/beest-logo.webp" alt={data.yswsConfig.program.name} class="sidebar-logo" decoding="async" />
         </a>
         <ul class="sidebar-nav">
           {#each navItems as item}
@@ -2270,7 +2269,7 @@
             <h2 class="section-title">My Projects</h2>
             <p class="section-subtitle">Track your progress and hours.</p>
           </div>
-          <div class="event-countdown" aria-label="Countdown to Beest">
+          <div class="event-countdown" aria-label="Countdown to {data.yswsConfig.program.name}">
             <p class="event-countdown-kicker"><span class="event-countdown-logo">BEESTing</span> starts on</p>
             {#if eventCountdown.live}
               <p class="event-countdown-live">Live</p>
@@ -3167,7 +3166,7 @@
               </a>
               <div class="settings-link">
                 <h3 class="settings-link-title">Security Bounty</h3>
-                <p class="settings-link-desc">Beest is participating in a security bounty. You can submit proven vulnerabilities for reward <a href="https://security.hackclub.com/" target="_blank" rel="noopener">here</a>.</p>
+                <p class="settings-link-desc">{data.yswsConfig.program.name} is participating in a security bounty. You can submit proven vulnerabilities for reward <a href="https://security.hackclub.com/" target="_blank" rel="noopener">here</a>.</p>
               </div>
               <a href="/api/auth/logout" class="settings-link settings-link-logout">
                 <h3 class="settings-link-title">Log Out</h3>

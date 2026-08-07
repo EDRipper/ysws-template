@@ -1,4 +1,8 @@
-<!-- src/routes/fraud/+page.svelte — Beest's version of fraud.hackclub.com -->
+<!-- src/routes/fraud/+page.svelte — this program's version of fraud.hackclub.com -->
+<script lang="ts">
+	let { data } = $props();
+</script>
+
 <svelte:head>
 	<title>So now you're banned...</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,12 +22,13 @@
 			</svg>
 			<h1>So now you're banned; what's next?</h1>
 			<p class="intro-text">
-				Hey - if you're reading this, you've been banned from Beest. There are a few reasons this might have
-				happened: you may be over 18 and therefore not eligible, you may have attempted to cheat the time
-				tracking system, you may have conducted yourself poorly and had it result in a ban, or we may have
-				simply made a mistake. Beest keeps its own ban list, separate from Hackatime - so you can be banned
-				from Beest without being banned from Hackatime itself. If you don't know why you're banned, reach out
-				to the team - or to the fraud squad if it's related to Hackatime hour fraud.
+				Hey - if you're reading this, you've been banned from {data.yswsConfig.program.name}. There are a few
+				reasons this might have happened: you may be over 18 and therefore not eligible, you may have
+				attempted to cheat the time tracking system, you may have conducted yourself poorly and had it result
+				in a ban, or we may have simply made a mistake. {data.yswsConfig.program.name} keeps its own ban
+				list, separate from Hackatime - so you can be banned from {data.yswsConfig.program.name} without
+				being banned from Hackatime itself. If you don't know why you're banned, reach out to the team - or
+				to the fraud squad if it's related to Hackatime hour fraud.
 			</p>
 		</header>
 
@@ -31,7 +36,7 @@
 			<section>
 				<h2>First, what happened?</h2>
 				<p>
-					Hack Club is a community built on trust. There are two reasons you can be banned from Beest:
+					Hack Club is a community built on trust. There are two reasons you can be banned from {data.yswsConfig.program.name}:
 				</p>
 				<ul>
 					<li>
@@ -122,8 +127,8 @@
 							across Hack Club programs, so it needs to be resolved with them directly.
 						</li>
 						<li>
-							<strong>Just banned from Beest?</strong> Message <strong>@euanripper</strong> on the Hack
-							Club Slack and we can talk it through.
+							<strong>Just banned from {data.yswsConfig.program.name}?</strong> Message the program admins
+							on the Hack Club Slack and we can talk it through.
 						</li>
 					</ul>
 				</div>
