@@ -42,7 +42,9 @@ export const load: PageServerLoad = async ({ url, cookies }) => {
 	});
 
 	if (!res.ok) {
-		return { error: 'Authentication failed' };
+		const body = await res.json().catch(() => null);
+		console.error('Backend rejected oauth callback:', res.status, body);
+		return { error: body?.message ?? `Authentication failed (${res.status})` };
 	}
 
 	const { token, refreshToken, redirectTo } = await res.json();
