@@ -35,17 +35,8 @@
   const pxRemaining = $derived(PARALLAX_TRAVEL * (1 - progress));
   const postScroll = $derived(Math.max(scrollY - PARALLAX_TRAVEL, 0));
   let heroHeight = $state(0);
-  let diagramEl: HTMLElement;
-  let diagramTop = $state(0);
-
 
   onMount(() => {
-    const updateTop = () => {
-      if (diagramEl) diagramTop = diagramEl.getBoundingClientRect().top + window.scrollY;
-    };
-    updateTop();
-    window.addEventListener('resize', updateTop);
-
     const hintTimer = setTimeout(() => { showScrollHint = true; }, 3000);
 
     // Lazy-load the tile texture after first paint
@@ -72,21 +63,12 @@
     }, 1000);
 
     return () => {
-      window.removeEventListener('resize', updateTop);
       clearTimeout(hintTimer);
       clearTimeout(animDelay);
       cancelAnimationFrame(animRaf);
     };
   });
 
-
-  // 0 -> 1 as the diagram scrolls through the viewport
-  const vh = $derived(typeof window !== 'undefined' ? window.innerHeight : 800);
-  const annotate = $derived(Math.min(Math.max((scrollY - diagramTop + vh * 0.75) / (vh * 0.8), 0), 1));
-
-  const showA = $derived(annotate > 0);
-  const showB = $derived(annotate > 0.25);
-  const showC = $derived(annotate > 0.45);
 
   const subtitle = data.yswsConfig.program.tagline;
 
@@ -171,7 +153,6 @@
     { src: '/images/shop/framework.webp', caption: 'Framework Laptop' },
     { src: '/images/shop/headphones.webp', caption: 'Headphones' },
     { src: '/images/shop/polaroid.webp', caption: 'Instax Camera' },
-    { src: '/images/shop/poster.webp', caption: 'Event Poster' },
     { src: '/images/shop/printer.webp', caption: '3D Printer' },
     { src: '/images/shop/stickers.webp', caption: 'Sticker Pack' }
   ];
@@ -389,50 +370,13 @@
   </div>
 </section>
 
-<div class="rock-strata" style="background:var(--color-bg)" aria-hidden="true">
-  <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,72 1440,36 1440,120 0,120" fill="#56494a" />
-  </svg>
-</div>
-
-<div class="sticker-bg">
-<section class="sticker-row">
-  <div class="diagram" bind:this={diagramEl} style="--r:{annotate}">
-
-    <div class="sticker">
-      <img src="/images/beest.gif" alt="Strandbeest animation" loading="lazy" decoding="async" />
-    </div>
-
-    <div class="callout c1" class:visible={showA}>
-      <p>Sails capture the wind to move the strandbeest</p>
-    </div>
-
-    <div class="callout c2" class:visible={showB}>
-      <p>The arrangement of PVC pipes rotate to plot out a 'walk'</p>
-    </div>
-
-    <div class="callout c3" class:visible={showC}>
-      <p>The strandbeest walks on many legs</p>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<div class="rock-strata" style="background:#56494a" aria-hidden="true">
-  <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,60 1440,30 1440,100 0,100" fill="var(--color-bg)" />
-  </svg>
-</div>
-
 <div class="info-bg">
 <section class="info-section">
   <div class="info-block">
     <h2>Am I Eligible?</h2>
     <p>
       If you are a teen, yes! The only criteria is being a teenager and building a real open-source
-      software/hardware project for 40 hours. We can help you get a visa, cover the cost of your flight
-      or hop on a call with parents! If you aren't sure, join the slack and ask - and if you can't make
+      software/hardware project for 40 hours. If you aren't sure, join the slack and ask - and if you can't make
       it, stay for the community! Hack Club is much bigger than just this program, we run events like this every
       few weeks!
     </p>
@@ -1032,7 +976,6 @@
   }
 
   .what-is-this,
-  .sticker-bg,
   .info-bg,
   .hackclub-section,
   .bottom-rsvp {
@@ -1043,7 +986,6 @@
   .top-bg,
   .what-is-this,
   .info-bg,
-  .sticker-bg,
   .carousel-section,
   .hackclub-section,
   .bottom-rsvp,
@@ -1057,7 +999,6 @@
   .what-is-this::after,
   .wall-of-fame::after,
   .info-bg::after,
-  .sticker-bg::after,
   .carousel-section::after,
   .hackclub-section::after,
   .bottom-rsvp::after,
@@ -1086,7 +1027,6 @@
   :global(.tile-loaded) .what-is-this::after,
   :global(.tile-loaded) .wall-of-fame::after,
   :global(.tile-loaded) .info-bg::after,
-  :global(.tile-loaded) .sticker-bg::after,
   :global(.tile-loaded) .carousel-section::after,
   :global(.tile-loaded) .hackclub-section::after,
   :global(.tile-loaded) .bottom-rsvp::after,
@@ -1434,28 +1374,6 @@
   }
 
   /* ── layout ─────────────────────────────────────── */
-  .sticker-bg {
-    background: #56494a;
-  }
-
-  .sticker-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 40px;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 64px 48px 80px;
-  }
-
-  .diagram {
-    flex: 0 0 auto;
-    position: relative;
-    width: min(980px, 100%);
-    min-height: 460px;
-    container-type: inline-size;
-  }
-
   .rsvp-box {
     position: relative;
     z-index: 1;
@@ -1607,112 +1525,6 @@
   .rsvp-note a:active {
     color: var(--color-accent);
     text-decoration-color: var(--color-accent);
-  }
-
-  .sticker {
-    position: relative;
-    width: 49%;
-    aspect-ratio: 1;
-  }
-
-  .sticker img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-
-  .callout {
-    position: absolute;
-    max-width: 35cqi;
-    color: var(--color-text);
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: clamp(14px, 1.8cqi, 18px);
-    letter-spacing: 0.03em;
-    line-height: 1.35;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 260ms ease, transform 260ms ease;
-  }
-
-  .callout p {
-    margin: 0;
-    padding: 12px 14px;
-    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    border: 1px solid rgba(230, 244, 254, 0.35);
-    background: var(--color-border);
-    backdrop-filter: blur(1.5px);
-  }
-
-  .callout::before {
-    content: '';
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(147, 180, 205, 0), var(--color-accent) 35%, var(--color-text));
-    opacity: calc(0.35 + (var(--r) * 0.65));
-  }
-
-  .callout::after {
-    content: '';
-    position: absolute;
-    width: 1px;
-    background: linear-gradient(180deg, rgba(147, 180, 205, 0), var(--color-text));
-    opacity: calc(0.35 + (var(--r) * 0.65));
-  }
-
-  .callout.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .c1 {
-    left: 55%;
-    top: 7%;
-  }
-
-  .c1::before {
-    left: calc(-1 * (55cqi - 24.5cqi));
-    width: calc(55cqi - 24.5cqi);
-    top: 18px;
-    background: linear-gradient(90deg, var(--color-accent), var(--color-text));
-  }
-
-  .c1::after {
-    height: 70px;
-    left: calc(-1 * (55cqi - 24.5cqi));
-    top: 18px;
-    background: linear-gradient(180deg, var(--color-accent), rgba(147, 180, 205, 0));
-  }
-
-  .c2 {
-    left: 58%;
-    top: 43%;
-  }
-
-  .c2::before {
-    left: calc(-1 * (58cqi - 49cqi));
-    width: calc(58cqi - 49cqi);
-    top: 20px;
-  }
-
-  .c3 {
-    left: 55%;
-    top: 76%;
-  }
-
-  .c3::before {
-    left: calc(-1 * (55cqi - 24.5cqi));
-    width: calc(55cqi - 24.5cqi);
-    top: 19px;
-    background: linear-gradient(90deg, var(--color-accent), var(--color-text));
-  }
-
-  .c3::after {
-    height: 70px;
-    left: calc(-1 * (55cqi - 24.5cqi));
-    bottom: calc(100% - 20px);
-    background: linear-gradient(180deg, rgba(147, 180, 205, 0), var(--color-accent));
   }
 
   .carousel-section {
@@ -1867,17 +1679,6 @@
       gap: 32px;
       /* the hero text block hangs 120px into this section */
       padding: 176px 40px 80px;
-    }
-
-    .sticker-row {
-      flex-direction: column;
-      padding: 48px 20px 180px;
-    }
-
-    .diagram {
-      min-height: 0;
-      width: min(700px, 100%);
-      margin: 0 auto;
     }
 
     .rsvp-box {
@@ -2327,36 +2128,6 @@
     .photo-frame {
       width: 300px;
       height: 220px;
-    }
-
-    .diagram {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .sticker {
-      width: min(78vw, 400px);
-    }
-
-    .callout {
-      position: static;
-      max-width: 100%;
-      margin-top: 14px;
-      opacity: 1 !important;
-      transform: none !important;
-    }
-
-    .callout::before {
-      width: 38px;
-      right: auto;
-      left: -44px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .callout::after {
-      display: none;
     }
 
     .bottom-rsvp {

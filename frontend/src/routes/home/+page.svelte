@@ -249,8 +249,8 @@
   let devlogLookoutBusy = $state(false);
   // Survives the redirect to the Lookout recorder so the half-written devlog
   // (and its attached recording) is restored when the user comes back.
-  const DEVLOG_DRAFT_KEY = 'beest:devlog-lookout-draft';
-  const DEVLOG_AUTOSAVE_KEY = 'beest:devlog-autosave';
+  const DEVLOG_DRAFT_KEY = 'ysws:devlog-lookout-draft';
+  const DEVLOG_AUTOSAVE_KEY = 'ysws:devlog-autosave';
 
   function selectDefaultDevlogLookoutSession(sessions: LookoutSessionOption[]) {
     const selectable = getSelectableDevlogLookoutSessions(sessions);
@@ -1682,7 +1682,7 @@
     <div class="sidebar-panel">
       <div class="sidebar-content">
         <a href="/" class="sidebar-brand">
-          <img src="/images/beest-logo.webp" alt={data.yswsConfig.program.name} class="sidebar-logo" decoding="async" />
+          <span class="sidebar-logo">{data.yswsConfig.program.name}</span>
         </a>
         <ul class="sidebar-nav">
           {#each navItems as item}
@@ -3651,15 +3651,17 @@
   }
 
   .sidebar-logo {
-    width: 100%;
-    max-width: 170px;
-    height: auto;
     display: block;
-    transition: filter 150ms ease;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+    transition: color 150ms ease;
   }
 
   .sidebar-brand:hover .sidebar-logo {
-    filter: brightness(1.12);
+    color: var(--color-accent);
   }
 
   .sidebar-nav {
