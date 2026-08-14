@@ -25,7 +25,15 @@
 	type ThreeModule = typeof import('three');
 	type Tier = 'canvas' | 'static';
 
-	let { class: className = '' }: { class?: string } = $props();
+	// `style` is accepted separately from `class` because Svelte's per-component
+	// CSS scoping means a plain class rule written in a *parent* component
+	// cannot reliably out-specificity this component's own scoped `.sticker-field`
+	// rule (both end up as two-class selectors after scoping, so which one wins
+	// is cascade-order-fragile). An inline style always wins, so callers that
+	// need to reposition/resize the field (e.g. to cover a specific section)
+	// should use `style`, not just `class`.
+	let { class: className = '', style: styleProp = '' }: { class?: string; style?: string } =
+		$props();
 
 	// Below this viewport width we skip three.js/WebGL entirely and render a
 	// handful of plain <img> stickers positioned with CSS instead — cheaper
@@ -80,7 +88,7 @@
 	}
 
 	let containerEl: HTMLDivElement;
-	let canvasEl: HTMLCanvasElement | undefined;
+	let canvasEl: HTMLCanvasElement | undefined = $state();
 	let tier = $state<Tier | null>(null);
 	let staticPlacements = $state<StaticPlacement[]>([]);
 
@@ -647,7 +655,12 @@
 	});
 </script>
 
-<div class="sticker-field {className}" bind:this={containerEl} aria-hidden="true">
+<div
+	class="sticker-field {className}"
+	style={styleProp}
+	bind:this={containerEl}
+	aria-hidden="true"
+>
 	{#if tier === 'canvas'}
 		<canvas bind:this={canvasEl}></canvas>
 	{:else if tier === 'static'}

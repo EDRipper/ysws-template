@@ -14,6 +14,7 @@
 
 <script lang="ts">
   import { onMount } from 'svelte';
+  import StickerField from '$lib/components/StickerField.svelte';
 
   let { data } = $props();
   const authenticated = data.authenticated;
@@ -150,6 +151,7 @@
 <div class="top-bg">
 <div class="hero-scroll-space">
 <div class="hero-wrap">
+  <StickerField class="hero-stickers" style="inset: -6vh -4vw -10vh; z-index: 6;" />
   <a class="hc-flag" href="https://hackclub.com" target="_blank" rel="noreferrer" aria-label="Hack Club">
     <img src="/images/hack-club-flag.svg" alt="" decoding="async" />
   </a>
@@ -174,40 +176,43 @@
   </div>
   </div><!-- hero-crop -->
   <div class="hero-overlay">
-    <div class="hero-copy">
-      <h1 class="hero-title hero-title-text">{data.yswsConfig.program.name}</h1>
-      <p class="hero-subtitle">{subtitle}</p>
-    </div>
-    <div class="hero-signup" aria-label="Sign Up">
-      <p class="signup-note">&#10003; Signing up puts you on our email list, you can remove yourself <a href="https://email-tools.hackclub.com/" target="_blank" rel="noreferrer">here</a>.</p>
-      {#if authenticated}
-        <div class="signup-form">
-          <button
-            type="button"
-            class="signup-btn valid"
-            class:sending={topStatus === 'sending'}
-            disabled={topStatus === 'sending'}
-            onclick={() => submitAuthenticatedRsvp((s) => topStatus = s)}
-          >
-            {#if topStatus === 'sending'}Sending...{:else}Start{/if}
-          </button>
-        </div>
-      {:else}
-        <div class="signup-form">
-          <input class="signup-input" type="email" placeholder="you@example.com" aria-label="Email" bind:value={topEmail} onkeydown={(e) => { if (e.key === 'Enter' && topValid && topStatus !== 'sending') submitRsvp(topEmail, (s) => topStatus = s); }} />
-          <button
-            type="button"
-            class="signup-btn"
-            class:valid={topValid}
-            class:sending={topStatus === 'sending'}
-            disabled={!topValid || topStatus === 'sending'}
-            onclick={() => submitRsvp(topEmail, (s) => topStatus = s)}
-          >
-            {#if topStatus === 'sending'}Sending...{:else}Sign Up{/if}
-          </button>
-        </div>
-      {/if}
-      {#if topStatus === 'error'}<p class="signup-error">Something went wrong, please try again.</p>{/if}
+    <div class="hero-modal" aria-label="Sign Up">
+      <svg class="hero-modal-border" preserveAspectRatio="none" aria-hidden="true"><rect x="1.5" y="1.5" width="calc(100% - 3px)" height="calc(100% - 3px)" rx="0" ry="0" /></svg>
+      <div class="hero-copy">
+        <h1 class="hero-title hero-title-text">{data.yswsConfig.program.name}</h1>
+        <p class="hero-subtitle">{subtitle}</p>
+      </div>
+      <div class="hero-signup">
+        <p class="signup-note">&#10003; Signing up puts you on our email list, you can remove yourself <a href="https://email-tools.hackclub.com/" target="_blank" rel="noreferrer">here</a>.</p>
+        {#if authenticated}
+          <div class="signup-form">
+            <button
+              type="button"
+              class="signup-btn valid"
+              class:sending={topStatus === 'sending'}
+              disabled={topStatus === 'sending'}
+              onclick={() => submitAuthenticatedRsvp((s) => topStatus = s)}
+            >
+              {#if topStatus === 'sending'}Sending...{:else}Start{/if}
+            </button>
+          </div>
+        {:else}
+          <div class="signup-form">
+            <input class="signup-input" type="email" placeholder="you@example.com" aria-label="Email" bind:value={topEmail} onkeydown={(e) => { if (e.key === 'Enter' && topValid && topStatus !== 'sending') submitRsvp(topEmail, (s) => topStatus = s); }} />
+            <button
+              type="button"
+              class="signup-btn"
+              class:valid={topValid}
+              class:sending={topStatus === 'sending'}
+              disabled={!topValid || topStatus === 'sending'}
+              onclick={() => submitRsvp(topEmail, (s) => topStatus = s)}
+            >
+              {#if topStatus === 'sending'}Sending...{:else}Sign Up{/if}
+            </button>
+          </div>
+        {/if}
+        {#if topStatus === 'error'}<p class="signup-error">Something went wrong, please try again.</p>{/if}
+      </div>
     </div>
   </div>
 
@@ -556,41 +561,77 @@
   }
 
   .hero-overlay {
-    /* the wordmark's letter frame starts ~17% into the logo image (the gear
-       sits to its left); the text rows below indent by the same amount so
-       everything aligns to the letters, not the gear */
-    --logo-w: clamp(280px, 30vw, 480px);
-    --logo-indent: calc(var(--logo-w) * 0.17);
     position: absolute;
-    /* hangs below the hero so the whole block sits on the brown ground */
-    inset: auto clamp(48px, 7vw, 160px) -145px;
+    inset: 0;
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+    justify-content: center;
+    /* keep the modal clear of the hc-flag (top-left) and the strata divider
+       (bottom edge) it sits over */
+    padding: clamp(64px, 9vh, 120px) clamp(20px, 5vw, 64px) clamp(56px, 8vh, 96px);
+    box-sizing: border-box;
     /* above the strata svg (z 12), which would otherwise paint over the top
-       of the logo where it overlaps the rock band */
+       of the modal where it overlaps the rock band, and above the sticker
+       field so stickers never sit on top of the sign-up card */
     z-index: 13;
-    /* transparent overlay lets clicks fall through to the parallax; the
-       sign-up box re-enables events on itself */
+    /* transparent overlay lets clicks fall through to the parallax/stickers;
+       the modal re-enables events on itself */
     pointer-events: none;
     line-height: normal;
+  }
+
+  /* central sign-up modal — a bigger, more prominent sibling of #bottom-rsvp's
+     .rsvp-box "marching ants" card, promoted here to the hero's main CTA */
+  .hero-modal {
+    pointer-events: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    width: min(620px, 100%);
+    box-sizing: border-box;
+    padding: clamp(28px, 4vw, 44px) clamp(24px, 5vw, 48px) clamp(24px, 3vw, 36px);
+    background: var(--color-text-faint);
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
+    text-align: center;
+  }
+
+  .hero-modal-border {
+    position: absolute;
+    inset: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .hero-modal-border rect {
+    fill: none;
+    stroke: #000000;
+    stroke-width: 3;
+    stroke-dasharray: 20 12;
+    animation: march 30s linear infinite;
+    animation-play-state: paused;
+  }
+
+  .hero-modal:hover .hero-modal-border rect,
+  .hero-modal:focus-within .hero-modal-border rect {
+    animation-play-state: running;
   }
 
   .hero-copy {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
+    align-items: center;
+    gap: 10px;
     min-width: 0;
   }
 
-  /* bare sign-up: email + button docked to the right of the wordmark */
   .hero-signup {
     pointer-events: auto;
     position: relative;
-    flex: 0 0 clamp(320px, 32vw, 440px);
+    width: 100%;
   }
 
   /* the input and button are each tilted a touch and the button laps over the
@@ -598,6 +639,7 @@
   .signup-form {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0;
     padding: 6px 4px;
   }
@@ -608,11 +650,11 @@
     position: relative;
     z-index: 1;
     box-sizing: border-box;
-    padding: 13px 12px;
+    padding: 15px 14px;
     border: 2px solid var(--color-bg);
     background: var(--color-text);
     color: var(--color-bg);
-    font-size: 18px;
+    font-size: 19px;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     cursor: text;
     rotate: -2deg;
@@ -625,7 +667,7 @@
   /* chunky "hardware key" that presses down on hover/click */
   .signup-btn {
     flex: 0 0 auto;
-    min-width: 150px;
+    min-width: 160px;
     position: relative;
     z-index: 2;
     margin-left: -18px;
@@ -635,10 +677,10 @@
     background: #AD9E83;
     color: #4C483D;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 22px;
+    font-size: 23px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 12px 18px;
+    padding: 13px 18px;
     cursor: not-allowed;
     box-shadow: 4px 4px 0 var(--color-bg);
     transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.2s;
@@ -713,40 +755,36 @@
   }
 
   .hero-subtitle {
-    margin: 4px 0 0 var(--logo-indent);
+    margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: clamp(19px, 2vw, 28px);
-    color: #ffffff;
+    font-size: clamp(16px, 1.8vw, 21px);
+    color: var(--color-border);
     letter-spacing: 0.03em;
     line-height: 1.4;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 10px rgba(0, 0, 0, 0.4);
   }
 
   .hero-title {
     margin: 0;
-    flex-shrink: 0;
-    line-height: 0;
+    line-height: 1.1;
   }
 
   .hero-title-text {
     display: block;
-    margin: 0 0 0 var(--logo-indent);
+    margin: 0;
     font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: clamp(32px, 5vw, 72px);
+    font-size: clamp(28px, 4.2vw, 48px);
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: 0.02em;
-    color: #ffffff;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
+    color: var(--color-bg);
   }
 
-  /* Whenever the 16:9 hero leaves too little room for the text block, the
-     text sinks below the fold. Anchor the artwork to the bottom and crop it
-     from the top ("move the background up") so the beach, the text on the
-     brown rock, and breathing room below it all fit in the first screenful.
-     Applies wherever the desktop parallax hero renders — both the bottom-
-     pinned overlay (>1400px) and the in-flow overlay (901–1400px), which
-     needs a similar ~260px below the artwork. */
+  /* Cap the hero art's height so it never fills the entire first screenful —
+     leaves a visible hint of the next section (and the scroll-hint arrow)
+     below the fold. Anchor the artwork to the bottom and crop it from the
+     top ("move the background up") so the on-brand crop still reads well.
+     The sign-up modal is centered *within* this cropped box (see
+     .hero-overlay), so this only governs the art's own height. */
   @media (min-width: 901px) {
     .hero-crop {
       display: flex;
@@ -1903,17 +1941,28 @@
       display: none;
     }
 
-    /* mobile: the overlay flows below the static hero image. Overriding
-       --logo-w (not the img width) keeps the text indent aligned with the
-       wordmark's letter frame. */
+    /* mobile: the overlay flows below the static hero image instead of
+       overlapping it, and the modal card sheds its background/border — a
+       full card would feel heavy stacked in-flow on a small screen, so
+       .hero-modal becomes a transparent wrapper (display: contents) and its
+       children (.hero-copy, .hero-signup) lay out directly as the column's
+       flex items, same as before this redesign. */
     .hero-overlay {
-      --logo-w: min(72vw, 420px);
       position: relative;
       inset: auto;
+      display: flex;
       flex-direction: column;
       align-items: stretch;
       padding: 18px 24px 48px;
       gap: 20px;
+    }
+
+    .hero-modal {
+      display: contents;
+    }
+
+    .hero-modal-border {
+      display: none;
     }
 
     .hero-signup {
