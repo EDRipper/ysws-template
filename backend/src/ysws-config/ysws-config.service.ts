@@ -33,6 +33,7 @@ export interface YswsConfig {
     hackatimeEnabled?: boolean;
     hcbEnabled?: boolean;
     attendEventSlug?: string;
+    botReviewEnabled?: boolean;
   };
   theme: {
     accentColor: string;

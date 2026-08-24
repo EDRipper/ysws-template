@@ -28,7 +28,8 @@
     "slackWorkspaceId": "",
     "hackatimeEnabled": true,
     "hcbEnabled": false,
-    "attendEventSlug": "example-ysws"
+    "attendEventSlug": "example-ysws",
+    "botReviewEnabled": false
   },
   "theme": {
     "accentColor": "#2F6F4F",

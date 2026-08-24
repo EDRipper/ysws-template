@@ -51,7 +51,8 @@
         "slackWorkspaceId": { "type": "string" },
         "hackatimeEnabled": { "type": "boolean" },
         "hcbEnabled": { "type": "boolean" },
-        "attendEventSlug": { "type": "string", "description": "slug used against the attend.hackclub.com-style API; defaults to program.shortName" }
+        "attendEventSlug": { "type": "string", "description": "slug used against the attend.hackclub.com-style API; defaults to program.shortName" },
+        "botReviewEnabled": { "type": "boolean", "description": "surface bot-drafted review suggestions (BotReviewDraft) in the admin UI; requires BOT_REVIEW_API_URL/KEY and BOT_SVC_SHARED_KEY to actually be set, this only controls whether the UI shows them" }
       }
     },
     "theme": {
