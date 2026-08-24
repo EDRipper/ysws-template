@@ -12,7 +12,10 @@ import {
   ParseUUIDPipe,
 } from '@nestjs/common';
 import type { Request } from 'express';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { BotReviewDraft } from '../entities/bot-review-draft.entity';
 import { SuperAdminGuard } from './super-admin.guard';
 import { ReviewerGuard } from './reviewer.guard';
 import { FraudReviewerGuard } from './fraud-reviewer.guard';
@@ -78,6 +81,7 @@ export class AdminController {
     private readonly lookoutService: LookoutService,
     private readonly attendService: AttendService,
     private readonly settingsService: SettingsService,
+    @InjectRepository(BotReviewDraft) private readonly botReviewDraftRepo: Repository<BotReviewDraft>,
   ) {}
 
   @UseGuards(FulfillerGuard)
@@ -522,6 +526,39 @@ export class AdminController {
   @Get('projects/:id/lookout')
   getProjectLookout(@Param('id', ParseUUIDPipe) id: string) {
     return this.lookoutService.listForProjectReview(id);
+  }
+
+  /**
+   * The review bot's current draft verdict for this project, if any (see
+   * BotReviewPollerService / BotReviewInternalController). Suggestion only —
+   * a reviewer decides whether to use it, it never auto-fills or auto-submits
+   * the real review.
+   */
+  @UseGuards(ReviewerGuard)
+  @Get('projects/:id/bot-review-draft')
+  async getBotReviewDraft(@Param('id', ParseUUIDPipe) id: string) {
+    const draft = await this.botReviewDraftRepo.findOne({ where: { projectId: id } });
+    if (!draft || draft.dismissedAt) return null;
+    return {
+      status: draft.status,
+      verdict: draft.verdict,
+      hoursEstimate: draft.hoursEstimate,
+      justification: draft.justification,
+      signalsFired: draft.signalsFired,
+      dispatchedAt: draft.dispatchedAt,
+      respondedAt: draft.respondedAt,
+    };
+  }
+
+  @UseGuards(ReviewerGuard)
+  @Post('projects/:id/bot-review-draft/dismiss')
+  async dismissBotReviewDraft(@Param('id', ParseUUIDPipe) id: string) {
+    const draft = await this.botReviewDraftRepo.findOne({ where: { projectId: id } });
+    if (draft) {
+      draft.dismissedAt = new Date();
+      await this.botReviewDraftRepo.save(draft);
+    }
+    return { ok: true };
   }
 
   @UseGuards(ReviewerGuard)

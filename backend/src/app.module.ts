@@ -13,6 +13,7 @@ import { NewsModule } from './news/news.module';
 import { ShopModule } from './shop/shop.module';
 import { DevlogsModule } from './devlogs/devlogs.module';
 import { FraudReviewModule } from './fraud-review/fraud-review.module';
+import { BotReviewModule } from './bot-review/bot-review.module';
 import { LapseModule } from './lapse/lapse.module';
 import { LookoutModule } from './lookout/lookout.module';
 import { HcbModule } from './hcb/hcb.module';
@@ -39,6 +40,7 @@ import { FraudReview } from './entities/fraud-review.entity';
 import { HcbCredential } from './entities/hcb-credential.entity';
 import { LookoutSession } from './entities/lookout-session.entity';
 import { AppSetting } from './entities/app-setting.entity';
+import { BotReviewDraft } from './entities/bot-review-draft.entity';
 import { HealthController } from './health.controller';
 import { ALL_MIGRATIONS } from './migrations';
 
@@ -54,7 +56,7 @@ import { ALL_MIGRATIONS } from './migrations';
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
         url: config.getOrThrow('DATABASE_URL'),
-        entities: [User, Session, Project, AuditLog, NewsItem, ProjectReview, Comment, ShopItem, Order, FulfillmentUpdate, Submission, ShopSuggestion, ShopSuggestionVote, Devlog, Event, FraudReview, HcbCredential, LookoutSession, AppSetting],
+        entities: [User, Session, Project, AuditLog, NewsItem, ProjectReview, Comment, ShopItem, Order, FulfillmentUpdate, Submission, ShopSuggestion, ShopSuggestionVote, Devlog, Event, FraudReview, HcbCredential, LookoutSession, AppSetting, BotReviewDraft],
         migrations: ALL_MIGRATIONS,
         migrationsRun: true,
         synchronize: false,
@@ -71,6 +73,7 @@ import { ALL_MIGRATIONS } from './migrations';
     ShopModule,
     DevlogsModule,
     FraudReviewModule,
+    BotReviewModule,
     LapseModule,
     LookoutModule,
     HcbModule,

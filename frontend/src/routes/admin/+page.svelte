@@ -409,6 +409,19 @@
 		createdAt: string | null;
 	};
 	let projectLookout = $state<{ sessions: LookoutSessionRecord[]; totalTrackedSeconds: number; completeCount: number } | null>(null);
+	type BotReviewDraftRecord = {
+		status: string;
+		verdict: 'approved_full' | 'approved_deflated' | 'needs_changes' | 'rejected' | null;
+		hoursEstimate: number | null;
+		justification: string | null;
+		signalsFired: string[];
+		dispatchedAt: string | null;
+		respondedAt: string | null;
+	};
+	// A bot-drafted suggestion, never applied automatically — see
+	// api/internal/bot/review write-back on the backend. null whenever the bot
+	// integration is unconfigured, hasn't run yet, or was dismissed.
+	let botReviewDraft = $state<BotReviewDraftRecord | null>(null);
 	// Lapse time (complete sessions only) folded into the project's total time.
 	let lookoutHours = $derived(
 		projectLookout ? Math.round((projectLookout.totalTrackedSeconds / 3600) * 10) / 10 : 0
@@ -472,6 +485,36 @@
 			projectLookout = res.ok ? await res.json() : null;
 		} catch {
 			projectLookout = null;
+		}
+	}
+
+	async function loadBotReviewDraft(projectId: string) {
+		try {
+			const res = await fetch(`/api/admin/projects/${projectId}/bot-review-draft`);
+			botReviewDraft = res.ok ? await res.json() : null;
+		} catch {
+			botReviewDraft = null;
+		}
+	}
+
+	// Pre-fills the review form from the bot's draft — a starting point, not a
+	// submission. The reviewer still has to hit Approve/Changes/Reject.
+	function useBotReviewDraft() {
+		if (!botReviewDraft) return;
+		if (botReviewDraft.justification) overrideJustification = botReviewDraft.justification;
+		if (typeof botReviewDraft.hoursEstimate === 'number') {
+			customHours = botReviewDraft.hoursEstimate;
+			userFacingHours = botReviewDraft.hoursEstimate;
+		}
+	}
+
+	async function dismissBotReviewDraft() {
+		if (!expandedProjectId) return;
+		botReviewDraft = null;
+		try {
+			await fetch(`/api/admin/projects/${expandedProjectId}/bot-review-draft/dismiss`, { method: 'POST' });
+		} catch {
+			// best-effort — worst case it reappears next load, no state corruption
 		}
 	}
 
@@ -687,6 +730,7 @@
 			markGolden = false;
 			projectDevlogs = [];
 			projectLookout = null;
+			botReviewDraft = null;
 			closeAuditEmbed();
 			syncProjectUrl(null);
 			return;
@@ -708,6 +752,7 @@
 		pastReviews = [];
 		projectDevlogs = [];
 		projectLookout = null;
+		botReviewDraft = null;
 
 		const proj = allProjects.find(p => p.id === projectId);
 		persistentUserNote = proj?.user?.reviewerUserNote ?? '';
@@ -717,6 +762,7 @@
 		loadReviews(projectId);
 		loadProjectDevlogs(projectId);
 		loadProjectLookout(projectId);
+		loadBotReviewDraft(projectId);
 		if (proj?.status === 'unreviewed' || proj?.status === 'approved') {
 			hackatimeLoading = true;
 			try {
@@ -3649,6 +3695,25 @@
 											{:else if hackatimeData?.unifiedError}
 												<div class="unified-error-alert">Unified check failed — could not verify code URL against Approved Projects</div>
 											{/if}
+											{#if botReviewDraft && botReviewDraft.status === 'complete'}
+												<div class="bot-review-draft">
+													<div class="bot-review-draft-header">
+														<strong>Bot draft ({botReviewDraft.verdict})</strong>
+														{#if botReviewDraft.hoursEstimate != null}<span>{botReviewDraft.hoursEstimate}h</span>{/if}
+													</div>
+													<p class="bot-review-draft-justification">{botReviewDraft.justification}</p>
+													{#if botReviewDraft.signalsFired?.length}
+														<div class="bot-review-draft-signals">Signals: {botReviewDraft.signalsFired.join(', ')}</div>
+													{/if}
+													<div class="bot-review-draft-actions">
+														<button type="button" class="hours-btn" onclick={useBotReviewDraft}>Use suggestion</button>
+														<button type="button" class="hours-btn" onclick={dismissBotReviewDraft}>Dismiss</button>
+													</div>
+													<div class="bot-review-draft-disclaimer">Suggestion only — not applied until you submit a review below.</div>
+												</div>
+											{:else if botReviewDraft && botReviewDraft.status === 'sent'}
+												<div class="bot-review-draft bot-review-draft-pending">Bot review dispatched, awaiting draft…</div>
+											{/if}
 											<label class="ht-justification-label">
 												Override Justification: <span class="ht-justification-counter" class:ok={justificationOk}>{justificationOk ? 'ok' : `add ${justificationCharsRemaining} more chars`}</span>
 												<textarea bind:this={justificationEl} class="ht-justification" bind:value={overrideJustification} rows="6"></textarea>
@@ -6354,6 +6419,47 @@
 		flex-direction: column;
 		gap: 0.35rem;
 	}
+	.bot-review-draft {
+		background: rgba(120, 100, 220, 0.1);
+		border: 2px solid #7864dc;
+		border-radius: 6px;
+		padding: 0.6rem 0.75rem;
+		margin-bottom: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		font-size: 0.85rem;
+	}
+	.bot-review-draft-pending {
+		color: #aaa;
+		font-style: italic;
+	}
+	.bot-review-draft-header {
+		display: flex;
+		justify-content: space-between;
+		color: #b3a4f0;
+	}
+	.bot-review-draft-justification {
+		white-space: pre-wrap;
+		margin: 0;
+		color: #ddd;
+	}
+	.bot-review-draft-signals {
+		color: #aaa;
+		font-size: 0.78rem;
+	}
+	.bot-review-draft-actions {
+		display: flex;
+		gap: 0.5rem;
+	}
+	.bot-review-draft-disclaimer {
+		color: #888;
+		font-size: 0.75rem;
+		font-style: italic;
+	}
+	.admin-shell.light .bot-review-draft { background: rgba(120, 100, 220, 0.08); }
+	.admin-shell.light .bot-review-draft-justification { color: #333; }
+
 	.ht-ownership-alert strong { color: var(--color-danger); }
 	.ht-ownership-meta {
 		display: grid;
