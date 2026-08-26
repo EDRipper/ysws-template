@@ -12,12 +12,13 @@ import { ProjectReview } from '../entities/project-review.entity';
 import { Comment } from '../entities/comment.entity';
 import { Submission } from '../entities/submission.entity';
 import { User } from '../entities/user.entity';
+import { BotReviewDraft } from '../entities/bot-review-draft.entity';
 import { ProjectsController } from './projects.controller';
 import { LeaderboardController } from './leaderboard.controller';
 import { ProjectsService } from './projects.service';
 
 @Module({
-  imports: [AuthModule, AuditLogModule, HackatimeModule, RsvpModule, IdentityModule, SlackModule, SettingsModule, TypeOrmModule.forFeature([Project, ProjectReview, Comment, Submission, User])],
+  imports: [AuthModule, AuditLogModule, HackatimeModule, RsvpModule, IdentityModule, SlackModule, SettingsModule, TypeOrmModule.forFeature([Project, ProjectReview, Comment, Submission, User, BotReviewDraft])],
   controllers: [ProjectsController, LeaderboardController],
   providers: [ProjectsService],
   exports: [ProjectsService],

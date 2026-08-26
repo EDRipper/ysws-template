@@ -18,6 +18,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { HackatimeService } from '../hackatime/hackatime.service';
 import { Project } from '../entities/project.entity';
 import { ProjectReview } from '../entities/project-review.entity';
+import { BotReviewDraft } from '../entities/bot-review-draft.entity';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './create-project.dto';
 import { UpdateProjectDto } from './update-project.dto';
@@ -29,6 +30,7 @@ export class ProjectsController {
     private readonly hackatimeService: HackatimeService,
     @InjectRepository(Project) private readonly projectRepo: Repository<Project>,
     @InjectRepository(ProjectReview) private readonly reviewRepo: Repository<ProjectReview>,
+    @InjectRepository(BotReviewDraft) private readonly botReviewDraftRepo: Repository<BotReviewDraft>,
   ) {}
 
   /**
@@ -283,5 +285,38 @@ export class ProjectsController {
       hideReviewerName: r.hideReviewerName ?? false,
       createdAt: r.createdAt,
     }));
+  }
+
+  /**
+   * Automated pre-check: a sanitized completeness checklist from the review
+   * bot, shown before a human ever looks so the submitter can fix something
+   * basic without waiting on the queue. Only returned while the project is
+   * still awaiting its first human review — never the bot's internal verdict,
+   * hours estimate, justification, or fraud signals (those stay admin-only,
+   * see BotReviewInternalController).
+   */
+  @Throttle({ default: { limit: 30, ttl: 60000 } })
+  @UseGuards(JwtAuthGuard)
+  @Get(':id/bot-review-precheck')
+  async getBotReviewPrecheck(@Param('id') id: string, @Req() req: Request) {
+    const userId = (req as any).user?.uid;
+    if (!userId) throw new UnauthorizedException('No user identity');
+
+    const project = await this.projectRepo.findOne({
+      where: { id, userId },
+      select: ['id', 'status'],
+    });
+    if (!project) throw new UnauthorizedException('Project not found');
+    if (project.status !== 'unreviewed') return null;
+
+    const draft = await this.botReviewDraftRepo.findOne({ where: { projectId: id } });
+    if (!draft || draft.status !== 'complete' || draft.dismissedAt) return null;
+    if (!draft.publicChecklist?.length && !draft.publicSummary) return null;
+
+    return {
+      checklist: draft.publicChecklist ?? [],
+      summary: draft.publicSummary,
+      respondedAt: draft.respondedAt,
+    };
   }
 }

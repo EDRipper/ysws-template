@@ -80,6 +80,12 @@
   let editingProjectReviews = $state<ProjectReview[]>([]);
   let editingProjectReviewsLoading = $state(false);
   let editingProjectQueue = $state<{ total: number; position: number } | null>(null);
+  type BotReviewPrecheck = {
+    checklist: { label: string; pass: boolean }[];
+    summary: string | null;
+    respondedAt: string;
+  };
+  let editingProjectPrecheck = $state<BotReviewPrecheck | null>(null);
 
   let projectName = $state('');
   let projectDesc = $state('');
@@ -511,6 +517,7 @@
     editingProjectReviews = [];
     editingProjectReviewsLoading = false;
     editingProjectQueue = null;
+    editingProjectPrecheck = null;
   }
 
   async function fetchProjectQueue(projectId: string) {
@@ -537,6 +544,17 @@
       }
     } catch { /* silent */ }
     editingProjectReviewsLoading = false;
+  }
+
+  async function fetchProjectPrecheck(projectId: string) {
+    editingProjectPrecheck = null;
+    try {
+      const res = await fetch(`/api/projects/${projectId}/bot-review-precheck`);
+      if (res.ok) {
+        const data = await res.json();
+        editingProjectPrecheck = data ?? null;
+      }
+    } catch { /* silent */ }
   }
 
   async function resubmitProject() {
@@ -615,6 +633,7 @@
     fetchProjectReviews(project.id);
     if (project.status === 'unreviewed') {
       fetchProjectQueue(project.id);
+      fetchProjectPrecheck(project.id);
     }
     projectName = project.name ?? '';
     projectDesc = project.description ?? '';
@@ -1734,6 +1753,28 @@
       <div class="form-header">
         <button class="form-cancel" onclick={resetForm}>&times;</button>
       </div>
+
+      {#if editingProject?.status === 'unreviewed' && editingProjectPrecheck}
+        <div class="precheck-card">
+          <div class="precheck-header">
+            <span class="precheck-badge">Automated pre-check</span>
+            <span class="precheck-caption">Not a review &mdash; a human still looks at everything. Fix what you can now so you're not waiting on a round trip.</span>
+          </div>
+          {#if editingProjectPrecheck.summary}
+            <p class="precheck-summary">{editingProjectPrecheck.summary}</p>
+          {/if}
+          {#if editingProjectPrecheck.checklist.length > 0}
+            <ul class="precheck-checklist">
+              {#each editingProjectPrecheck.checklist as item}
+                <li class="precheck-item" class:pass={item.pass} class:fail={!item.pass}>
+                  <span class="precheck-item-icon" aria-hidden="true">{item.pass ? '✓' : '✗'}</span>
+                  <span>{item.label}</span>
+                </li>
+              {/each}
+            </ul>
+          {/if}
+        </div>
+      {/if}
 
       {#if editingProject && editingProjectReviews.length > 0}
         <div class="review-feedback-list">
@@ -4410,6 +4451,83 @@
 
   .approved-summary-meta a:hover {
     text-decoration: underline;
+  }
+
+  .precheck-card {
+    margin: 0 0 32px;
+    padding: 16px 20px;
+    max-width: 720px;
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 4px solid var(--color-accent);
+    clip-path: polygon(0% 3%, 2% 0%, 98% 2%, 100% 5%, 99% 96%, 97% 100%, 3% 99%, 0% 95%);
+  }
+
+  .precheck-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .precheck-badge {
+    align-self: flex-start;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    background: rgba(var(--color-accent-rgb, 90, 158, 211), 0.2);
+    color: var(--color-accent);
+  }
+
+  .precheck-caption {
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: var(--color-text-faint);
+  }
+
+  .precheck-summary {
+    margin: 0 0 12px;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 15px;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  .precheck-checklist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .precheck-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 14px;
+    color: var(--color-text);
+  }
+
+  .precheck-item-icon {
+    flex: none;
+    font-weight: bold;
+  }
+
+  .precheck-item.pass .precheck-item-icon {
+    color: var(--color-success);
+  }
+
+  .precheck-item.fail .precheck-item-icon {
+    color: #d4a55a;
+  }
+
+  .precheck-item.fail {
+    color: var(--color-text);
   }
 
   .review-feedback-list {

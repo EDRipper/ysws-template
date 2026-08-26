@@ -62,6 +62,7 @@ import { AddShopItemGrantFields1785200000000 } from './1785200000000-AddShopItem
 import { CreateAppSettings1785300000000 } from './1785300000000-CreateAppSettings';
 import { AddUserIdentityOverride1785400000000 } from './1785400000000-AddUserIdentityOverride';
 import { CreateBotReviewDrafts1785500000000 } from './1785500000000-CreateBotReviewDrafts';
+import { AddBotReviewDraftPublicFields1785600000000 } from './1785600000000-AddBotReviewDraftPublicFields';
 
 export const ALL_MIGRATIONS = [
   InitialSchema1743552000000,
@@ -120,4 +121,5 @@ export const ALL_MIGRATIONS = [
   CreateAppSettings1785300000000,
   AddUserIdentityOverride1785400000000,
   CreateBotReviewDrafts1785500000000,
+  AddBotReviewDraftPublicFields1785600000000,
 ];
