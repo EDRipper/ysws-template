@@ -20,12 +20,22 @@ import { LookoutService } from '../lookout/lookout.service';
 
 const VALID_VERDICTS = ['approved_full', 'approved_deflated', 'needs_changes', 'rejected'] as const;
 
+interface PublicChecklistItem {
+  label: string;
+  pass: boolean;
+}
+
 interface WriteBackReviewDto {
   projectId: string;
   verdict: (typeof VALID_VERDICTS)[number];
   hoursEstimate?: number | null;
   justification: string;
   signalsFired?: string[];
+  // Sanitized, submitter-facing fields — see BotReviewDraft.publicChecklist.
+  // Optional: an older bot build that doesn't send them just means no
+  // pre-check card shows up, not a broken write-back.
+  publicChecklist?: PublicChecklistItem[];
+  publicSummary?: string | null;
 }
 
 /**
@@ -124,6 +134,13 @@ export class BotReviewInternalController {
     draft.hoursEstimate = body.hoursEstimate ?? null;
     draft.justification = body.justification.slice(0, 8000);
     draft.signalsFired = Array.isArray(body.signalsFired) ? body.signalsFired.slice(0, 50) : [];
+    draft.publicChecklist = Array.isArray(body.publicChecklist)
+      ? body.publicChecklist
+          .filter((i) => i && typeof i.label === 'string' && typeof i.pass === 'boolean')
+          .slice(0, 20)
+          .map((i) => ({ label: i.label.slice(0, 200), pass: i.pass }))
+      : [];
+    draft.publicSummary = typeof body.publicSummary === 'string' ? body.publicSummary.slice(0, 1000) : null;
     draft.status = 'complete';
     draft.respondedAt = new Date();
     await this.draftRepo.save(draft);

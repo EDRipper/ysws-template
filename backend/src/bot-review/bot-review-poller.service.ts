@@ -106,6 +106,8 @@ export class BotReviewPollerService {
         existing.hoursEstimate = null;
         existing.justification = null;
         existing.signalsFired = [];
+        existing.publicChecklist = [];
+        existing.publicSummary = null;
         existing.dispatchedAt = null;
         existing.respondedAt = null;
         existing.dismissedAt = null;

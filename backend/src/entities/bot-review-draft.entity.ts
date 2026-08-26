@@ -63,6 +63,27 @@ export class BotReviewDraft {
   }})
   signalsFired: string[];
 
+  // Sanitized, submitter-safe checklist — only objective completeness items
+  // (demo link loads, screenshot present, README matches, etc). Must never
+  // carry fraud/heartbeat/AI-detection/duplicate-check content — those stay in
+  // `justification` above, which is admin-only. Shown on the builder's own
+  // project page so they can fix something basic before a human ever looks.
+  @Column({ type: 'text', name: 'public_checklist', nullable: true, transformer: {
+    to: (value: { label: string; pass: boolean }[] | null) =>
+      value && value.length > 0 ? JSON.stringify(value) : null,
+    from: (value: string | null) => {
+      if (!value) return [];
+      try { const parsed = JSON.parse(value); return Array.isArray(parsed) ? parsed : []; }
+      catch { return []; }
+    },
+  }})
+  publicChecklist: { label: string; pass: boolean }[];
+
+  // Short plain-language paragraph pairing with publicChecklist, same
+  // no-sensitive-content rule.
+  @Column({ type: 'text', name: 'public_summary', nullable: true })
+  publicSummary: string | null;
+
   @Column({ type: 'timestamptz', name: 'dispatched_at', nullable: true })
   dispatchedAt: Date | null;
 
