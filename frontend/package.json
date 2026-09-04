@@ -26,6 +26,7 @@
 		"@types/d3-scale": "^4.0.9",
 		"@types/d3-time-format": "^4.0.3",
 		"@types/node": "^22.10.7",
+		"@types/three": "^0.185.4",
 		"prettier": "^3.8.1",
 		"prettier-plugin-svelte": "^3.4.1",
 		"svelte": "^5.51.0",
@@ -41,6 +42,7 @@
 		"d3-time": "^3.1.0",
 		"d3-time-format": "^4.1.0",
 		"layerchart": "^1.0.13",
+		"three": "^0.185.1",
 		"uplot": "^1.6.32"
 	}
 }
